@@ -1,0 +1,302 @@
+DROP TABLE address_ck purge;
+DROP TABLE products_ck purge;
+DROP TABLE point_history_ck purge;
+DROP TABLE cart_ck purge;
+DROP TABLE member_ck purge;
+DROP TABLE reply_ck purge;
+DROP TABLE hugi_ck purge;
+DROP TABLE qna_ck purge;
+DROP TABLE notice_ck purge;
+DROP TABLE zzim_ck purge;
+DROP TABLE order_product purge;
+DROP TABLE order_ck purge;
+
+
+CREATE TABLE member_ck (
+	user_id	varchar2(20)		NOT NULL,
+	user_pw	varchar2(25)		NOT NULL,
+	user_name	varchar2(20)		NOT NULL,
+	email	varchar2(50)		NOT NULL,
+	phone	varchar2(15)		NOT NULL,
+	gender	number		NULL,
+	birth	date		NOT NULL,
+	point	number	DEFAULT 0	NULL,
+	addr_no	number		NOT NULL
+);
+
+COMMENT ON COLUMN member_ck.gender IS '0:없음, 1: 남자, 2: 여자';
+
+COMMENT ON COLUMN member_ck.point IS '포인트내역테이블의 합산';
+
+COMMENT ON COLUMN member_ck.addr_no IS '시퀀스';
+
+
+
+CREATE TABLE address_ck (
+	addr_no	number		NOT NULL,
+	addr1	varchar2(50)		NOT NULL,
+	addr2	varchar2(50)		NOT NULL,
+	getter	varchar2(20)		NOT NULL,
+	getter_phone	varchar2(15)		NOT NULL,
+	user_id	varchar2(20)		NOT NULL,
+	addr_selected	number	DEFAULT 0	NULL
+);
+
+COMMENT ON COLUMN address_ck.addr_no IS '시퀀스';
+
+COMMENT ON COLUMN address_ck.addr1 IS '도로명/지번 주소';
+
+COMMENT ON COLUMN address_ck.addr2 IS '상세주소';
+
+COMMENT ON COLUMN address_ck.addr_selected IS '배송지변경으로 바꾸면 1';
+
+
+
+CREATE TABLE point_history_ck (
+	point_no	number		NOT NULL,
+	point	number		NOT NULL,
+	point_date	date		NOT NULL,
+	point_reason	varchar2(50)		NOT NULL,
+	user_id	varchar2(20)		NOT NULL
+);
+
+COMMENT ON COLUMN point_history_ck.point_no IS '시퀀스';
+
+COMMENT ON COLUMN point_history_ck.point_reason IS '구매테이블(구매코드)';
+
+
+
+CREATE TABLE products_ck (
+	product_code	varchar2(6)		NOT NULL,
+	product_name	varchar2(100)		NOT NULL,
+	price	number		NOT NULL,
+	off_price	number		NULL,
+	weight	number		NOT NULL,
+	package_type	varchar2(3)		NOT NULL,
+	company	varchar2(20)	DEFAULT '컬리'	NOT NULL,
+	descript_image	varchar2(200)		NULL,
+	descript	varchar2(300)		NULL,
+	product_image	varchar2(100)	DEFAULT 'basic.jpg'	NULL,
+	category	varchar2(20)		NOT NULL,
+	volume	number	DEFAULT 0	NULL,
+	view_cnt	number	DEFAULT 0	NULL,
+	sales_volume	number	DEFAULT 0	NULL,
+	brand_chosung	char(1)		NOT NULL,
+	product_bonus	number		NULL
+);
+
+COMMENT ON COLUMN products_ck.product_code IS '상온/냉동/냉장';
+
+COMMENT ON COLUMN products_ck.off_price IS '할인된 가격';
+
+COMMENT ON COLUMN products_ck.weight IS '(1개기준)';
+
+COMMENT ON COLUMN products_ck.package_type IS '상온/냉동/냉장 택일';
+
+COMMENT ON COLUMN products_ck.descript_image IS '상품상세설명 이미지';
+
+COMMENT ON COLUMN products_ck.product_image IS '입력 없을 시 기본이미지대체';
+
+COMMENT ON COLUMN products_ck.category IS '세부카테고리 x';
+
+COMMENT ON COLUMN products_ck.volume IS '남은재고';
+
+COMMENT ON COLUMN products_ck.view_cnt IS '인기순으로 필터';
+
+COMMENT ON COLUMN products_ck.sales_volume IS '판매량';
+
+COMMENT ON COLUMN products_ck.brand_chosung IS '브랜드 첫글자 초성';
+
+COMMENT ON COLUMN products_ck.product_bonus IS '가격or할인가격에서 1%';
+
+
+
+CREATE TABLE cart_ck (
+	product_code	varchar2(6)		NOT NULL,
+	cart_volume	number	DEFAULT 1	NOT NULL,
+	user_id	varchar2(20)		NOT NULL
+);
+
+COMMENT ON COLUMN cart_ck.product_code IS '프라이머리';
+
+COMMENT ON COLUMN cart_ck.cart_volume IS '기본 장바구니 담을때 1개';
+
+
+
+CREATE TABLE order_ck (
+	order_no	number		NOT NULL,
+	addr_no	number		NOT NULL,
+	order_price	number		NULL,
+	order_yocheong	varchar2(100)		NULL,
+	order_date	date	DEFAULT sysdate	NULL
+);
+
+COMMENT ON COLUMN order_ck.order_no IS '시퀀스';
+
+COMMENT ON COLUMN order_ck.addr_no IS '시퀀스';
+
+COMMENT ON COLUMN order_ck.order_price IS '최종결제금액';
+
+COMMENT ON COLUMN order_ck.order_yocheong IS '주문자 자유입력';
+
+
+
+CREATE TABLE order_product (
+	op_no	number		NOT NULL,
+	order_no	number		NOT NULL,
+	product_code	varchar2(6)		NOT NULL,
+	user_id	varchar2(20)		NOT NULL,
+	op_volume	number		NOT NULL,
+	op_price	number		NOT NULL
+);
+
+COMMENT ON COLUMN order_product.op_no IS '시퀀스';
+
+COMMENT ON COLUMN order_product.order_no IS '시퀀스';
+
+COMMENT ON COLUMN order_product.product_code IS '상온/냉동/냉장';
+
+COMMENT ON COLUMN order_product.op_price IS '상풍코드의 가격과 수량을 곱연산';
+
+
+
+CREATE TABLE zzim_ck (
+	zzim_no	number		NOT NULL,
+	product_code	varchar2(6)		NOT NULL,
+	user_id	varchar2(20)		NOT NULL
+);
+
+COMMENT ON COLUMN zzim_ck.zzim_no IS '시퀀스';
+
+COMMENT ON COLUMN zzim_ck.product_code IS '상온/냉동/냉장';
+
+
+
+CREATE TABLE notice_ck (
+	notice_no	number		NOT NULL,
+	notice_title	varchar2(40)		NOT NULL,
+	notice_writer	varchar2(30)		NOT NULL,
+	notice_creation	date	DEFAULT sysdate	NOT NULL,
+	notice_content	varchar2(200)		NOT NULL
+);
+
+COMMENT ON COLUMN notice_ck.notice_no IS '시퀀스';
+
+COMMENT ON COLUMN notice_ck.notice_writer IS '회원아이디';
+
+
+
+CREATE TABLE qna_ck (
+	qna_no	number		NOT NULL,
+	order_no	number		NOT NULL,
+	user_id	varchar2(20)		NOT NULL,
+	qna_type1	varchar2(30)		NOT NULL,
+	qna_type2	varchar2(30)		NOT NULL,
+	qna_title	varchar2(50)		NULL,
+	qna_content	varchar2(200)		NULL,
+	qna_date	date	DEFAULT sysdate	NULL,
+	qna_image	varchar2(300)		NULL,
+	qna_state	number	DEFAULT 0	NULL
+);
+
+COMMENT ON COLUMN qna_ck.qna_no IS '시퀀스';
+
+COMMENT ON COLUMN qna_ck.order_no IS '시퀀스';
+
+COMMENT ON COLUMN qna_ck.qna_state IS '0: 답변대기, 1:답변';
+
+
+
+CREATE TABLE hugi_ck (
+	hugi_no	number		NOT NULL,
+	hugi_content	varchar2(300)		NOT NULL,
+	hugi_date	date	DEFAULT sysdate	NOT NULL,
+	hugi_good	number	DEFAULT 0	NULL,
+	hugi_image	varchar2(500)		NULL,
+	user_id	varchar2(20)		NOT NULL,
+	product_code	varchar2(6)		NOT NULL,
+	op_no	number		NOT NULL
+);
+
+COMMENT ON COLUMN hugi_ck.hugi_no IS '시퀀스';
+
+COMMENT ON COLUMN hugi_ck.hugi_date IS '후가직성날짜';
+
+COMMENT ON COLUMN hugi_ck.hugi_good IS '후기 추천수';
+
+COMMENT ON COLUMN hugi_ck.product_code IS '상온/냉동/냉장';
+
+COMMENT ON COLUMN hugi_ck.op_no IS '시퀀스';
+
+
+
+CREATE TABLE reply_ck (
+	qna_no	number		NOT NULL,
+	reply_content	varchar2(300)		NULL,
+	reply_date	date	DEFAULT sysdate	NULL
+);
+
+COMMENT ON COLUMN reply_ck.qna_no IS '시퀀스';
+
+ALTER TABLE member_ck ADD CONSTRAINT PK_MEMBER_CK PRIMARY KEY (
+	user_id
+);
+
+ALTER TABLE address_ck ADD CONSTRAINT PK_ADDRESS_CK PRIMARY KEY (
+	addr_no
+);
+
+ALTER TABLE point_history_ck ADD CONSTRAINT PK_POINT_HISTORY_CK PRIMARY KEY (
+	point_no
+);
+
+ALTER TABLE products_ck ADD CONSTRAINT PK_PRODUCTS_CK PRIMARY KEY (
+	product_code
+);
+
+ALTER TABLE cart_ck ADD CONSTRAINT PK_CART_CK PRIMARY KEY (
+	product_code
+);
+
+ALTER TABLE order_ck ADD CONSTRAINT PK_ORDER_CK PRIMARY KEY (
+	order_no
+);
+
+ALTER TABLE order_product ADD CONSTRAINT PK_ORDER_PRODUCT PRIMARY KEY (
+	op_no
+);
+
+ALTER TABLE zzim_ck ADD CONSTRAINT PK_ZZIM_CK PRIMARY KEY (
+	zzim_no
+);
+
+ALTER TABLE notice_ck ADD CONSTRAINT PK_NOTICE_CK PRIMARY KEY (
+	notice_no
+);
+
+ALTER TABLE qna_ck ADD CONSTRAINT PK_QNA_CK PRIMARY KEY (
+	qna_no
+);
+
+ALTER TABLE hugi_ck ADD CONSTRAINT PK_HUGI_CK PRIMARY KEY (
+	hugi_no
+);
+
+ALTER TABLE reply_ck ADD CONSTRAINT PK_REPLY_CK PRIMARY KEY (
+	qna_no
+);
+
+ALTER TABLE cart_ck ADD CONSTRAINT FK_products_ck_TO_cart_ck_1 FOREIGN KEY (
+	product_code
+)
+REFERENCES products_ck (
+	product_code
+);
+
+ALTER TABLE reply_ck ADD CONSTRAINT FK_qna_ck_TO_reply_ck_1 FOREIGN KEY (
+	qna_no
+)
+REFERENCES qna_ck (
+	qna_no
+);
+
