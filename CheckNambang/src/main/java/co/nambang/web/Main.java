@@ -12,7 +12,7 @@ public class Main implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("temp.tiles").forward(req, resp);
+		req.getRequestDispatcher("shop/test.tiles").forward(req, resp);
 	}
 
 }
