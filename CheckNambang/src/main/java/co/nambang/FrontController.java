@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.nambang.common.Control;
 import co.nambang.member.web.JoinForm;
+import co.nambang.member.web.JoinMember;
 import co.nambang.member.web.Test;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
@@ -68,6 +69,7 @@ public class FrontController extends HttpServlet {
 		
 		// 고객관련
 		map.put("/joinMemberForm.do", new JoinForm()); // 회원가입 폼
+		map.put("/joinMember.do", new JoinMember()); // 회원가입
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
