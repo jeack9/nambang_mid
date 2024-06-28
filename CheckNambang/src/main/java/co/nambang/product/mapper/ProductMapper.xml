@@ -3,4 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.product.mapper.ProductMapper">
+	<select id="productList" parameterType="co.nambang.product.vo.ProductVO">
+		SELECT
+			p.product_code,
+			p.PRODUCT_IMAGE,
+			p.COMPANY,
+			p.PRODUCT_NAME,
+			p.PRICE,
+			COUNT(h.product_code) AS review_count
+		FROM
+			products_ck p
+			LEFT JOIN
+			hugi_ck h
+		ON
+			p.product_code = h.product_code
+		GROUP BY
+			p.product_code,
+			p.PRODUCT_IMAGE,
+			p.COMPANY,
+			p.PRODUCT_NAME,
+			p.PRICE
+		order by
+			product_code;
+	</select>
+
 </mapper>
