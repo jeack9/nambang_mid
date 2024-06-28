@@ -19,7 +19,7 @@
 	</definition>
 	<definition name="WILDCARD:*/*" extends="temp">
 		<put-attribute name="background" value="/WEB-INF/shop/background.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp"/>
 		
 	</definition>
 	
