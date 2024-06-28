@@ -19,7 +19,6 @@
 		</environment>
 	</environments>
 	<mappers>
-	<!-- <mapper resource="co/yedam/mapper/*.xml" /> -->
-		<mapper resource="co/nambang/member/mapper/MemberMapper.xml" />
+		<package name="co.nambang"/>
 	</mappers>
 </configuration>
