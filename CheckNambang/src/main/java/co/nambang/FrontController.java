@@ -11,7 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.nambang.common.Control;
 import co.nambang.member.web.Test;
+import co.nambang.web.Hyun;
+import co.nambang.web.Hyun2;
 import co.nambang.web.Main;
+import co.nambang.web.Mo;
+import co.nambang.web.Mo2;
+import co.nambang.web.Soo;
+import co.nambang.web.Soo2;
+import co.nambang.web.Woon;
+import co.nambang.web.Woon2;
 
 public class FrontController extends HttpServlet {
 	private Map<String, Control> map;
@@ -24,6 +32,19 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		map.put("/main.do", new Main());
 		map.put("/test.do", new Test());
+		
+		// 안준모의 테스트 컨트롤러
+		map.put("/mocontrol.do", new Mo());
+		map.put("/mocontrol2.do", new Mo2());
+		// 김대운의 테스트 컨트롤러
+		map.put("/woonControl.do", new Woon());
+		map.put("/woonControl2.do", new Woon2());
+		// 이상현의 테스트 컨트롤러
+		map.put("/hyunControl.do", new Hyun());
+		map.put("/hyunControl2.do", new Hyun2());
+		// 김지수의 테스트 컨트롤러
+		map.put("/sooControl.do", new Soo());
+		map.put("/sooControl2.do", new Soo2());
 	}
 	
 	@Override
