@@ -13,8 +13,9 @@
 	</definition>
 	
 	<definition name="WILDCARD:shop/*" extends="temp">
-		<!-- <put-attribute name="hsection" value="/WEB-INF/shop/{1}.jsp"/> -->
-		<put-attribute name="background" value="/WEB-INF/shop/{1}.jsp"/>
+		<put-attribute name="background" value="/WEB-INF/shop/background.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/shop/{1}.jsp"/>
+		
 	</definition>
 	
 </tiles-definitions>
