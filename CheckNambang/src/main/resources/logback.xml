@@ -8,7 +8,10 @@
     </encoder>
   </appender>
 
-  <logger name="co.nambang.member.mapper.MemberMapper">
+<!--   <logger name="co.nambang.member.mapper.MemberMapper">
+    <level value="debug"/>
+  </logger> -->
+  <logger name="co.nambang.*.mapper.**Mapper">
     <level value="debug"/>
   </logger>
   <root level="error">
