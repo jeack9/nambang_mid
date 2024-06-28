@@ -11,12 +11,7 @@
 		<put-attribute name="body" value="/WEB-INF/layout/body.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
-	
-	<!-- <definition name="WILDCARD:shop/*" extends="temp">
-		<put-attribute name="background" value="/WEB-INF/view/shop/background.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/view/shop/{1}.jsp"/>
-		
-	</definition> -->
+
 	<definition name="WILDCARD:*/*" extends="temp">
 		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp"/>
 	</definition>
