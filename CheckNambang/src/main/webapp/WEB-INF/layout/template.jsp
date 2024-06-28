@@ -46,17 +46,11 @@
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
+            <div class="header__top__right__auth">
+               <a href="joinMemberForm.do"><i class="fa fa-user"></i> 회원가입</a>
             </div>
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <a href="#"><i class="fa fa-user"></i> 로그인</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -122,7 +116,10 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="#"><i class="fa fa-user"></i> 로그인</a>
+                            </div>
+                            <div class="header__top__right__auth">
+                                <a href="joinMemberForm.do"><i class="fa fa-user"></i> 회원가입</a>
                             </div>
                         </div>
                     </div>
@@ -133,7 +130,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="main.do"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
