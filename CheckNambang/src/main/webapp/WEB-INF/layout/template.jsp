@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -46,12 +47,25 @@
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
-            <div class="header__top__right__auth">
-               <a href="joinMemberForm.do"><i class="fa fa-user"></i> 회원가입</a>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> 로그인</a>
-            </div>
+        	<c:choose>
+        	  <c:when test="${empty sessionScope.login }">
+	        	  <div class="header__top__right__auth">
+	               <a href="joinMemberForm.do"><i class="fa fa-user"></i> 회원가입</a>
+	           	  </div>
+	              <div class="header__top__right__auth">
+	                <a href="loginForm.do"><i class="fa fa-user"></i> 로그인</a>
+	              </div>
+        	  </c:when>
+        	  <c:otherwise>
+	        	  <div class="header__top__right__auth">
+		               <a href="#"><i class="fa fa-user"></i> ${login.userName}</a>
+	           	  </div>
+	           	  <div class="header__top__right__auth">
+		                <a href="logout.do"><i class="fa fa-user"></i>로그아웃</a>
+	              </div>
+        	  </c:otherwise>
+        	</c:choose>
+            
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
@@ -115,12 +129,24 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> 로그인</a>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href="joinMemberForm.do"><i class="fa fa-user"></i> 회원가입</a>
-                            </div>
+				        	<c:choose>
+				        	  <c:when test="${empty sessionScope.login }">
+					        	  <div class="header__top__right__auth">
+					               <a href="joinMemberForm.do"><i class="fa fa-user"></i> 회원가입</a>
+					           	  </div>
+					              <div class="header__top__right__auth">
+					                <a href="loginForm.do"><i class="fa fa-user"></i> 로그인</a>
+					              </div>
+				        	  </c:when>
+				        	  <c:otherwise>
+					        	  <div class="header__top__right__auth">
+						               <a href="#"><i class="fa fa-user"></i> ${login.userName}</a>
+					           	  </div>
+					           	  <div class="header__top__right__auth">
+						                <a href="logout.do"><i class="fa fa-user"></i>로그아웃</a>
+					              </div>
+				        	  </c:otherwise>
+				        	</c:choose>
                         </div>
                     </div>
                 </div>
