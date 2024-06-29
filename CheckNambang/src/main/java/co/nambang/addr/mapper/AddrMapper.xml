@@ -3,4 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.addr.mapper.AddrMapper">
+	<insert id="insertAddr" parameterType="co.nambang.addr.vo.AddrVO">
+		insert into address_ck(addr_no, addr1, addr2, getter, getter_phone, user_id, addr_selected)
+		values(addr_ck_seq.nextval, #{addr1}, #{addr2}, #{getter}, #{getterPhone}, #{userId}, #{addrSelected})
+	</insert>
+	
+	<select id="selectAddr" resultType="co.nambang.addr.vo.AddrVO">
+		select * from address_ck
+		where user_id = #{uid} and addr_selected = #{selected}
+	</select>
 </mapper>

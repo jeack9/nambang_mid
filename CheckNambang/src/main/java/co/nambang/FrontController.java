@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.nambang.common.Control;
+import co.nambang.member.web.CheckId;
 import co.nambang.member.web.JoinForm;
 import co.nambang.member.web.JoinMember;
+import co.nambang.member.web.LoginForm;
+import co.nambang.member.web.LoginMember;
+import co.nambang.member.web.Logout;
 import co.nambang.member.web.Test;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
@@ -67,9 +71,13 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new Main());
 		map.put("/test.do", new Test());
 		
-		// 고객관련
+		// 회원관련
 		map.put("/joinMemberForm.do", new JoinForm()); // 회원가입 폼
 		map.put("/joinMember.do", new JoinMember()); // 회원가입
+		map.put("/checkIdAjax.do", new CheckId()); // 아이디 중복확인 아작스
+		map.put("/loginForm.do", new LoginForm()); // 로그인 폼
+		map.put("/loginMember.do", new LoginMember()); // 로그인
+		map.put("/logout.do", new Logout()); // 로그아웃
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());

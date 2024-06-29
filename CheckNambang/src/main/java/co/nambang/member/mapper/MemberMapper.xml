@@ -3,9 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.member.mapper.MemberMapper">
-	<select id="selectMember" parameterType="string">
+	<select id="selectMember" parameterType="co.nambang.member.vo.MemberVO">
 		select *
+		from member_ck
+		where user_id = #{userId} and user_pw = #{userPw}
+	</select>
+	
+	<select id="checkId" parameterType="string">
+		select count(*)
 		from member_ck
 		where user_id = #{userId}
 	</select>
+	
+	<insert id="insertMember"
+		parameterType="co.nambang.member.vo.MemberVO">
+		insert into member_ck(user_id, user_pw, user_name, email, phone, gender, birth)
+		values(#{userId}, #{userPw}, #{userName}, #{email}, #{phone}, #{gender}, #{birth})
+	</insert>
+	
+	<update id="updateBasicAddr">
+		update member_ck
+		set addr_no = #{addrNo}
+		where user_id = #{uid}
+	</update>
 </mapper>
