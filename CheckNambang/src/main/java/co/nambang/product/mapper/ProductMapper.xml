@@ -4,27 +4,30 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.product.mapper.ProductMapper">
 	<select id="productList" parameterType="co.nambang.product.vo.ProductVO">
-		SELECT
-			p.product_code,
-			p.PRODUCT_IMAGE,
-			p.COMPANY,
-			p.PRODUCT_NAME,
-			p.PRICE,
-			COUNT(h.product_code) AS review_count
-		FROM
-			products_ck p
-			LEFT JOIN
-			hugi_ck h
-		ON
-			p.product_code = h.product_code
-		GROUP BY
-			p.product_code,
-			p.PRODUCT_IMAGE,
-			p.COMPANY,
-			p.PRODUCT_NAME,
-			p.PRICE
-		order by
-			product_code;
+   SELECT * FROM (
+       SELECT
+           p.product_code,
+           p.PRODUCT_IMAGE,
+           p.COMPANY,
+           p.PRODUCT_NAME,
+           p.PRICE,
+           h.review_count,
+           ROW_NUMBER() OVER (ORDER BY p.product_code) AS rn
+       FROM
+           products_ck p
+           LEFT JOIN (
+               SELECT
+                   product_code,
+                   COUNT(*) AS review_count
+               FROM
+                   hugi_ck
+               GROUP BY
+                   product_code
+           ) h ON p.product_code = h.product_code
+   ) b
+    <![CDATA[WHERE b.rn <= (#{page} * 5) ]]>
+    AND b.rn > ((#{page} - 1) * 5)
+    ORDER BY b.product_code
 	</select>
 
 </mapper>

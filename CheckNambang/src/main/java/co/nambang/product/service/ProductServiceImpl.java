@@ -14,8 +14,8 @@ public class ProductServiceImpl implements ProductService{
 	ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
   
 	@Override
-	public List<ProductVO> productList() {
+	public List<ProductVO> productList(int page) {
 		// TODO Auto-generated method stub
-		return mapper.productList();
+		return mapper.productList(page);
 	}
 }
