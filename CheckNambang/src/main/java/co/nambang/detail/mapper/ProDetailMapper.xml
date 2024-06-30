@@ -8,5 +8,8 @@
 		from products_ck
 		where product_code = #{productCode}
 	</select>
-
+	<insert id="insertZzim" parameterType="object">
+		insert into zzim_ck(zzim_no,product_code,user_id)
+		values (zzim_seq.nextval,#{proCode},#{userId})
+	</insert>
 </mapper>

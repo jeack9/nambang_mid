@@ -7,4 +7,6 @@ import co.nambang.product.vo.ProductVO;
 
 public interface ProDetailService {
 	List<ProductVO> detailList(String proCode);
+	
+	boolean insZzim(String proCode, String userId);
 }

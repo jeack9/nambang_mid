@@ -24,16 +24,22 @@ public class Mo2 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		String productCode = req.getParameter("productCode");
+		String userId = req.getParameter("userId");
+	
 		
 		ProDetailService svc = new ProDetailServiceImpl();
 		List<ProductVO> list = svc.detailList(productCode);
+		
+		req.setAttribute("proCode", productCode);
+		req.setAttribute("userId", userId);
+		
 		System.out.println(list);
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 		
 		resp.getWriter().print(json);
 		
-	
+		
 	}
 
 }
