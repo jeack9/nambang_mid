@@ -201,13 +201,16 @@
 
     <!-- Hero Section Begin -->
 	<tiles:insertAttribute name="header"/>
-    <!-- Hero Section End -->
-    <!-- 백그라운드  -->
-	<tiles:insertAttribute name="background"/>
-    <!-- Categories Section Begin -->
-	<tiles:insertAttribute name="body"/>
-    <!-- Blog Section End -->
 
+
+	<section class="product spad">
+        <div class="container">
+            <div class="row">
+                <tiles:insertAttribute name="leftcontent"/>
+                <tiles:insertAttribute name="rigthcontent"/>
+            </div>
+        </div>
+    </section>
     <!-- Footer Section Begin -->
 	<tiles:insertAttribute name="footer"/>
     <!-- Footer Section End -->

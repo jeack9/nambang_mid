@@ -4,16 +4,30 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
        
 <tiles-definitions>
+
+	<definition name="boardTemp" template="/WEB-INF/layout/boardTemp.jsp">
+		<put-attribute name="title" value="tempTitle"/>
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
+		<put-attribute name="leftcontent" value=""/>
+		<put-attribute name="rigthcontent" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+	</definition>
+	<definition name="WILDCARD:board/*" extends="boardTemp">
+		<put-attribute name="leftcontent" value="/WEB-INF/view/board/sideMenu.jsp"/>
+		<put-attribute name="rigthcontent" value="/WEB-INF/view/board/{1}.jsp"/>
+	</definition>
+	
 	<definition name="temp" template="/WEB-INF/layout/template.jsp">
 		<put-attribute name="title" value="tempTitle"/>
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
-		<put-attribute name="background" value="/WEB-INF/layout/background.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/layout/body.jsp"/>
+		<put-attribute name="background" value=""/>
+		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 
 	<definition name="WILDCARD:*/*" extends="temp">
 		<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp"/>
 	</definition>
+	
 	
 </tiles-definitions>
