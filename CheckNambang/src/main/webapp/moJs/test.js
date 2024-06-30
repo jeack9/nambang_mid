@@ -32,8 +32,9 @@ fetch("mocontrol2.do?productCode=A001&userId=ahn" )
 	tr.appendChild(th);
 	list.appendChild(tr);
 	
-	fields1 = ['포장타입','중량/용량','상품선택'];
-	fields2 = [item.packageType,item.weight,item.company+item.productName+item.weight]
+	let text = '23시 이전주문 시 내일 아침 7시 전 도착\n(대구,부산,울산 샛별배송 운영시간 별도 확인)';
+	fields1 = ['배송','포장타입','중량/용량','상품선택'];
+	fields2 = [text,item.packageType,item.weight,item.company+item.productName+item.weight]
 	
 	for(let i = 0; i < fields1.length;i++){
 		tr= document.createElement('tr');
@@ -54,11 +55,21 @@ fetch("mocontrol2.do?productCode=A001&userId=ahn" )
 	tr.appendChild(td);
 	list.appendChild(tr);
 	
-	console.log(item.descript);
 	let descrip = document.querySelector('#description');
 	let p = document.createElement('p')
-	p.innerHTML = item.description;
+	p.innerHTML = item.descript;
 	descrip.appendChild(p);
+	
+	let info = document.querySelector('#information');
+	img = document.createElement('img');
+	let infoImg = item.descriptImage;
+	console.log(infoImg);
+        if (!infoImg.includes('.')) {
+            infoImg += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
+        }
+	img.src = 'moImg/'+infoImg;
+	info.appendChild(img);
+	
 	
 	return list;
 	

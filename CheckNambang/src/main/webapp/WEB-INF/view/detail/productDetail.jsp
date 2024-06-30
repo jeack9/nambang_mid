@@ -16,6 +16,7 @@ img{
 </style>
 <table>
 	<thead id="detailList">
+
 	</thead>
 	<tbody>
 		<tr>
@@ -35,7 +36,6 @@ img{
 <div id = "description">
 </div>
 <div id = "information">
-	<p>상세정보</p>
 </div>
 <div id = "hugi">
 	<p>후기</p>
