@@ -4,9 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="co.nambang.mypage.mapper.mypageMapper">
+  
+  	<select id ="mypageInfo" parameterType="co.nambang.mypage.vo.mypageVO">
+		select *
+		from member_ck
+		where user_id = #{userId}
+  	</select>
   	
-  	
-  	<update id = "mypageChange" parameterType="co.nambang.mypage.vo.mypageVO">
+  	<update id = "mypageChange" parameterType="co.nambang.mypage.vo.mypageVO">	<!-- 회원 정보 수정 -->
   		update member_ck 
 		set user_pw = #{userPw},
      	      user_name = #{userName},
@@ -16,7 +21,20 @@
      		  birth = #{birth}
 		where user_id = #{userId}      
   	</update>
-  	
-  	
+  			
+  	<select id = "oderDetail" parameterType="co.nambang.mypage.vo.mypageVO">
+		select A.product_name,
+		         C.order_no,
+		         B.op_volume,
+		         C.order_date, 
+		         C.order_price,
+		         B.user_id
+		from products_ck A,
+		        order_product B,
+		        order_ck C     
+		where C.order_no = B.order_no
+		and B.product_code = A.product_code
+		and user_id = #{userId}
+  	</select>
   
   </mapper>

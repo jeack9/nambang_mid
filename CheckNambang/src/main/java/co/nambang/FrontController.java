@@ -97,14 +97,14 @@ public class FrontController extends HttpServlet {
 		map.put("/mocontrol9.do", new Mo9());
 		map.put("/mocontrol10.do", new Mo10());
 		// 김대운의 테스트 컨트롤러
-		map.put("/woonControl.do", new Woon());
-		map.put("/woonControl2.do", new Woon2());
-		map.put("/woonControl3.do", new Woon3());
-		map.put("/woonControl4.do", new Woon4());
-		map.put("/woonControl5.do", new Woon5());
-		map.put("/woonControl6.do", new Woon6());
-		map.put("/woonControl7.do", new Woon7());
-		map.put("/woonControl8.do", new Woon8());
+		map.put("/woonControl.do", new Woon());	// 회원정보 변경 페이지
+		map.put("/woonControl2.do", new Woon2());	// 회원정보 보여주기
+		map.put("/woonControl3.do", new Woon3());	// 정보 변경
+		map.put("/woonControl4.do", new Woon4());	// 주문 상태 페이지
+		map.put("/woonControl5.do", new Woon5());	// 주문 처리
+		map.put("/woonControl6.do", new Woon6());	// 찜 페이지
+		map.put("/woonControl7.do", new Woon7());	// 찜 처리
+		map.put("/woonControl8.do", new Woon8());	// 찜 삭제
 		map.put("/woonControl9.do", new Woon9());
 		map.put("/woonControl10.do", new Woon10());
 		// 이상현의 테스트 컨트롤러
