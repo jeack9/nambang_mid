@@ -18,4 +18,8 @@ public class ProDetailServiceImpl implements ProDetailService{
 	public List<ProductVO> detailList(String proCode) {
 		return mapper.selectList(proCode);
 	}
+	@Override
+	public boolean insZzim(String proCode, String userId) {
+		return mapper.insertZzim(proCode, userId) == 1;
+	}
 }
