@@ -24,14 +24,19 @@ function cloneRow(pickItem = {}){
 	clone.querySelector('.shoping__cart__price').innerHTML = pickItem.price + "원";
 	//clone.querySelector('.pro-qty>input').setAttribute('value', '')
 	clone.querySelector('.shoping__cart__offprice').innerHTML = pickItem.offPrice + "원";
+	clone.querySelector('#deleteBtn').setAttribute('name', 'zzimNo');
+	clone.querySelector('#deleteBtn').setAttribute('value', pickItem.zzimNo);	
 	clone.style.display = "";
 	document.querySelector("#itemsList").appendChild(clone);
+	
 }	
 
 
 	
-let btn = document.querySelector('.btn-warning');
+let btn = document.querySelectorAll('.btn-warning');
 btn.addEventListener('click', function(e){
 		document.forms.removeForm.action = "woonControl.do"; //일단 장바구니 table 모르기에 
 		document.forms.removeForm.submit();
 })	
+
+
