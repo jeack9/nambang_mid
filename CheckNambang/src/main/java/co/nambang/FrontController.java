@@ -17,6 +17,8 @@ import co.nambang.member.web.LoginForm;
 import co.nambang.member.web.LoginMember;
 import co.nambang.member.web.Logout;
 import co.nambang.member.web.Test;
+import co.nambang.notice.web.NoticeForm;
+import co.nambang.notice.web.NoticeList;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
 import co.nambang.web.Hyun2;
@@ -78,6 +80,10 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm()); // 로그인 폼
 		map.put("/loginMember.do", new LoginMember()); // 로그인
 		map.put("/logout.do", new Logout()); // 로그아웃
+		
+		// 고객센터
+		map.put("/noticeList.do", new NoticeList()); // 공지사항 목록
+		map.put("/noticeForm.do", new NoticeForm()); // 공지사항 글쓰기폼
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
