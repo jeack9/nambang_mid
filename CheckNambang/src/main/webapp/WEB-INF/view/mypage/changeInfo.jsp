@@ -2,12 +2,18 @@
     pageEncoding="UTF-8"%>
 <style>
 	#mypage_change{
-		width: 400px;
+		width: 500px;
 		margin:0 auto;
 	}
 	#changeBtn{
 	background-color: rgb(95, 0, 128);
 	color: white;
+	}
+ 	#uRepw{
+	width: 250px;
+	}
+	#nUserPw{
+	width: 250px;
 	}
 </style>
 <div id = "mypage_change">
@@ -35,7 +41,7 @@
 			<div>
 				<div>
 					<label>새 비밀번호 확인</label>
-					<input placeholder="새 비밀번호를 다시 입력해 주세요" type = "password" name = "newUserPw" name = "nUserPw"></input>
+					<input placeholder="새 비밀번호를 다시 입력해 주세요" type = "password" name = "newUserPw" id = "nUserPw"></input>
 				</div>
 			</div>
 			<div>

@@ -19,10 +19,10 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products name</th>
+                                    <th class="shoping__product">Products(name)</th>
                                     <th>Price</th>
+                                    <th>offPrice</th>
                                     <th>Quantity</th>
-                                    <th>Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -47,7 +47,7 @@
                                     <td class="shoping__cart__total">
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <button type = "submit"class = "btn btn-danger" value = "1"><span>삭제</span></button>
+                                        <button type = "submit"class = "btn btn-danger" id = "deleteBtn"><span>삭제</span></button>
                                     </td>
                                       <td class="shoping__cart__item__close">
                                         <button type = "button" class = "btn btn-warning" style = "color: rgb(95, 0, 128)"><span>담기</span></button>
