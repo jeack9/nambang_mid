@@ -20,10 +20,13 @@
 	</insert>
 	
 	<select id="hugiList" parameterType="co.nambang.hugi.vo.HugiVO">
-		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no, B.user_name
-		from hugi_ck A join member_ck B
-				on A.user_id = B.user_id
-		and product_code = #{proCode}
+		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no, B.user_name, C.product_name, C.company
+		from member_ck B 
+            join hugi_ck A 
+				on B.user_id = A.user_id 
+            join products_ck C
+                on A.product_code = C.product_code
+		where A.product_code = #{proCode}
 	</select>
 	
 

@@ -15,4 +15,6 @@ public class HugiVO {
 	private String productCode;
 	private String opNo; // 주문상세번호
 	private String userName;
+	private String company;
+	private String productName;
 }

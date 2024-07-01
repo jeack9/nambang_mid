@@ -38,6 +38,7 @@ img{
 <div id = "information">
 </div>
 <div id = "hugi">
+	<h3>상품후기</h3>
 	<table id = "hugiList">
 	
 	</table>

@@ -20,7 +20,7 @@
 .quantity{
 	padding-left:120px;
 }
-#tabs-1, #tabs-2, #tabs-3{
+#tabs-1, #tabs-2{
 	text-align: center;
 }
 </style>
@@ -79,7 +79,7 @@
 						</div>
 						<div id="tabs-3">
 
-							<h6>여기는 후기</h6>
+							<h3>상품 후기</h3>
 							<table id = "hugiList">
 							</table>
 
