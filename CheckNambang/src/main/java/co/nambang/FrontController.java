@@ -19,6 +19,8 @@ import co.nambang.member.web.Logout;
 import co.nambang.member.web.Test;
 import co.nambang.notice.web.NoticeForm;
 import co.nambang.notice.web.NoticeList;
+import co.nambang.notice.web.NoticeListAjax;
+import co.nambang.qna.web.QnaList;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
 import co.nambang.web.Hyun2;
@@ -84,6 +86,8 @@ public class FrontController extends HttpServlet {
 		// 고객센터
 		map.put("/noticeList.do", new NoticeList()); // 공지사항 목록
 		map.put("/noticeForm.do", new NoticeForm()); // 공지사항 글쓰기폼
+		
+		map.put("/qnaList.do", new QnaList());
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
