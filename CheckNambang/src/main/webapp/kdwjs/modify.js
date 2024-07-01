@@ -5,7 +5,7 @@
 let userData;
 
 
-fetch('woonControl2.do?userId=happy')
+fetch('woonControl2.do?userId='+userId)
 	.then(result => result.json())
 	.then(result =>{
 	console.log(result[0].userId);
@@ -20,9 +20,7 @@ fetch('woonControl2.do?userId=happy')
 	
 	let uphone = document.querySelector('#uphone');
 	uphone.setAttribute('value', result[0].phone);
-	
-	
-	
+
 	})
 
 

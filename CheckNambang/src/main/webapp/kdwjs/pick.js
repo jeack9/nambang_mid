@@ -19,7 +19,7 @@ let pickitems = document.querySelector('#items');
 function cloneRow(pickItem = {}){
 	//console.log(pickItem);
 	let clone = document.querySelector('tbody>tr:nth-of-type(1)').cloneNode(true);
-	clone.querySelector('.shoping__cart__item>img').setAttribute('src', pickItem.productImage);
+	clone.querySelector('.shoping__cart__item>img').setAttribute('src', `img/${pickItem.productImage}`);
 	clone.querySelector('.shoping__cart__item>h5').innerHTML = pickItem.productName;
 	clone.querySelector('.shoping__cart__price').innerHTML = pickItem.price + "원";
 	//clone.querySelector('.pro-qty>input').setAttribute('value', '')

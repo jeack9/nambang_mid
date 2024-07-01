@@ -105,8 +105,8 @@ public class FrontController extends HttpServlet {
 		map.put("/woonControl6.do", new Woon6());	// 찜 페이지
 		map.put("/woonControl7.do", new Woon7());	// 찜 처리
 		map.put("/woonControl8.do", new Woon8());	// 찜 삭제
-		map.put("/woonControl9.do", new Woon9());
-		map.put("/woonControl10.do", new Woon10());
+		map.put("/woonControl9.do", new Woon9());	// 주문내역 상세 페이지
+		map.put("/woonControl10.do", new Woon10());		// 상세 페이지 처리
 		// 이상현의 테스트 컨트롤러
 		map.put("/hyunControl.do", new Hyun());
 		map.put("/hyunControl2.do", new Hyun2());
