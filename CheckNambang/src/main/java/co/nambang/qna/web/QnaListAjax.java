@@ -1,4 +1,4 @@
-package co.nambang.notice.web;
+package co.nambang.qna.web;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,8 +18,11 @@ import co.nambang.common.SearchVO;
 import co.nambang.notice.service.NoticeService;
 import co.nambang.notice.service.NoticeServiceImpl;
 import co.nambang.notice.vo.NoticeVO;
+import co.nambang.qna.service.QnaService;
+import co.nambang.qna.service.QnaServiceImpl;
+import co.nambang.qna.vo.QnaVO;
 
-public class NoticeListAjax implements Control {
+public class QnaListAjax implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,8 +34,8 @@ public class NoticeListAjax implements Control {
 		
 		SearchVO search = new SearchVO(Integer.parseInt(page), sc, kw);
 		
-		NoticeService svc = new NoticeServiceImpl();
-		List<NoticeVO> list = svc.noticeList(search);
+		QnaService svc = new QnaServiceImpl();
+		List<QnaVO> list = svc.qnaList(search);
 		req.setAttribute("list", list);
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
