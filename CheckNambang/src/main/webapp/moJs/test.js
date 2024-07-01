@@ -85,7 +85,23 @@ fetch('mocontrol5.do?proCode=A001')
 		let hugiList = document.querySelector('#hugiList');
 		
 		field1 = [hugi.userName];
-		field2 = [hugi.user]
+		field2 = [hugi.company+hugi.productName,hugi.hugiContent,hugi.hugiImage,hugi.hugiDate]
+		for(let i = 0; i < field1.length; i++){
+			let tr = document.createElement('tr');
+			let th = document.createElement('th');
+			th.innerHTML = field1[i];
+			tr.appendChild(th);
+						
+			for(let j = 0; j< field2.length; j++){
+			let td = document.createElement('td');
+			td.innerHTML = field2[j];
+			tr.appendChild(td);
+			}
+			
+			
+			hugiList.appendChild(tr);	
+		}
+		return hugiList;
 	}))
 
 document.querySelector('.heart-icon').addEventListener('click', zzimFnc);
