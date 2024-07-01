@@ -29,7 +29,7 @@
                             <tbody id = "itemsList">
                                 <tr style="display: none;">
                                     <td class="shoping__cart__item">
-                                        <img src = ''>
+                                        <img>
                                         <h5></h5>
                                     </td>
                                     <td class="shoping__cart__price">

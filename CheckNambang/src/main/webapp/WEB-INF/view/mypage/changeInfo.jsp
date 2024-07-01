@@ -84,4 +84,8 @@
 		</form>
 	</div>
 </div>
+<script>
+	const userId = "${login.userId}";
+	console.log(userId);
+</script>
 <script src ="kdwjs/modify.js"></script>

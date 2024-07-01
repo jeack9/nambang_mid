@@ -11,4 +11,6 @@ public class OdProductVO {
 	private String userId;
 	private int opVolume;
 	private int opPrice;
+	private String productImage;
+	private String productName;
 }
