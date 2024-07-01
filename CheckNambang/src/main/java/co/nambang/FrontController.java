@@ -95,7 +95,7 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeForm.do", new NoticeForm()); // 공지사항 글쓰기폼
 		
 		map.put("/qnaList.do", new QnaList()); // qna 목록.jsp
-		
+		map.put("/qnaListAjax.do", new QnaListAjax()); // qna 목록 ajax		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
 		map.put("/mocontrol2.do", new Mo2());

@@ -131,7 +131,7 @@
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li><a href="noticeList.do">공지사항</a></li>
-                                    <li><a href="#">1:1 문의</a></li>
+                                    <li><a href="qnaList.do">1:1 문의</a></li>
                                 </ul>
                             </div>
 				        	<c:choose>
