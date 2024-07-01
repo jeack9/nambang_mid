@@ -36,5 +36,12 @@
 		and B.product_code = A.product_code
 		and user_id = #{userId}
   	</select>
+  	
+  	<select id ="currentPw" parameterType="String">		<!-- 비밀번호 확인 중복 -->
+  		select count(1)
+		from member_ck
+		where user_id = #{userId}
+        and  user_pw =#{userPw}
+  	</select>
   
   </mapper>

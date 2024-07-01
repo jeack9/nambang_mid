@@ -23,7 +23,7 @@ public class Woon3 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		 String userId = "happy";
+		 String userId = req.getParameter("userId");
 		 String userPw = req.getParameter("userPw");
 	     String userName = req.getParameter("userName");
 	     String email = req.getParameter("email");

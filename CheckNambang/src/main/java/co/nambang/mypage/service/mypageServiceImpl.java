@@ -33,5 +33,11 @@ mypageMapper mapper = sqlSession.getMapper(mypageMapper.class);
 		return mapper.mypageInfo(userId);
 	}
 
+	@Override
+	public mypageVO currentPw() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
