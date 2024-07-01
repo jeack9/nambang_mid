@@ -19,6 +19,8 @@ import co.nambang.member.web.Logout;
 import co.nambang.member.web.Test;
 import co.nambang.notice.web.NoticeForm;
 import co.nambang.notice.web.NoticeList;
+import co.nambang.qna.web.QnaList;
+import co.nambang.qna.web.QnaListAjax;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
 import co.nambang.web.Hyun2;
@@ -52,6 +54,13 @@ import co.nambang.web.Soo8;
 import co.nambang.web.Soo9;
 import co.nambang.web.Woon;
 import co.nambang.web.Woon10;
+import co.nambang.web.Woon11;
+import co.nambang.web.Woon12;
+import co.nambang.web.Woon13;
+import co.nambang.web.Woon14;
+import co.nambang.web.Woon15;
+import co.nambang.web.Woon16;
+import co.nambang.web.Woon17;
 import co.nambang.web.Woon2;
 import co.nambang.web.Woon3;
 import co.nambang.web.Woon4;
@@ -85,6 +94,8 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeList.do", new NoticeList()); // 공지사항 목록
 		map.put("/noticeForm.do", new NoticeForm()); // 공지사항 글쓰기폼
 		
+		map.put("/qnaList.do", new QnaList()); // qna 목록.jsp
+		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
 		map.put("/mocontrol2.do", new Mo2());
@@ -107,6 +118,14 @@ public class FrontController extends HttpServlet {
 		map.put("/woonControl8.do", new Woon8());	// 찜 삭제
 		map.put("/woonControl9.do", new Woon9());	// 주문내역 상세 페이지
 		map.put("/woonControl10.do", new Woon10());		// 상세 페이지 처리
+		map.put("/woonControl11.do", new Woon11());
+		map.put("/woonControl12.do", new Woon12());
+		map.put("/woonControl13.do", new Woon13());
+		map.put("/woonControl14.do", new Woon14());
+		map.put("/woonControl15.do", new Woon15());
+		map.put("/woonControl16.do", new Woon16());
+		map.put("/woonControl17.do", new Woon17());
+
 		// 이상현의 테스트 컨트롤러
 		map.put("/hyunControl.do", new Hyun());
 		map.put("/hyunControl2.do", new Hyun2());

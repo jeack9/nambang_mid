@@ -3,18 +3,5 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.notice.mapper.NoticeMapper">
-	<select id="noticeList" resultType="co.nambang.notice.vo.NoticeVO">
-		select b.*
-		from (select /*+index_desc(r notice_no) */ rownum rn, n.*
-		    from notice_ck n) b
-	    <![CDATA[
-		where b.rn <= (#{page})*5
-		]]>
-		and b.rn > (#{page} -1)*5
-	</select>
-	
-	<select id="getTotalCnt" resultType="int">
-		SELECT COUNT(*)
-		FROM notice_ck
-	</select>
+
 </mapper>
