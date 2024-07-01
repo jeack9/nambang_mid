@@ -31,7 +31,6 @@ public class Mo2 implements Control {
 		List<ProductVO> list = svc.detailList(productCode);
 		
 		req.setAttribute("proCode", productCode);
-		req.setAttribute("userId", userId);
 		
 		System.out.println(list);
 		Gson gson = new GsonBuilder().create();

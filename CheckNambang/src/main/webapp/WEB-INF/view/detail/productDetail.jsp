@@ -38,7 +38,9 @@ img{
 <div id = "information">
 </div>
 <div id = "hugi">
-	<p>후기</p>
+	<table id = "hugiList">
+	
+	</table>
 </div>
 
 <script>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import co.nambang.common.DataSource;
 import co.nambang.detail.mapper.ProDetailMapper;
 import co.nambang.detail.vo.ProDetailVO;
+import co.nambang.hugi.vo.HugiVO;
 import co.nambang.product.vo.ProductVO;
 
 public class ProDetailServiceImpl implements ProDetailService{
@@ -22,4 +23,14 @@ public class ProDetailServiceImpl implements ProDetailService{
 	public boolean insZzim(String proCode, String userId) {
 		return mapper.insertZzim(proCode, userId) == 1;
 	}
+	
+	@Override
+	public boolean insCart(int cartVolume, String unserId, String proCode) {
+		return mapper.insertCart(cartVolume, unserId, proCode) == 1;
+	}
+	@Override
+	public List<HugiVO> detailHugi(String proCode) {
+		return mapper.hugiList(proCode);
+	}
+
 }

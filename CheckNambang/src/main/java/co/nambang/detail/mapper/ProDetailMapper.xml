@@ -8,8 +8,23 @@
 		from products_ck
 		where product_code = #{productCode}
 	</select>
-	<insert id="insertZzim" parameterType="object">
+	
+	<insert id="insertZzim" parameterType="co.nambang.zzim.vo.ZzimVO">
 		insert into zzim_ck(zzim_no,product_code,user_id)
 		values (zzim_seq.nextval,#{proCode},#{userId})
 	</insert>
+	
+	<insert id="insertCart" parameterType="co.nambang.cart.vo.CartVO">
+		insert into cart_ck(cart_no,cart_volume,user_id,product_code)
+		values (cart_seq.nextval, #{cartVolume},#{userId},#{proCode})
+	</insert>
+	
+	<select id="hugiList" parameterType="co.nambang.hugi.vo.HugiVO">
+		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no, B.user_name
+		from hugi_ck A join member_ck B
+				on A.user_id = B.user_id
+		and product_code = #{proCode}
+	</select>
+	
+
 </mapper>
