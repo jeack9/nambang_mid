@@ -3,12 +3,12 @@
 <style>
 	#mypage_container{
 		display: flex;
+	    justify-content: flex-end;
+	    align-items: center;
+	    flex-wrap: wrap;
 	}
 	#mypage_container div{
 		flex : 0 1 60%;
-	}
-	#orderlists{
-
 	}
 </style>
 <div id="mypage_container">

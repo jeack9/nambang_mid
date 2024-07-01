@@ -14,9 +14,8 @@ public class Woon12 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		
-		
+		req.getRequestDispatcher("mypage/addressChangeInput.tiles").forward(req, resp);
+				
 	}
 
 }

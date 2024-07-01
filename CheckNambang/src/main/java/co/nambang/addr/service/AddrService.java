@@ -8,4 +8,8 @@ public interface AddrService {
 	
 	// 배송지 추가
 	public boolean addAddr(AddrVO avo);
+	
+	// 배송지 업데이트
+	public boolean updateAddr(AddrVO avo);
+	
 }

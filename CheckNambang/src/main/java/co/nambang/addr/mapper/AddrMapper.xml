@@ -12,4 +12,12 @@
 		select * from address_ck
 		where user_id = #{uid} and addr_selected = #{selected}
 	</select>
+	
+	<update id = "updateAddr" parameterType="co.nambang.addr.vo.AddrVO">
+		update address_ck
+		set addr2 = #{addr2},
+     	getter = #{getter},
+     	getter_phone = #{getterPhone}
+		where user_id = #{userId}
+	</update>
 </mapper>
