@@ -5,8 +5,25 @@
 <mapper namespace="co.nambang.notice.mapper.NoticeMapper">
 	<select id="noticeList" resultType="co.nambang.notice.vo.NoticeVO">
 		select b.*
-		from (select /*+index_desc(r notice_no) */ rownum rn, n.*
-		    from notice_ck n) b
+		from (select /*+index_desc(n notice_no) */ rownum rn, n.*
+		      from notice_ck n
+		      <where>
+				  <choose>
+					<when test="searchCondition == 'T'.toString()">
+					notice_title like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchCondition == 'W'.toString()">
+					notice_writer like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchCondition == 'C'.toString()">
+					notice_content like '%'||#{keyword}||'%'
+					</when>
+					<when test="searchCondition == 'TC'.toString()">
+					notice_content like '%'||#{keyword}||'%' 
+					OR notice_title like '%'||#{keyword}||'%'
+					</when>
+				  </choose>
+				</where>) b
 	    <![CDATA[
 		where b.rn <= (#{page})*5
 		]]>

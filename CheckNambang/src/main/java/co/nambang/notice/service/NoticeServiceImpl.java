@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import co.nambang.common.DataSource;
+import co.nambang.common.SearchVO;
 import co.nambang.notice.mapper.NoticeMapper;
 import co.nambang.notice.vo.NoticeVO;
 
@@ -14,8 +15,8 @@ public class NoticeServiceImpl implements NoticeService{
 	NoticeMapper mapper = sqlSession.getMapper(NoticeMapper.class);
 	
 	@Override
-	public List<NoticeVO> noticeList(int page) {
-		return mapper.noticeList(page);
+	public List<NoticeVO> noticeList(SearchVO search) {
+		return mapper.noticeList(search);
 	}
 
 	@Override
