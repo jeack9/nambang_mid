@@ -3,35 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.qna.mapper.QnaMapper">
-	<select id="noticeList" resultType="co.nambang.notice.vo.NoticeVO">
-		select b.*
-		from (select /*+index_desc(n notice_no) */ rownum rn, n.*
-		      from notice_ck n
-		      <where>
-				  <choose>
-					<when test="searchCondition == 'T'.toString()">
-					notice_title like '%'||#{keyword}||'%'
-					</when>
-					<when test="searchCondition == 'W'.toString()">
-					notice_writer like '%'||#{keyword}||'%'
-					</when>
-					<when test="searchCondition == 'C'.toString()">
-					notice_content like '%'||#{keyword}||'%'
-					</when>
-					<when test="searchCondition == 'TC'.toString()">
-					notice_content like '%'||#{keyword}||'%' 
-					OR notice_title like '%'||#{keyword}||'%'
-					</when>
-				  </choose>
-				</where>) b
-	    <![CDATA[
-		where b.rn <= (#{page})*5
-		]]>
-		and b.rn > (#{page} -1)*5
+	<select id="qnaList" resultType="co.nambang.qna.vo.QnaVO">
+		
 	</select>
 	
 	<select id="getTotalCnt" resultType="int">
 		SELECT COUNT(*)
-		FROM notice_ck
+		FROM qna_ck
 	</select>
 </mapper>
