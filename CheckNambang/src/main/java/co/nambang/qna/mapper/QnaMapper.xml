@@ -4,7 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.qna.mapper.QnaMapper">
 	<select id="qnaList" resultType="co.nambang.qna.vo.QnaVO">
-		
+		SELECT b.*
+		FROM (SELECT /*+INDEX_DESC(q pk_qna_ck)*/ ROWNUM rn, q.*
+     		  FROM qna_ck q
+      		  where user_id = #{userId}
+      		  AND qna_state = #{searchCondition}
+      		  <choose>
+      		  <when test="keyword != null">
+     		  AND qna_title like '%'|| #{keyword} ||'%'
+      		  </when>
+      		  </choose>
+      		  ) b
+     	<![CDATA[
+		WHERE b.rn <= (#{page}) * 5
+		]]>
+		AND   b.rn > (#{page} - 1) * 5
 	</select>
 	
 	<select id="getTotalCnt" resultType="int">

@@ -11,10 +11,8 @@ a.active{
 	<div>
 		<div class="blog__sidebar__search">
 			<select>
-				<option value="T">제목</option>
-				<option value="C">내용</option>
-				<option value="TC">제목&내용</option>
-				<option value="W">작성자</option>
+				<option value="">답변대기</option>
+				<option value="">답변완료</option>
 			</select>
 	       	<input class="form-control me-2" value="${keyword }"
 	       	type="search" placeholder="Search" aria-label="Search" style="width: 80%">
@@ -22,16 +20,16 @@ a.active{
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>글번호</th><th>제목</th><th>작성자</th><th>작성일자</th>
+					<th class="col-md-6">제목</th><th class="col-md-2">작성자</th><th class="col-md-2">작성일</th><th class="col-md-2">답변상태</th>
+				</tr>
+				<tr>
+					<td>제목</td><td>작성자</td><td>작성일</td><td>답변상태</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr style="display:none">
-					<td>공지사항번호</td><td><a href="">제목</a></td><td>작성자</td><td>작성일</td>
-				</tr>
-				<c:forEach var="nvo" items="${requestScope.list }">
+				<c:forEach var="qvo" items="${requestScope.list }">
 				<tr>
-					<td>${nvo.noticeNo}</td><td><a href="">${nvo.noticeTitle}</a></td><td>${nvo.noticeWriter}</td><td>${nvo.noticeCreation}</td>
+					<td>${qvo.qnaTitle}</td><td>${qvo.userId}</td><td>${qvo.qnaDate}</td><td>${qvo.qnaState }</td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -50,3 +48,8 @@ a.active{
 		</c:if>
 	</div>
 </div>
+
+<script>
+	const userId = '${sessionScope.login}';
+</script>
+<script src="boardJs/qnaList.js"></script>
