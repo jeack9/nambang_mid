@@ -7,4 +7,6 @@ import co.nambang.addr.vo.AddrVO;
 public interface AddrMapper {
 	public int insertAddr(AddrVO avo);
 	public AddrVO selectAddr(@Param(value = "uid") String uid, @Param(value = "selected") int selected);
+	public int updateAddr(AddrVO avo);
+
 }

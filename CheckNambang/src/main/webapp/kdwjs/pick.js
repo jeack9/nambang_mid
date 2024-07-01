@@ -35,7 +35,7 @@ function cloneRow(pickItem = {}){
 
 
 	
-let btn = document.querySelectorAll('.btn-warning');
+let btn = document.querySelector('#containBtn');
 btn.addEventListener('click', function(e){
 		document.forms.removeForm.action = "woonControl.do"; //일단 장바구니 table 모르기에 
 		document.forms.removeForm.submit();

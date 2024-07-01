@@ -18,5 +18,10 @@ public class AddrServiceImpl implements AddrService{
 	public AddrVO getSelectedAddr(String userId, int addrSelected) {
 		return mapper.selectAddr(userId, addrSelected);
 	}
+	@Override
+	public boolean updateAddr(AddrVO avo) {
+		// TODO Auto-generated method stub
+		return mapper.updateAddr(avo) == 1;
+	}
 	
 }

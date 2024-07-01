@@ -50,7 +50,7 @@
                                         <button type = "submit"class = "btn btn-danger" id = "deleteBtn"><span>삭제</span></button>
                                     </td>
                                       <td class="shoping__cart__item__close">
-                                        <button type = "button" class = "btn btn-warning" style = "color: rgb(95, 0, 128)"><span>담기</span></button>
+                                        <button type = "button" class = "btn btn-warning" id = "containBtn" style = "color: rgb(95, 0, 128)"><span>담기</span></button>
                                     </td>
                                 </tr>
                              
