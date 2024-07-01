@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import co.nambang.common.Control;
 import co.nambang.detail.service.ProDetailService;
 import co.nambang.detail.service.ProDetailServiceImpl;
+import co.nambang.zzim.vo.ZzimVO;
 
 public class Mo3 implements Control {
 
@@ -23,7 +24,10 @@ public class Mo3 implements Control {
 		String userId = req.getParameter("userId");
 		
 		ProDetailService svc = new ProDetailServiceImpl();
-	
+		ZzimVO zvo = new ZzimVO();
+		zvo.setUserId(userId);
+		zvo.setProductCode(userId);
+		req.setAttribute("zzim", zvo);
 		
 		if(svc.insZzim(proCode,userId)) {//{"retCode" : "OK"}
 			resp.getWriter().print("{\"retCode\" : \"OK\"}");

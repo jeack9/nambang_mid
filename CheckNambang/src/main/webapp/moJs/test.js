@@ -59,7 +59,7 @@ fetch('mocontrol2.do?productCode=A001&userId='+userId )
 			
 			endPrice.innerHTML = '총 상품금액 : ' + item.offPrice + '원';
 		}
-	
+	console.log(totalCnt);
 	let descrip = document.querySelector('#tabs-1');
 	let p = document.createElement('p')
 	p.innerHTML = item.descript;
@@ -104,25 +104,27 @@ fetch('mocontrol5.do?proCode=A001')
 		return hugiList;
 	}))
 
-document.querySelector('.heart-icon').addEventListener('click', zzimFnc);
+document.querySelector('#zzimBtn').addEventListener('click', zzimFnc);
 function zzimFnc(){
 	fetch('mocontrol3.do?proCode=A001&userId='+userId)
 		.then(result => result.json())
 		.then(result =>{
-			console.log(userId);
+			console.log(result);
 			if(result.retCode == 'OK'){
 				alert('찜 등록 성공');
 			}
 		})
 }
 
-document.querySelector('.primary-btn').addEventListener('click', cartFnc);
+document.querySelector('#cartBtn').addEventListener('click', cartFnc);
 function cartFnc(){
 	fetch('mocontrol4.do?proCode=A001&userId='+userId+'&cartVolume='+totalCnt)
 		.then(result => result.json())
 		.then(result => {
 			if(result.retCode == 'OK'){
 				alert('장바구니 등록 성공');
+			}else if (result.retCode == 'NG'){
+				alert('장바구니 등록 실패');
 			}
 		})
 }

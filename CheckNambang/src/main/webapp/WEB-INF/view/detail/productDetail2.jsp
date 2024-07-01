@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 #endPrice {
 	padding-top: 30px;
@@ -14,7 +15,7 @@
 	padding-top: 30px;
 }
 #btnClass{
-	padding-left:100px;
+	text-align: center;
 	
 }
 .quantity{
@@ -22,6 +23,17 @@
 }
 #tabs-1, #tabs-2{
 	text-align: center;
+}
+#hugiList td{
+	display: block;
+}
+#hugiList th{
+	vertical-align: top;
+	padding-right: 80px;
+	padding-bottom: 120px;
+}
+#hugiList>tr>td:nth-child(2){
+	color: #bebebe;
 }
 </style>
 <section class="product-details spad">
@@ -56,8 +68,16 @@
 					<div id="endPrice"></div>
 				</div>
 				<div id = "btnClass">
-					<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-					<a href="#" class="primary-btn">장바구니 추가</a>
+					<c:choose>
+						<c:when test="${proCode==zzim.proCode }">
+							<button type="button" class="primary-btn" id = "zzimBtn" disabled>찜하기</button>
+						
+						</c:when>
+						<c:otherwise>
+							<button type="button" class="primary-btn" id = "zzimBtn">찜하기</button>
+						</c:otherwise>
+					</c:choose>
+					<a href="#" class="primary-btn" id = "cartBtn">장바구니 추가</a>
 				</div>
 			</div>
 			<div class="col-lg-12">
@@ -92,6 +112,7 @@
 </section>
 
 <script>
+	const zzimProCode = '${zzimProCode}';
 	const proCode = "${proCode}";
 	const userId = '${login.userId}';
 

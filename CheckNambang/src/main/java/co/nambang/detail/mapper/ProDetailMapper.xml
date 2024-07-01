@@ -27,6 +27,7 @@
             join products_ck C
                 on A.product_code = C.product_code
 		where A.product_code = #{proCode}
+		order by A.hugi_no desc
 	</select>
 	
 
