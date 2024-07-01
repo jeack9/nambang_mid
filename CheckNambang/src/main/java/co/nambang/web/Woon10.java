@@ -22,13 +22,12 @@ public class Woon10 implements Control {
 		// TODO Auto-generated method stub
 		
 		int orderNo = Integer.parseInt(req.getParameter("orderNo"));
-		
-		OdProductVO ovo = new OdProductVO();
 				
 		OdProductService svc = new OdProductServiceImpl();
 		
 		List<OdProductVO> list = svc.orderHistoryList(orderNo);
 		
+		System.out.println(list);
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 		resp.getWriter().print(json);

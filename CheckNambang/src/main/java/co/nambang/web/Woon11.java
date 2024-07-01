@@ -13,7 +13,7 @@ public class Woon11 implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+			req.getRequestDispatcher("mypage/address.tiles").forward(req, resp);
 	}
 
 }
