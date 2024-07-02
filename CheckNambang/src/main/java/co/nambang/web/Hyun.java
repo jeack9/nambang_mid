@@ -12,7 +12,7 @@ public class Hyun implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("productList/productList.tiles").forward(req, resp);
+		req.getRequestDispatcher("product/product.tiles").forward(req, resp);
 	}
 
 }
