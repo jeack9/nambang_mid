@@ -8,9 +8,11 @@
 		FROM (SELECT /*+INDEX_DESC(q pk_qna_ck)*/ ROWNUM rn, q.*
      		  FROM qna_ck q
       		  where user_id = #{userId}
-      		  AND qna_state = #{searchCondition}
       		  <choose>
-      		  <when test="keyword != null">
+      		  <when test="searchCondition != -1">
+      		  AND qna_state = #{searchCondition}
+      		  </when>
+      		  <when test="keyword == ''.toString()">
      		  AND qna_title like '%'|| #{keyword} ||'%'
       		  </when>
       		  </choose>
