@@ -50,6 +50,6 @@ a.active{
 </div>
 
 <script>
-	const userId = '${sessionScope.login}';
+	const userId = '${sessionScope.login.userId}';
 </script>
 <script src="boardJs/qnaList.js"></script>

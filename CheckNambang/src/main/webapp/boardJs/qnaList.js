@@ -2,26 +2,12 @@
  *  boardJs/noticeList.js
  */
 
-// 공지사항 목록 가져오기
-console.log("호출");
-let url = `qnaListAjax.do`;
-function init(){
-  fetch(url)
-  .then(result => result.json())
-  .then(result => {
-      result.list.forEach(qna => {
-        cloneRow(qna);
-      });
-  })
-  .catch(err => console.log(err));
-}
-init();
 
-// 검색이벤트
-document.querySelector("input[type='search']").addEventListener("keyup", (e) =>{
-  if(e.keyCode == 13) {
-    url = `qnaListAjax.do?keyword=${e.target.value}`;
-    fetch(url)
+// Qna 목록 가져오기
+function selectQna(page = 1, sc = -1, kw = ""){
+  url = `qnaListAjax.do?page=${page}&sc=${sc}&kw=${kw}`;
+  console.log(url);
+  fetch(url)
     .then(result => result.json())
     .then(result => {
       document.querySelector("tbody").innerHTML = "";
@@ -30,6 +16,13 @@ document.querySelector("input[type='search']").addEventListener("keyup", (e) =>{
       });
     })
     .catch(err => console.log(err));
+}
+selectQna();// 공지사항 목록 첫 로딩
+
+// 검색이벤트
+document.querySelector("input[type='search']").addEventListener("keyup", (e) =>{
+  if(e.keyCode == 13) {
+    
   }
 });
 
