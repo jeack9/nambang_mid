@@ -1,3 +1,4 @@
+<%@page import="co.nambang.product.vo.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -35,7 +36,8 @@
 #hugiList>tr>td:nth-child(2){
 	color: #bebebe;
 }
-</style>
+</style> 
+<
 <section class="product-details spad">
 	<div class="container">
 		<div class="row">
@@ -68,16 +70,8 @@
 					<div id="endPrice"></div>
 				</div>
 				<div id = "btnClass">
-					<c:choose>
-						<c:when test="${proCode==zzim.proCode }">
-							<button type="button" class="primary-btn" id = "zzimBtn" disabled>찜하기</button>
-						
-						</c:when>
-						<c:otherwise>
-							<button type="button" class="primary-btn" id = "zzimBtn">찜하기</button>
-						</c:otherwise>
-					</c:choose>
-					<a href="#" class="primary-btn" id = "cartBtn">장바구니 추가</a>
+					<button type="button" class="primary-btn" id = "zzimBtn">찜하기</button>
+					<a href="#" class="primary-btn" id = "cartBtn">${zzim.proCode}</a>
 				</div>
 			</div>
 			<div class="col-lg-12">
@@ -112,9 +106,12 @@
 </section>
 
 <script>
-	const zzimProCode = '${zzimProCode}';
-	const proCode = "${proCode}";
+/*  	const zzimProCode = '${param.zzim.proCode}';
+	const proCode = "${proCode}"; 
 	const userId = '${login.userId}';
 
+	console.log('${param.zzim.proCode}');
+	console.log("${param.product}");
+	console.log("${param.proCode}"); */
 </script>
 <script src="moJs/test.js"></script>
