@@ -45,7 +45,6 @@ public class Mo2 implements Control {
 			List<ZzimVO> zlist = zsvc.zzimItems(login.getUserId());
 			
 			map.put("zzim", zlist);
-			req.setAttribute("zzim", zlist);
 		}
 		
 		Gson gson = new GsonBuilder().create();
