@@ -6,7 +6,7 @@
 	<select id="selectList" resultType="co.nambang.product.vo.ProductVO">
 		select *
 		from products_ck
-		where product_code = #{productCode}
+		where product_code = #{proCode}
 	</select>
 	
 	<insert id="insertZzim" parameterType="co.nambang.zzim.vo.ZzimVO">

@@ -9,7 +9,7 @@ import co.nambang.hugi.vo.HugiVO;
 import co.nambang.product.vo.ProductVO;
 
 public interface ProDetailMapper {
-	List<ProductVO> selectList(String productCode);
+	List<ProductVO> selectList(String proCode);
 	
 	int insertZzim(@Param("proCode")String proCode, @Param("userId")String userId);
 	

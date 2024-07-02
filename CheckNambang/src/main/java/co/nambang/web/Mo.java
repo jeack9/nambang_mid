@@ -12,6 +12,8 @@ public class Mo implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//req.setAttribute("proCode", req.getParameter("proCode"));
+		
 		req.getRequestDispatcher("detail/productDetail2.tiles").forward(req, resp);
 
 	}
