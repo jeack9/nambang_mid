@@ -1,12 +1,14 @@
 package co.nambang.addr.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import co.nambang.addr.vo.AddrVO;
 
 public interface AddrMapper {
 	public int insertAddr(AddrVO avo);
-	public AddrVO selectAddr(@Param(value = "uid") String uid, @Param(value = "selected") int selected);
+	public List<AddrVO> selectAddr(String userId);
 	public int updateAddr(AddrVO avo);
 
 }
