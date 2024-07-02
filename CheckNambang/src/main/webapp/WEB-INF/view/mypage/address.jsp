@@ -32,10 +32,12 @@
             </div>
             	<div>
             		<table id = "addAddress">
-            				<tr>
-            					<td><h3>대구 광역시 중구 중앙대로 403</h3></td>
-            					<td><h3>5층</h3></td>
+            			<tbody id = "addBody">
+            			    <tr  style="display :none">
+            					<td id="address1"><p style="font-size:20px">대구 광역시 중구 중앙대로 403</p></td>
+            					<td id="address2"><p style="font-size:20px">5층</p></td>
             				</tr>
+            			</tbody>
             		</table>
             	</div>
             <form action="woonControl12.do?userId=${sessionScope.login.userId }" method="post">
@@ -110,5 +112,6 @@
 </script>
 <script>
 	const userId = "${login.userId}";
+	console.log(userId);
 </script>
 <script src = "kdwjs/saveAddress.js"></script>
