@@ -119,9 +119,9 @@ public class FrontController extends HttpServlet {
 		map.put("/woonControl9.do", new Woon9());	// 주문내역 상세 페이지
 		map.put("/woonControl10.do", new Woon10());		// 상세 페이지 처리
 		map.put("/woonControl11.do", new Woon11());		// 배송지 관리
-		map.put("/woonControl12.do", new Woon12());		// 배송지 추가 Window.open()
-		map.put("/woonControl13.do", new Woon13());		// 회원정보 현재 비밀번호 처리
-		map.put("/woonControl14.do", new Woon14());		// 배송지 추가 처리 
+		map.put("/woonControl12.do", new Woon12());		// 배송지 추가 처리
+		map.put("/woonControl13.do", new Woon13());		// 배송지 변경 처리
+		map.put("/woonControl14.do", new Woon14());		//  
 		map.put("/woonControl15.do", new Woon15());
 		map.put("/woonControl16.do", new Woon16());
 		map.put("/woonControl17.do", new Woon17());

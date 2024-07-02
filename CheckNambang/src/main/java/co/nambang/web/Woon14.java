@@ -16,25 +16,7 @@ public class Woon14 implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String userId = req.getParameter("userId");
-		String addr2 = req.getParameter("addr2");
-		String getter = req.getParameter("getter");
-		String getterPhone = req.getParameter("getterPhone");
-		
-		AddrVO avo = new AddrVO();
-		
-		avo.setUserId(userId);
-		avo.setAddr2(userId);
-		avo.setGetter(getterPhone);
-		avo.setGetterPhone(getterPhone);
-		
-		AddrService svc = new AddrServiceImpl();
-		
-		if(svc.updateAddr(avo)) {
-			resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
-		}else {
-			resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}");
-		}
+
 		
 	}
 

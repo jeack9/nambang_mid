@@ -29,25 +29,26 @@
 			<div>
 				<div>
 					<label>현재 비밀번호</label>
-					<input placeholder="비밀번호를 입력해 주세요" type = "password" name = "userPw1" id = "uPw"></input>
+					<input placeholder="비밀번호를 입력해 주세요" type = "password" name = "userPw1" id = "userPw1"></input>
 				</div>
 			</div>
 			<div>
 				<div>
 					<label>새 비밀번호</label>
-					<input placeholder="새 비밀번호를 입력해 주세요" type = "password" name = "userPw" id = "uRepw"></input>
+					<input placeholder="새 비밀번호를 입력해 주세요" type = "password" name = "userPw" id = "userPw"></input>
 				</div>
 			</div>
 			<div>
 				<div>
 					<label>새 비밀번호 확인</label>
-					<input placeholder="새 비밀번호를 다시 입력해 주세요" type = "password" name = "newUserPw" id = "nUserPw"></input>
+					<input placeholder="새 비밀번호를 다시 입력해 주세요" type = "password" name = "newUserPw" id = "newUserPw"></input>
+				<p id = "checka"></p>
 				</div>
 			</div>
 			<div>
 				<div>
 					<label>이름</label>
-					<input placeholder="이름을 입력해 주세요" name = "userName" id="uname"></input>
+					<input placeholder="이름을 입력해 주세요" name = "userName" id="userName"></input>
 				</div>
 			</div>
 			<div>
