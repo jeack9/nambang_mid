@@ -10,9 +10,10 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import co.nambang.common.Control;
+import co.nambang.member.vo.MemberVO;
 import co.nambang.mypage.service.mypageService;
 import co.nambang.mypage.service.mypageServiceImpl;
 import co.nambang.mypage.vo.mypageVO;
@@ -23,13 +24,18 @@ public class Woon3 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		 String userId = req.getParameter("userId");
+		
+		HttpSession session = req.getSession();
+		MemberVO login = (MemberVO)session.getAttribute("login");
+		String userId = login == null ? "" : login.getUserId();
+		
+		 
 		 String userPw = req.getParameter("userPw");
 	     String userName = req.getParameter("userName");
 	     String email = req.getParameter("email");
 	     String phone = req.getParameter("phone");
 	     String gender = req.getParameter("gender");
-	     DateFormat datefm = new SimpleDateFormat("yyyy-MM-dd");
+	     DateFormat datefm = new SimpleDateFormat("yyyyMMdd");
 	     Date birth = null;
 	     
 	     System.out.println(userId);
@@ -50,7 +56,7 @@ public class Woon3 implements Control {
 	        mvo.setGender(gender);
 	        
 			try {
-				java.util.Date parsedDate = datefm.parse(req.getParameter("birthYear") + "-" + req.getParameter("birthMonth") + "-" + req.getParameter("birthDay"));
+				java.util.Date parsedDate = datefm.parse(req.getParameter("birthYear"));
 				birth = new Date(parsedDate.getTime());
 				mvo.setBirth(birth); 
 				System.out.println(birth);
