@@ -4,7 +4,7 @@
 let data = window.location.search;
 let param = new URLSearchParams(data);
 let proCode = param.get('proCode');
-console.log(proCode);
+
 let totalCnt = document.querySelector('#totalCnt').value;
 fetch('mocontrol2.do?proCode='+proCode)
 	.then(result => result.json())
@@ -41,6 +41,7 @@ fetch('mocontrol2.do?proCode='+proCode)
 			th = document.createElement('th');
 
 			th.innerText = field;
+			console.log("idx:"+idx);
 			if (idx == 2 || idx == arry.length - 1) {
 				if (pro.weight >= 1000) td.innerText = fields2[idx] + "kg";
 				else td.innerText = fields2[idx] + "g";
