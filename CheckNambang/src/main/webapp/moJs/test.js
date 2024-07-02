@@ -4,7 +4,7 @@
 let data = window.location.search;
 let param = new URLSearchParams(data);
 let proCode = param.get('proCode');
-console.log(proCode);
+
 let totalCnt = document.querySelector('#totalCnt').value;
 fetch('mocontrol2.do?proCode='+proCode)
 	.then(result => result.json())
