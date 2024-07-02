@@ -8,16 +8,17 @@
 		values(addr_ck_seq.nextval, #{addr1}, #{addr2}, #{getter}, #{getterPhone}, #{userId}, #{addrSelected})
 	</insert>
 	
-	<select id="selectAddr" resultType="co.nambang.addr.vo.AddrVO">
-		select * from address_ck
-		where user_id = #{uid} and addr_selected = #{selected}
+	<select id="selectAddr" parameterType="String" resultType="co.nambang.addr.vo.AddrVO">
+		select * 
+		from address_ck
+		where user_id = #{userId}
 	</select>
 	
 	<update id = "updateAddr" parameterType="co.nambang.addr.vo.AddrVO">
 		update address_ck
 		set addr2 = #{addr2},
-     	getter = #{getter},
-     	getter_phone = #{getterPhone}
+     	      getter = #{getter},
+     	      getter_phone = #{getterPhone}
 		where user_id = #{userId}
 	</update>
 </mapper>

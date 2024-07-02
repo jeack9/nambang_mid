@@ -6,6 +6,7 @@
 
 	  	<select id = "pickItems" parameterType="co.nambang.zzim.vo.ZzimVO">
 				 select A.product_name,
+				 		A.product_code,
 				        A.price,
 				        A.off_price,
 				        A.product_image,
