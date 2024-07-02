@@ -11,14 +11,14 @@
            p.COMPANY,
            p.PRODUCT_NAME,
            p.PRICE,
-           h.review_count,
+           h.view_cnt,
            ROW_NUMBER() OVER (ORDER BY p.product_code) AS rn
        FROM
            products_ck p
            LEFT JOIN (
                SELECT
                    product_code,
-                   COUNT(*) AS review_count
+                   COUNT(*) AS view_cnt
                FROM
                    hugi_ck
                GROUP BY
