@@ -1,41 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-
-#addrApi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} 
-#headLine{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-</style> 
-     
-	<div id = "headLine">
-		<h3>배송지 관리</h3>
-	</div>
-	<div id = "addrApi">
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th><input type="text" id="sample6_postcode" placeholder="우편번호"></th>
-					<th><input type="button" onclick="sample6_execDaumPostcode()" value="배송지 추가"><br></th>
-				</tr>
-				<tr>
-					<th><input type="text" id="sample6_address" placeholder="주소"><br></th>
-					<th><input type="text" id="sample6_detailAddress" placeholder="상세주소"></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-</div>    
-
+    <style>
+    	#inputAddr{
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	}
+    	#topTitle{
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	}
+    	
+    	.contact__form__title{
+    	text-align: left;
+    	border-bottom: 2px solid rgb(51, 51, 51);
+    	}
+    	 #addAddress{
+    	 border-bottom: 2px solid rgb(51, 51, 51);
+    	 }   	
+    </style>
+	<!--  시작 -->        
+        <div class="contact-form spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h2>배송지 관리</h2>
+                    </div>
+                </div>
+            </div>
+            	<div>
+            		<table id = "addAddress">
+            				<tr>
+            					<td><h3>대구 광역시 중구 중앙대로 403</h3></td>
+            					<td><h3>5층</h3></td>
+            				</tr>
+            		</table>
+            	</div>
+            <form action="woonControl12.do?userId=${sessionScope.login.userId }" method="post">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" id="sample6_postcode" placeholder="우편번호">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                       		<input type="text" id="addr1" name = "addr1" placeholder="주소"><br>
+							<input type="text" id="addr2" name = "addr2" placeholder="상세주소">
+							<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+							<input type="text" id = "getter" name = "getter" placeholder="이름을 입력 해 주세요">
+                  			<input type="text" id = "getterPhone" name = "getterPhone" placeholder="전화 번호를 입력 해 주세요">
+                       		<button type="submit" class="site-btn">주소 추가</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -79,10 +101,14 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById("addr1").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("addr2").focus();
             }
         }).open();
     }
 </script>
+<script>
+	const userId = "${login.userId}";
+</script>
+<script src = "kdwjs/saveAddress.js"></script>
