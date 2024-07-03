@@ -15,8 +15,14 @@
 	</insert>
 	
 	<insert id="insertCart" parameterType="co.nambang.cart.vo.CartVO">
-		insert into cart_ck(cart_no,cart_volume,user_id,product_code)
-		values (cart_seq.nextval, #{cartVolume},#{userId},#{proCode})
+		MERGE into cart_ck
+		using dual
+		on (product_code = #{proCode})
+		when matched then
+		    update set cart_volume = cart_volume + #{cartVolume}
+		when not matched then
+		    insert (cart_no,cart_volume,user_id,product_code)
+		    values (cart_seq.nextval,#{cartVolume},#{userId},#{proCode})
 	</insert>
 	
 	<select id="hugiList" parameterType="co.nambang.hugi.vo.HugiVO">

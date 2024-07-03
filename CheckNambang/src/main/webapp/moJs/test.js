@@ -10,6 +10,7 @@ let proCode = param.get('proCode');
 let totalCnt = document.querySelector('#totalCnt').value;
 let zzimbtnList = document.querySelector('#zzimBtnClass');
 let cartbtnList = document.querySelector('#cartBtnClass');
+let offList = document.querySelector('#offList');
 fetch('mocontrol2.do?proCode=' + proCode)
 	.then(result => result.json())
 	.then(result => result.product.forEach(pro => {
@@ -29,12 +30,29 @@ fetch('mocontrol2.do?proCode=' + proCode)
 
 		let price = document.querySelector('.product__details__price');
 		let price2 = document.querySelector('.product__details__price2');
+		let offBtn = document.createElement('button');
+		let offImg = document.createElement('img');
 		if (pro.offPrice == 0) {
 			price.innerHTML = pro.price + '원';
 		} else if (pro.offPrice != 0) {
 			price.innerHTML = pro.offPrice + '원';
 			price2.innerHTML = pro.price +'원';
+			
+			offBtn.setAttribute('type','button');
+			offBtn.setAttribute('data-toggle','modal');
+			offBtn.setAttribute('data-target','#exampleModalScrollable');
+			offBtn.setAttribute('id','imgBtn');
+			
+			offImg.src = 'moImg/물음표.png'
+			offImg.setAttribute('id','offImg');
+			offBtn.appendChild(offImg);
+			
+			offList.appendChild(offBtn);
 
+		let priceInfo = document.querySelector('#priceInfo');
+		let offInfo = document.querySelector('#offInfo');
+		priceInfo.innerHTML = pro.price +'원';
+		offInfo.innerHTML = pro.offPrice + '원';
 		}
 		
 
