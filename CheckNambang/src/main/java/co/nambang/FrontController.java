@@ -100,6 +100,11 @@ public class FrontController extends HttpServlet {
 		map.put("/qnaListAjax.do", new QnaListAjax()); // qna 목록 ajax		
 		map.put("/qnaForm.do", new QnaForm()); // qna 쓰기폼(수정 or 등록).
 		
+		
+		// 상품
+		
+		// 카트
+		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
 		map.put("/mocontrol2.do", new Mo2());
