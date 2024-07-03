@@ -71,6 +71,7 @@ document.querySelector('.putCart').addEventListener('click', () => {
 	let proCode = document.getElementById('modal_code').textContent;
 	let totalCnt = totalC.value;
 	console.log(totalCnt);
+	console.log(proCode);
 	const putAjax = new XMLHttpRequest();
 	putAjax.open('get', 'hyunControl3.do?proCode=' + proCode //
 				+ '&userId=' + userId + '&cartVolume=' + totalCnt);
