@@ -11,4 +11,6 @@ public interface ProductMapper {
 	//상품 리스트 조회
 	List<ProductVO> productList(@Param("page") int page);
 	
+	//장바구니 카드 추가
+	int addCart(@Param("cartVolume") int volume, @Param("userId") String userId, @Param("proCode") String proCode);
 }

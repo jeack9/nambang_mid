@@ -11,6 +11,8 @@
            p.COMPANY,
            p.PRODUCT_NAME,
            p.PRICE,
+           p.off_price,
+           p.VOLUME,
            h.view_cnt,
            ROW_NUMBER() OVER (ORDER BY p.product_code) AS rn
        FROM
@@ -29,5 +31,14 @@
     AND b.rn > ((#{page} - 1) * 5)
     ORDER BY b.product_code
 	</select>
-
+	<insert id="addCart" parameterType="co.nambang.cart.vo.CartVO">
+		insert into cart_ck(
+				cart_no,
+				cart_volume,
+				user_id,
+				product_code
+				)
+		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{proCode})
+	</insert>
+	
 </mapper>
