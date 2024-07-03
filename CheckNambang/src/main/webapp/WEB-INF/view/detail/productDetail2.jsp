@@ -47,6 +47,37 @@
 #zzimBtnClass {
 	padding-right: 10px;
 }
+
+#offPriceList {
+	text-decoration: line-through;
+	text-decoration-thickness: 2px;
+	display: inline-block;
+}
+#offList{
+	display: inline;;
+}
+#priceInfo{
+	text-decoration: line-through;
+	text-decoration-thickness: 2px;
+	font-size: 20px;
+	font-weight: bold;
+}
+#offInfo{
+	font-size: 20px;
+	font-weight: bold;
+}
+#imgBtn{
+	background-color : white;
+	border: none;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	padding: 0px;
+}
+#offImg{
+	width: 16px;
+	height: 16px;
+}
 </style>
 
 <section class="product-details spad">
@@ -67,13 +98,13 @@
 							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star-half-o"></i> <span>(18 reviews)</span>
 					</div>
-					<div class="product__details__price" style = "margin-bottom: 0;"></div>
-					<div class="product__details__price2" style = "text-decoration:line-through; text-decoration-thickness: 2px; display:inline-block;"></div>
-					
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#exampleModalScrollable">Launch demo modal</button>
-	
-					
+					<div class="product__details__price" style="margin-bottom: 0;"></div>
+					<div class="product__details__price2" id="offPriceList"></div>
+
+					<div id="offList"></div>
+
+
+
 					<table id="detailList">
 
 					</table>
@@ -99,7 +130,7 @@
 							href="#tabs-1">상품설명</a></li>
 						<li class="nav-item"><a class="nav-link" href="#tabs-2">상세정보</a></li>
 						<li class="nav-item"><a class="nav-link" href="#tabs-3">후기
-								<span>(1)</span>
+								<span></span>
 						</a></li>
 					</ul>
 					<div class="tab-content">
@@ -119,7 +150,7 @@
 	</div>
 
 	<!-- Button trigger modal -->
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalScrollableTitle"
@@ -127,18 +158,20 @@
 		<div class="modal-dialog modal-dialog-scrollable" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalScrollableTitle">Modal
-						title</h5>
+					<h5 class="modal-title" id="exampleModalScrollableTitle">가격안내</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body"><p>asdfasdfa</p></div>
+				<div class="modal-body">
+					<p id= "priceInfo"></p>
+					<p>판매 가격입니다. 이가격은 시장 현황등에 따라 변경될 수 있습니다.</p>
+					<p id = "offInfo"></p>
+					<p>현 시점 모든 할인이 적용된 가격입니다.</p>
+				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 				</div>
 			</div>
 		</div>
