@@ -69,25 +69,20 @@
 					</div>
 					<div id="endPrice"></div>
 				</div>
-				<c:if test="${not empty zzim}">
-					    <c:forEach var="item" items="${zzim}">
-					        <input type="text" class="zzimProduct" value="${item.productCode}">
-					    </c:forEach>
-					</c:if>
-					<c:if test="${empty zzim}">
-					    <p>No zzim items available.</p>
-					</c:if>
-					
-					  <div id="zzimContainer">
-                        <c:forEach var="item" items="${zzim}">
-                            <input type="text" class="zzimProduct" value="${item.productCode}">
-                        </c:forEach>
-                    </div>
 					
 				<div id = "btnClass">
-					<button type="button" class="primary-btn" id = "zzimBtn">찜하기</button>
-					<a href="#" class="primary-btn" id = "cartBtn">${zzim.proCode}</a>
-				</div>
+					<c:choose>
+						<c:when test="${zzim == true }">
+							<button id = "zzimBtn" class ="primary-btn">찜 삭제</button>
+						</c:when>
+						<c:otherwise>
+							<button id = "zzimBtn" class ="primary-btn">찜 추가</button>
+						</c:otherwise>
+					</c:choose>
+					
+					
+					<button id = "cartBtn" class ="primary-btn"></button>
+				</div> 
 			</div>
 			<div class="col-lg-12">
 				<div class="product__details__tab">
@@ -105,7 +100,7 @@
 						</div>
 						<div id="tabs-2">
 
-						</div>
+						</div>${zzim == true} 
 						<div id="tabs-3">
 
 							<h3>상품 후기</h3>
@@ -121,6 +116,7 @@
 </section>
 
 <script>
+	const login = '${sessionScope.login.userId}';
 /*  	const zzimProCode = '${param.zzim.proCode}';
 	const proCode = "${proCode}"; 
 	const userId = '${login.userId}';

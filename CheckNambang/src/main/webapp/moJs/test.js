@@ -1,28 +1,33 @@
 /**
  * moJs/test.js
  */
+console.log(login);
 let data = window.location.search;
 let param = new URLSearchParams(data);
 let proCode = param.get('proCode');
-
+   
+//let zzimProCode = [];
 let totalCnt = document.querySelector('#totalCnt').value;
-fetch('mocontrol2.do?proCode='+proCode)
+
+let btnList = document.querySelector('#btnClass');
+
+fetch('mocontrol2.do?proCode=' + proCode)
 	.then(result => result.json())
 	.then(result => result.product.forEach(pro => {
-		
+
 		let img = document.querySelector('.product__details__pic__item--large')
 
 		let imageName = pro.productImage;
 		if (!imageName.includes('.')) {
 			imageName += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 		}
-		
+
 		img.src = 'moImg/' + imageName;
-		
+
 		let title = document.querySelector('#titleList');
 		title.innerHTML = pro.company + pro.productName;
 
-		console.log(pro.offPrice);
+
 		let price = document.querySelector('.product__details__price');
 		if (pro.offPrice == 0) {
 			price.innerHTML = pro.price + '원';
@@ -41,7 +46,7 @@ fetch('mocontrol2.do?proCode='+proCode)
 			th = document.createElement('th');
 
 			th.innerText = field;
-			console.log("idx:"+idx);
+
 			if (idx == 2 || idx == arry.length - 1) {
 				if (pro.weight >= 1000) td.innerText = fields2[idx] + "kg";
 				else td.innerText = fields2[idx] + "g";
@@ -53,18 +58,6 @@ fetch('mocontrol2.do?proCode='+proCode)
 			list.appendChild(tr);
 		});
 
-		/*for(let i = 0; i < fields1.length;i++){
-			let tr = document.createElement('tr');
-			let td = document.createElement('td');
-			th = document.createElement('th');
-			
-			th.innerText = fields1[i];
-			td.innerText = fields2[i];
-			tr.appendChild(th);
-			tr.appendChild(td);
-			
-			list.appendChild(tr);
-		}*/
 
 		let endPrice = document.querySelector('#endPrice');
 		document.querySelector('.pro-qty').addEventListener('click', function() {
@@ -82,6 +75,20 @@ fetch('mocontrol2.do?proCode='+proCode)
 
 			endPrice.innerHTML = '총 상품금액 : ' + pro.offPrice + '원';
 		}
+	/*	let zzim1 = document.querySelector('#zzimBtn');
+		let cart1 = document.querySelector('#cartBtn');
+
+		console.log("zzim : "+zzimProCode);
+		if (zzimProCode.includes(proCode)) {
+			zzim1.innerHTML = '찜 삭제';
+		} else {
+			zzim1.innerHTML = '찜 추가';
+		}
+		cart1.innerHTML = '장바구니 추가';
+		btnList.appendChild(zzim1);
+		btnList.appendChild(cart1);*/
+
+
 
 		let descrip = document.querySelector('#tabs-1');
 		let p = document.createElement('p')
@@ -97,15 +104,35 @@ fetch('mocontrol2.do?proCode='+proCode)
 		img.src = 'moImg/' + infoImg;
 		info.appendChild(img);
 
-		return list;
-
 	}))
-	.catch (err => console.log(err));
+	.catch(err => console.log(err));
+	
+/*async function selectZzim(){
+	const response = await fetch('mocontrol2.do?proCode=' + proCode);
+ 	const jsonData = await response.json();
+ 	jsonData.zzim.forEach(item => {
+		if(zzimProCode.indexOf(item.productCode) == -1) {
+			zzimProCode.push(item.productCode);
+		}
+	});
+}*/
+
+//zzim productCode 뽑기
+/*if (login != null) {
+	fetch('mocontrol2.do?proCode=' + proCode)
+		.then(result => result.json())
+		.then(result => result.zzim.forEach(item => {
+			if (zzimProCode.indexOf(item.productCode) == -1) {
+				zzimProCode.push(item.productCode);
+			}
+		}))
+}
+*/
 
 
 
 // 후기 행 만들기
-fetch('mocontrol5.do?proCode='+proCode)
+fetch('mocontrol5.do?proCode=' + proCode)
 	.then(result => result.json())
 	.then(result => result.forEach(hugi => {
 		let hugiList = document.querySelector('#hugiList');
@@ -132,19 +159,23 @@ fetch('mocontrol5.do?proCode='+proCode)
 
 document.querySelector('#zzimBtn').addEventListener('click', zzimFnc);
 function zzimFnc() {
-	fetch('mocontrol3.do?proCode='+proCode)
-		.then(result => result.json())
-		.then(result => {
-			console.log(result);
-			if (result.retCode == 'OK') {
-				alert('찜 등록 성공');
-			}
-		})
+	if(login.length != 0){
+		fetch('mocontrol3.do?proCode=' + proCode)
+			.then(result => result.json())
+			.then(result => {
+	
+				if (result.retCode == 'OK') {
+					alert('찜 등록 성공');
+				}
+			})
+	}else{
+		alert("로그인하세요.");
+	}
 }
 
 document.querySelector('#cartBtn').addEventListener('click', cartFnc);
 function cartFnc() {
-	fetch('mocontrol4.do?proCode='+proCode+'&userId=' + userId + '&cartVolume=' + totalCnt)
+	fetch('mocontrol4.do?proCode=' + proCode + '&userId=' + userId + '&cartVolume=' + totalCnt)
 		.then(result => result.json())
 		.then(result => {
 			if (result.retCode == 'OK') {
