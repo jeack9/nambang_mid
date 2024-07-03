@@ -11,6 +11,7 @@
 		          A.op_price,
 		          a.op_no,
 		          B.product_image,
+		          B.product_code,
 		          B.product_name
 		from order_product A,
 		        products_ck B

@@ -34,6 +34,7 @@
             		<table id = "addAddress">
             			<tbody id = "addBody">
             			    <tr  style="display :none">
+            			    	<td id="address0"><input style='zoom:2.0;'  type="checkbox"></td>
             					<td id="address1"><p style="font-size:20px">대구 광역시 중구 중앙대로 403</p></td>
             					<td id="address2"><p style="font-size:20px">5층</p></td>
             				</tr>
