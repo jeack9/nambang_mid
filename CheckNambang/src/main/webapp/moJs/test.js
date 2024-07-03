@@ -5,7 +5,7 @@ console.log(login);
 let data = window.location.search;
 let param = new URLSearchParams(data);
 let proCode = param.get('proCode');
-
+   
 //let zzimProCode = [];
 let totalCnt = document.querySelector('#totalCnt').value;
 
