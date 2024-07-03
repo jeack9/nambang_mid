@@ -6,6 +6,7 @@
 
 	  	<select id = "pickItems" parameterType="co.nambang.zzim.vo.ZzimVO">
 				 select A.product_name,
+				 		A.product_code,
 				        A.price,
 				        A.off_price,
 				        A.product_image,
@@ -21,7 +22,7 @@
 
 		<delete id = "pickDelete" parameterType="co.nambang.zzim.vo.ZzimVO">
 			delete from zzim_ck
-			where zzim_no = #{zzimNo}
+			where product_code = #{productCode}
 		</delete>
 
 

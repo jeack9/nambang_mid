@@ -8,12 +8,11 @@ let userData;
 fetch('woonControl2.do?userId='+userId)
 	.then(result => result.json())
 	.then(result =>{
-	console.log(result[0].userId);
 	let uid = document.querySelector('#uid');
 	uid.setAttribute('value', result[0].userId);
 	
-	let uname = document.querySelector('#uname');
-	uname.setAttribute('value', result[0].userName);
+	let userName = document.querySelector('#userName');
+	userName.setAttribute('value', result[0].userName);
 	
 	let uemail = document.querySelector('#uemail');
 	uemail.setAttribute('value', result[0].email);
@@ -24,14 +23,32 @@ fetch('woonControl2.do?userId='+userId)
 	})
 
 
-let userPw = document.querySelector('#userPw');
-let userRepw = document.querySelector('#userRepw');
 
-function pwComp(){
-	if(userPw.value != userRepw.value){
-		alert('동일한 비밀번호를 입력해 주세요');
+let userRepw = document.querySelector('#userRepw');
+let checka = document.querySelector('#checka');
+let newUserPw = document.querySelector('#newUserPw');
+let pwd2;
+
+newUserPw.addEventListener('keyup', (event) =>{	
+	let userPw = document.querySelector('#userPw').value;	// 
+	pwd2 = event.currentTarget.value;
+	//let checka = document.createElement('p');
+	if(userPw != pwd2){
+		checka.style.color = 'red';
+		checka.innerHTML = "비밀 번호가 일치 하지 않습니다"
+	}else if(userPw == pwd2){
+		checka.innerHTML = " ";
 	}
-}
+})
+
+fetch('woonControl15.do?userId='+ userId)
+	.then(result => result.json())
+	.then(result =>{
+		console.log(result);
+		
+	})
+
+
 
 
 

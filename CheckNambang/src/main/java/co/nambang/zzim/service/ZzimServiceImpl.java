@@ -20,9 +20,9 @@ public class ZzimServiceImpl implements ZzimService{
 	}
 
 	@Override
-	public boolean deleteZzimItems(int zzimNo) {
+	public boolean deleteZzimItems(String productCode) {
 		// TODO Auto-generated method stub
-		return mapper.pickDelete(zzimNo) == 1;
+		return mapper.pickDelete(productCode) == 1;
 	}
 	
 }

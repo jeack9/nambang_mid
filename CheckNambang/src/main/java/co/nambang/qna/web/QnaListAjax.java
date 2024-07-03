@@ -26,27 +26,26 @@ public class QnaListAjax implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String page = req.getParameter("page");
-		String sc = req.getParameter("searchCondition");
-		String kw = req.getParameter("keyword");
+		String sc = req.getParameter("sc");
+		String kw = req.getParameter("kw");
 		
 		HttpSession session = req.getSession();
 		MemberVO login = (MemberVO) session.getAttribute("login");
 		String userId = login == null ? "" : login.getUserId();
 		
-		page = page == null ? "1" : page;
-		sc = sc == null ? "0" : sc;
 		
-		SearchVO search = new SearchVO(Integer.parseInt(page), Integer.parseInt(sc), kw, userId);
-		System.out.println(search.toString());
+		SearchVO search = new SearchVO();
+		search.setPage(Integer.parseInt(page));
+		search.setKeyword(kw);
+		search.setUserId(userId);
+		search.setSearchCondition(Integer.parseInt(sc));
+		System.out.println(search);
+
 		QnaService svc = new QnaServiceImpl();
 		List<QnaVO> list = svc.qnaList(search);
-//		req.setAttribute("list", list);
-//		req.setAttribute("searchCondition", sc);
-//		req.setAttribute("keyword", kw);
 		
 		int totalCnt = svc.getTotalCnt();
 		PageDTO dto = new PageDTO(Integer.parseInt(page), totalCnt);
-//		req.setAttribute("paging", dto);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);

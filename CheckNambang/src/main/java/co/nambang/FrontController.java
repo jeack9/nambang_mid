@@ -119,16 +119,16 @@ public class FrontController extends HttpServlet {
 		map.put("/woonControl9.do", new Woon9());	// 주문내역 상세 페이지
 		map.put("/woonControl10.do", new Woon10());		// 상세 페이지 처리
 		map.put("/woonControl11.do", new Woon11());		// 배송지 관리
-		map.put("/woonControl12.do", new Woon12());		// 배송지 추가 Window.open()
-		map.put("/woonControl13.do", new Woon13());		// 회원정보 현재 비밀번호 처리
-		map.put("/woonControl14.do", new Woon14());		// 배송지 추가 처리 
-		map.put("/woonControl15.do", new Woon15());
-		map.put("/woonControl16.do", new Woon16());
+		map.put("/woonControl12.do", new Woon12());		// 배송지 추가 처리
+		map.put("/woonControl13.do", new Woon13());		// 배송지 변경 처리
+		map.put("/woonControl14.do", new Woon14());		// 배송지 보여주기
+		map.put("/woonControl15.do", new Woon15());	    // 현재 비밀번호 와 등록된 비밀 번호 확인
+		map.put("/woonControl16.do", new Woon16());		// 모달창 처리
 		map.put("/woonControl17.do", new Woon17());
 
 		// 이상현의 테스트 컨트롤러
-		map.put("/hyunControl.do", new Hyun());
-		map.put("/hyunControl2.do", new Hyun2());
+		map.put("/hyunControl.do", new Hyun()); // 상품리스트 페이지
+		map.put("/hyunControl2.do", new Hyun2()); // 상품리스트 페이지 실행
 		map.put("/hyunControl3.do", new Hyun3());
 		map.put("/hyunControl4.do", new Hyun4());
 		map.put("/hyunControl5.do", new Hyun5());

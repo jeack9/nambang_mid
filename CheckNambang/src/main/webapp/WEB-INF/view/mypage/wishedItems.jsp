@@ -59,7 +59,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-		 
+        </div>		 
  </form> 
+ <script>
+ const userId = "${login.userId}";
+ </script>
 <script src = "kdwjs/pick.js"></script>	

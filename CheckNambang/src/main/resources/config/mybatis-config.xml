@@ -12,7 +12,7 @@
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="driver" value="${driver}" />
 				<property name="url" value="${url}" />
 				<property name="username" value="jsp" />
 				<property name="password" value="jsp" />

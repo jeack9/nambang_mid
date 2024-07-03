@@ -11,5 +11,5 @@ public interface mypageMapper {
 	 int mypageChange(mypageVO mvo);	// 정보 수정
 	 List<orderhistoryVO> oderDetail(String userId);
 	 List<mypageVO> mypageInfo(String userId);	// 정보 수정전 정보 목록
-	 int checkPw(@Param("userPw")String userPw, @Param("userId")String userId);
+	 mypageVO currentPw(@Param("userId") String userId, @Param("userPw") String userPw);
 }

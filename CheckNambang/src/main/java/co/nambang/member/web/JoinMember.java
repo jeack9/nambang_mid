@@ -63,7 +63,9 @@ public class JoinMember implements Control {
 		avo.setUserId(userId);
 		
 		if(msvc.joinMember(mvo)) {// 회원가입 정보 등록
+			System.out.println("회원가입성공");
 			if(asvc.addAddr(avo)) {// 회원가입 배송지 정보 등록
+				System.out.println("배송지성공");
 				resp.sendRedirect("main.do");
 				// 회원의 기본배송지 정보 변경
 //				avo = asvc.getSelectedAddr(userId, 1);
