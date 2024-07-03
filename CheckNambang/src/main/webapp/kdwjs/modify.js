@@ -41,8 +41,12 @@ newUserPw.addEventListener('keyup', (event) =>{
 	}
 })
 
-
-
+fetch('woonControl15.do?userId='+ userId)
+	.then(result => result.json())
+	.then(result =>{
+		console.log(result);
+		
+	})
 
 
 

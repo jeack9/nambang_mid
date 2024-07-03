@@ -22,7 +22,7 @@
 
 		<delete id = "pickDelete" parameterType="co.nambang.zzim.vo.ZzimVO">
 			delete from zzim_ck
-			where zzim_no = #{zzimNo}
+			where product_code = #{productCode}
 		</delete>
 
 

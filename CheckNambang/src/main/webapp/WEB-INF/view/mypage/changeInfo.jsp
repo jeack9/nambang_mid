@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 	#mypage_change{
 		width: 500px;
@@ -79,7 +80,7 @@
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <label>아이디</label>
-									<input id = "uid" readonly/>
+									<input id = "uid" value="${login.userId }" readonly/>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -90,7 +91,8 @@
                         </div>
                         <div class="checkout__input">
                             <label>현재 비밀번호</label>
-							<input placeholder="비밀번호를 입력해 주세요" type = "password" name = "userPw1"></input>
+							<input placeholder="비밀번호를 입력해 주세요" type = "password" name = "userPw1" id = "userPw1"></input>
+							<span id = "userPw1span"></span>
                         </div>
                         <div class="checkout__input">
                             <label>새 비밀번호</label>
@@ -103,15 +105,15 @@
                         </div>
                         <div class="checkout__input">
                             <label>이름</label>
-							<input placeholder="이름을 입력해 주세요" name = "userName" id="userName"></input>
+							<input placeholder="이름을 입력해 주세요" name = "userName" id="userName" value = "${login.userName }"></input>
                         </div>
                         <div class="checkout__input">
                             <label>이메일</label>
-							<input placeholder="이메일을 입력해 주세요" name = "email" id="uemail"></input>
+							<input placeholder="이메일을 입력해 주세요" name = "email" id="uemail" value = "${login.email }"></input>
                         </div>
                         <div class="checkout__input">
                         	<label>휴대폰</label>
-							<input name = "phone" id="uphone"></input>
+							<input placeholder="숫자만 입력 해 주세요" name = "phone" id="uphone" value = "${login.phone }"></input>
                         </div>
                        	<div class="checkout__input">
                             <label>성별</label>
@@ -142,6 +144,49 @@
     
 <script>
 	const userId = "${login.userId}";
-	console.log(userId);
+	const login = {
+			userId : '${login.userId}',
+			userPw: '${login.userPw}',
+			userName: '${login.userName}',
+			phone: '${login.phone}',
+			gender: ${login.gender},
+			birth: <fmt:formatDate value="${login.birth}" pattern="yyyy-MM-dd"/>,
+		    email: '${login.email}',
+			point: ${login.point}
+	};
+	console.log(login);
+
+newUserPw.addEventListener('keyup', (event) =>{	
+		let userPw = document.querySelector('#userPw').value;	// 
+		pwd2 = event.currentTarget.value;
+		//let checka = document.createElement('p');
+		if(userPw != pwd2){
+			checka.style.color = 'red';
+			checka.innerHTML = "비밀 번호가 일치 하지 않습니다"
+		}else if(userPw == pwd2){
+			checka.innerHTML = " ";
+		}
+	})
+
+
+function checkPw() {
+	
+userPw1.addEventListener('keyup', (event) =>{
+	let userPw1span = document.querySelector('#userPw1span');	
+	console.log(login.userPw)	;
+	if(login.userPw != userPw1.value)	{
+		userPw1span.style.color = 'red';
+		userPw1span.innerHTML = "현재 비밀번호를 확인 해 주세요"
+		if(userPw1.value.length <= 0) {
+			userPw1span.innerHTML = ""
+		}
+	}else if (login.userPw == userPw1.value){
+		userPw1span.innerHTML = "";
+		console.log(userPw1span.value);
+		}
+	})	
+}	
+checkPw()
+
 </script>
-<script src ="kdwjs/modify.js"></script>
+<!-- <script src ="kdwjs/modify.js"></script>  아작스 처리-->
