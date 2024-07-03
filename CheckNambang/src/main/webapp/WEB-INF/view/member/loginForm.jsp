@@ -62,6 +62,11 @@ top: 13px;
 </section>
 
 <script>
+let msg = '${requestScope.msg}'; // 비로그인 고객센터 클릭시 넘어오는 메시지
+if(msg){
+	alert(msg);
+}
+
 document.querySelector("#loginBtn").addEventListener("click", login);
 function login(){
 	let id = document.querySelector("#userId").value;

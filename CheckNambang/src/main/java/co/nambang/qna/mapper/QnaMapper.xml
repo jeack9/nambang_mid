@@ -8,12 +8,10 @@
 		FROM (SELECT /*+INDEX_DESC(q pk_qna_ck)*/ ROWNUM rn, q.*
      		  FROM qna_ck q
       		  where user_id = #{userId}
+      		  AND qna_title like '%'|| #{keyword} ||'%'
       		  <choose>
       		  <when test="searchCondition != -1">
       		  AND qna_state = #{searchCondition}
-      		  </when>
-      		  <when test="keyword == ''.toString()">
-     		  AND qna_title like '%'|| #{keyword} ||'%'
       		  </when>
       		  </choose>
       		  ) b
@@ -26,5 +24,12 @@
 	<select id="getTotalCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM qna_ck
+		where user_id = #{userId}
+		AND qna_title like '%'|| #{keyword} ||'%'
+		<choose>
+		<when test="searchCondition != -1">
+		AND qna_state = #{searchCondition}
+		</when>
+	  	</choose>
 	</select>
 </mapper>

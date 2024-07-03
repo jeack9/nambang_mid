@@ -6,13 +6,20 @@ a.active{
     background: #7fad39;
     color: #ffffff;
 }
+#ask-btn{
+	float: right;
+}
+div.product__pagination{
+	overflow: hidden;
+}
 </style>
 <div class="col-lg-9 col-md-7">
 	<div>
 		<div class="blog__sidebar__search">
-			<select>
-				<option value="">답변대기</option>
-				<option value="">답변완료</option>
+			<select id="search_condition">
+				<option value="-1">답변선택</option>
+				<option value="0">답변대기</option>
+				<option value="1">답변완료</option>
 			</select>
 	       	<input class="form-control me-2" value="${keyword }"
 	       	type="search" placeholder="Search" aria-label="Search" style="width: 80%">
@@ -22,7 +29,7 @@ a.active{
 				<tr>
 					<th class="col-md-6">제목</th><th class="col-md-2">작성자</th><th class="col-md-2">작성일</th><th class="col-md-2">답변상태</th>
 				</tr>
-				<tr>
+				<tr style="display:none;">
 					<td>제목</td><td>작성자</td><td>작성일</td><td>답변상태</td>
 				</tr>
 			</thead>
@@ -37,15 +44,11 @@ a.active{
 	</div>
 	<div class="product__pagination">
 		<!--  -->
-		<c:if test="${paging.prev }">
-		<a href="noticeList.do?page=${paging.startPage - 1}"><i class="fa fa-long-arrow-left"></i></a>
-		</c:if>
-		<c:forEach var="p" begin="${paging.startPage }" end="${paging.endPage }">
-		<a href="noticeList.do?page=${p}" class="${p == paging.currPage ? 'active' : '' }">${p}</a>
-		</c:forEach>
-		<c:if test="${paging.next }">
-		<a href="noticeList.do?page=${paging.endPage + 1}"><i class="fa fa-long-arrow-right"></i></a>
-		</c:if>
+		<a href="#" style="display:none"><i class="fa fa-long-arrow-left"></i></a>
+		<a href="#" style="display:none">1</a>
+		<a href="#" style="display:none"><i class="fa fa-long-arrow-right"></i></a>
+		<div></div>
+		<button type="button" id="ask-btn" class="site-btn" onclick="location.href='qnaForm.do'">문의하기</button>
 	</div>
 </div>
 

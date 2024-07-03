@@ -19,21 +19,14 @@ public class QnaList implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		QnaService svc = new QnaServiceImpl();
-//		HttpSession session = req.getSession();
-//		MemberVO login = (MemberVO) session.getAttribute("login");
-//		String userId = login == null ? "" : login.getUserId();
-//		String page = req.getParameter("page");
-//		
-//		int totalCnt = svc.getTotalCnt();
-//		page = page == null ? "1" : page;
-//		PageDTO dto = new PageDTO(Integer.parseInt(page), totalCnt);
-//		dto.setUserId(userId);
+		HttpSession session = req.getSession();
+		MemberVO login = (MemberVO) session.getAttribute("login");
 		
-//		List<QnaVO> list = svc.qnaList(search);
-//		req.setAttribute("list", list);
-		
-		req.getRequestDispatcher("board/qnaList.tiles").forward(req, resp);
+		if(login != null) req.getRequestDispatcher("board/qnaList.tiles").forward(req, resp);
+		else {
+			req.setAttribute("msg", "로그인해라.");
+			req.getRequestDispatcher("loginForm.do").forward(req, resp);
+		}
 	}
 
 }

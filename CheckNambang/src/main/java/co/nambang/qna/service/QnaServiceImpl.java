@@ -20,8 +20,8 @@ public class QnaServiceImpl implements QnaService{
 		return mapper.qnaList(search);
 	}
 	@Override
-	public int getTotalCnt() {
-		return mapper.getTotalCnt();
+	public int getTotalCnt(SearchVO search) {
+		return mapper.getTotalCnt(search);
 	}
 	
 }

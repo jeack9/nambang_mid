@@ -10,6 +10,6 @@ public interface QnaService {
 
 	List<QnaVO> qnaList(SearchVO search);
 
-	int getTotalCnt();
+	int getTotalCnt(SearchVO search);
 	
 }
