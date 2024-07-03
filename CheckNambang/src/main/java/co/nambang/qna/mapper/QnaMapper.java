@@ -7,6 +7,6 @@ import co.nambang.qna.vo.SearchVO;
 
 // 주문내역 테이블
 public interface QnaMapper {
-	public int getTotalCnt();
+	public int getTotalCnt(SearchVO search);
 	public List<QnaVO> qnaList(SearchVO search);
 }

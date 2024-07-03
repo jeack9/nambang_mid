@@ -1,0 +1,28 @@
+Create table ask_type_ck(
+  type_no number primary key,
+  type1 varchar2(50),
+  type2 varchar2(50)
+);
+create SEQUENCE ask_type_seq;
+select * from ask_type_ck;
+
+insert into ask_type_ck
+values(ask_type_seq.nextval,'취소/교환/반품', '취소'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'취소/교환/반품', '반품'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'취소/교환/반품', '교환'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'회원/이벤트/쿠폰', '쿠폰/할인 혜택'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'회원/이벤트/쿠폰', '적립금'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'회원/이벤트/쿠폰', '회원정보/등급'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'회원/이벤트/쿠폰', '회원가입/탈퇴'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'서비스/오류/기타', '시스템 오류/장애'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'서비스/오류/기타', '기타(직접 입력)'); 
+insert into ask_type_ck
+values(ask_type_seq.nextval,'서비스/오류/기타', '서비스 제안/개선');

@@ -42,9 +42,9 @@ public class QnaListAjax implements Control {
 		System.out.println(search);
 
 		QnaService svc = new QnaServiceImpl();
-		List<QnaVO> list = svc.qnaList(search);
+		int totalCnt = svc.getTotalCnt(search);
 		
-		int totalCnt = svc.getTotalCnt();
+		List<QnaVO> list = svc.qnaList(search);
 		PageDTO dto = new PageDTO(Integer.parseInt(page), totalCnt);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
