@@ -16,11 +16,11 @@ public class Woon8 implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int zzimNo = Integer.parseInt(req.getParameter("zzimNo"));
+		int productCode = Integer.parseInt(req.getParameter("productCode"));
 		ZzimVO zvo = new ZzimVO();
 		
 		ZzimService svc = new ZzimServiceImpl();
-		if(svc.deleteZzimItems(zzimNo)) {
+		if(svc.deleteZzimItems(productCode)) {
 			resp.sendRedirect("woonControl6.do");
 		}
 	}
