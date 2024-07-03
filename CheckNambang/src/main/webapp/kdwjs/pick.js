@@ -9,7 +9,7 @@ let itemName = document.querySelector('#itemName');
 let pickitems = document.querySelector('#items'); 	
 
 
- fetch('woonControl7.do?userId=happy')
+ fetch('woonControl7.do?userId=' +userId)
  	.then(result => result.json())
  	.then(result => {
 		console.log(result);

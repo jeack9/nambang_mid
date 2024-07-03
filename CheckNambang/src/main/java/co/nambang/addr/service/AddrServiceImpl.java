@@ -1,5 +1,7 @@
 package co.nambang.addr.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import co.nambang.addr.mapper.AddrMapper;
@@ -15,8 +17,8 @@ public class AddrServiceImpl implements AddrService{
 		return mapper.insertAddr(avo) == 1;
 	}
 	@Override
-	public AddrVO getSelectedAddr(String userId, int addrSelected) {
-		return mapper.selectAddr(userId, addrSelected);
+	public List<AddrVO> getSelectedAddr(String userId) {
+		return mapper.selectAddr(userId);
 	}
 	@Override
 	public boolean updateAddr(AddrVO avo) {
