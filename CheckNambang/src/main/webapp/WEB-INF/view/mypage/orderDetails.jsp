@@ -20,7 +20,7 @@
 			<thead>
 				<tr>
 					<td id ="paymentTime">결제 시간</td>
-					<td><a href="woonControl9.do">주문 상세</a></td>
+					<td><a href="http://localhost/CheckNambang/woonControl9.do">주문 상세</a></td>
 				</tr>				
 				<tr>
 					<td>상품명</td>
