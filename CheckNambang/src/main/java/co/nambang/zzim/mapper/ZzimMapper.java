@@ -8,5 +8,5 @@ import co.nambang.zzim.vo.ZzimVO;
 // 주문내역 테이블
 public interface ZzimMapper {
 	 List<ZzimVO> pickItems(String userId);
-	 int pickDelete(int productCode);
+	 int pickDelete(String productCode);
 }

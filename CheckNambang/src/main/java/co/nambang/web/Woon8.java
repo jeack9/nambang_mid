@@ -16,7 +16,7 @@ public class Woon8 implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int productCode = Integer.parseInt(req.getParameter("productCode"));
+		String productCode = req.getParameter("productCode");
 		ZzimVO zvo = new ZzimVO();
 		
 		ZzimService svc = new ZzimServiceImpl();
