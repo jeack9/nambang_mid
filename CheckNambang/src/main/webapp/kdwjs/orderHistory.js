@@ -2,15 +2,20 @@
  * orderHistory.js
  */
 
+
  fetch('woonControl10.do?orderNo=1')
  	.then(result => result.json())
  	.then(result =>{
 		console.log(result);
 		let orderNo = document.querySelector('#num');
 		orderNo.innerHTML = result[0].orderNo;
-		
+		let productCode = document.querySelector('#productCode');
+		let opNo = document.querySelector('#opNo');
 		result.forEach(center =>{
-			cloneRow(center);						
+			console.log(result);			
+			cloneRow(center);	
+			productCode.setAttribute('id', center.productCode);					
+			opNo.setAttribute('id', center.opNo);
 		})
 	})
 	
@@ -27,3 +32,25 @@ function cloneRow(cart ={}){
 	historyclone.style.display = "";
 	document.querySelector('#cartList').appendChild(historyclone);
 }
+
+
+
+document.querySelector('#hugiBtn').addEventListener('click', function(){
+	let productCode = document.querySelector('#productCode').value;
+	let opNo = document.querySelector('#opNo').value;
+	let hugiContent = document.querySelector('#hugiContent').value;
+	
+	let url ='woonControl16.do?hugiContent='+hugiContent+'&userId='+userId+'&productCode='+productCode+'&opNo='+opNo;
+	fetch(url)
+	.then(result => result.json())
+	.then(result =>{
+		console.log(result);
+	}) 
+})
+
+
+
+
+
+
+
