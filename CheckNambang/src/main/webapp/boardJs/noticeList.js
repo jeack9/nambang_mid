@@ -1,10 +1,16 @@
 /**
  *  boardJs/noticeList.js
  */
+//공지사항 목록 가져오기
+noticeList();
 
+function noticeList(){
+	document.querySelector('#listBody').innerHTML = "";
+	showNoctis();
+}
 // 공지사항 목록 가져오기
-let url = "noticeListAjax.do?page=1";
-function init(){
+let url = "noticeList.do?page=1";
+function showNoctis(){
   fetch(url)
   .then(result => result.json())
   .then(result => {
