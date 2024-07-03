@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.nambang.cart.web.AddCart;
 import co.nambang.common.Control;
 import co.nambang.member.web.CheckId;
 import co.nambang.member.web.JoinForm;
@@ -19,6 +20,8 @@ import co.nambang.member.web.Logout;
 import co.nambang.member.web.Test;
 import co.nambang.notice.web.NoticeForm;
 import co.nambang.notice.web.NoticeList;
+import co.nambang.product.web.ProductList;
+import co.nambang.product.web.ProductListJson;
 import co.nambang.qna.web.QnaForm;
 import co.nambang.qna.web.QnaList;
 import co.nambang.qna.web.QnaListAjax;
@@ -102,8 +105,11 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 상품
-		
+		map.put("/productList.do", new ProductList()); // 상품목록 페이지 이동 -- Hyun()
+		map.put("/productListJson.do", new ProductListJson()); // 상품목록 데이터 가져오기 Json -- Hyun2()
+				
 		// 카트
+		map.put("/addCart.do", new AddCart()); // 장바구니 담기
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());
