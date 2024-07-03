@@ -18,4 +18,10 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return mapper.productList(page);
 	}
+	
+	@Override
+	public boolean addCart(int volume, String userId, String proCode) {
+		// TODO Auto-generated method stub
+		return mapper.addCart(volume, userId, proCode) == 1;
+	}
 }

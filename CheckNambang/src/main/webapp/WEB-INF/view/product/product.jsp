@@ -25,6 +25,13 @@
 	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 	transform: translateY(-50%);
 }
+
+#modal_img {
+	width: 100px; /* 원하는 너비로 설정 */
+	height: 100px; /* 원하는 높이로 설정 */
+	background-size: cover; /* 이미지가 요소의 크기에 맞게 조정되도록 설정 */
+	background-position: center; /* 이미지가 중앙에 오도록 설정 */
+}
 </style>
 <section class="product spad">
 	<div class="container">
@@ -350,18 +357,20 @@
 				</div>
 
 				<div class="row" id="product_list">
-					<div class="col-lg-4 col-md-6 col-sm-6" style="display: none;">
-						<div class="product__item">
+					<div class="col-lg-4 col-md-6 col-sm-6" id="product_id" style="display: none;">
+						<div class="product__item product_list">
 							<div class="product__item__pic set-bg product_img"
 								data-setbg="img/product/product-1.jpg"
 								style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
 							</div>
 							<!-- 모달창버튼 -->
-							<button type="button" class="btn-open-modal">⛟ 장바구니 담기</button>
+							<button type="button" class="btn btn-primary cart_btn"
+								data-toggle="modal" data-target="#exampleModalScrollable">
+								⛟ 장바구니 담기</button>
 							<div class="product__item__text product_text">
-								<h5>Crab Pool Security</h5>
-								<h4>$30.00</h4>
-								<h6>gugiCnt</h6>
+								<h5 id="product_title">Crab Pool Security</h5>
+								<h4 id="product_price">$30.00</h4>
+								<h6>hugiCnt</h6>
 							</div>
 						</div>
 					</div>
@@ -373,17 +382,91 @@
 				</div>
 			</div>
 		</div>
-		<!--  모달창(내용) -->
 
-		<div class="modal">
-			<div class="modal_body">
-				<h2>모달창 제목</h2>
-				<p>모달창 내용</p>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalScrollableTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalScrollableTitle">Modal
+							title</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<!-- 모달 내용 -->
+					<table>
+						<tr>
+							<td id="modal_code" style="display: none"></td>
+							<td id="modal_img"></td>
+							<td id="modal_company">회사이름</td>
+						</tr>
+						<tr>
+							<td id="modal_title">상품이름</td>
+						</tr>
+						<tr>
+							<td id="modal_price">가격</td>
+							<td class="quantity">
+								<div class="pro-qty">
+									<input id="totalCnt" type="text" value="1">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td id="priceSum">
+							<td>
+						</tr>
+					</table>
+					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary putCart">장바구니담기</button>
+					</div>
+				</div>
 			</div>
 		</div>
+
+
+		<!--  모달창(내용) -->
+		<!-- 
+		<div class="modal">
+			<table class="modal_body">
+			<tr>
+				<td id="modal_img"></td><td id="modal_company">회사이름</td>
+			</tr>
+			<tr>
+				<td id="modal_title">상품이름</td>
+			</tr>
+			<tr>
+				<td id="modal_price">가격</td>
+				<td class="quantity">
+					<div class="pro-qty">
+						<input id = "totalCnt" type="text" value="1">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td id="priceSum">총 합계 : 0<td>
+			</tr>
+			<tr>
+				<td>
+				  <button class="cancel">취소</button>
+				</td>
+				<td>
+				  <button type="button" class="putCart">장바구니담기</button>
+				</td>
+			</tr>
+			</table>
+		</div> -->
 </section>
 <script>
 	const proCode = "${proCode}";
-	const userId = "${userId}";
+	const userId = "${login.userId}";
+	console.log(userId);
 </script>
 <script src="product-js/product.js"></script>
