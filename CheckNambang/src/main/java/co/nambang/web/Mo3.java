@@ -26,6 +26,7 @@ public class Mo3 implements Control {
 		
 		HttpSession session = req.getSession();
 		MemberVO login = (MemberVO)session.getAttribute("login");
+		
 		String userId = login.getUserId();
 		
 		ProDetailService svc = new ProDetailServiceImpl();
@@ -34,19 +35,11 @@ public class Mo3 implements Control {
 		zvo.setProductCode(proCode);
 		req.setAttribute("zzim", zvo);
 		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		
-//		ZzimService zsvc = new ZzimServiceImpl();
-//		List<ZzimVO> zlist = zsvc.zzimItems(login.getUserId());
-//				
-//		map.put("zzim", zlist);
-		
 		if(svc.insZzim(proCode,userId)) {//{"retCode" : "OK"}
 			resp.getWriter().print("{\"retCode\" : \"OK\"}");
 		}else {
 			resp.getWriter().print("{\"retCode\" : \"NG\"}");
 		}
-		
 		
 	}
 

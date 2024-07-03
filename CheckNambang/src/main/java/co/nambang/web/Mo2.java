@@ -28,6 +28,7 @@ public class Mo2 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		String proCode = req.getParameter("proCode");
+		
 		HttpSession session = req.getSession();
 		MemberVO login = (MemberVO)session.getAttribute("login");
 		
@@ -39,14 +40,14 @@ public class Mo2 implements Control {
 		Map<String, Object> map = new HashMap<String, Object>(); // 선택한 상품vo, 로그인한 유저의 찜목록
 		map.put("product", list);
 		map.put("proCode", proCode);
-		if(login != null) {
-			
-			ZzimService zsvc = new ZzimServiceImpl();
-			List<ZzimVO> zlist = zsvc.zzimItems(login.getUserId());
-			
-			map.put("zzim", zlist);
-		}
-		
+//		if(login != null) {
+//			
+//			ZzimService zsvc = new ZzimServiceImpl();
+//			List<ZzimVO> zlist = zsvc.zzimItems(login.getUserId());
+//			
+//			map.put("zzim", zlist);
+//		}
+//		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(map);
 		
