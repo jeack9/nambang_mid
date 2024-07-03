@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import co.nambang.cart.service.CartService;
+import co.nambang.cart.service.CartServiceImpl;
 import co.nambang.common.Control;
 import co.nambang.member.vo.MemberVO;
 import co.nambang.product.service.ProductService;
@@ -26,12 +28,23 @@ public class Hyun3 implements Control {
 	    String userId = login.getUserId();
 
 		ProductService svc = new ProductServiceImpl();
+		System.out.println("ㄴㄴㄴ " + cartVolume);
+		System.out.println("ㄴㄴㄴ " + proCode);
+		CartService csvc = new CartServiceImpl();
+		
 
 		if (svc.addCart(Integer.parseInt(cartVolume), userId, proCode)) {// {"retCode":"OK"}
 			resp.getWriter().print("{\"retCode\":\"OK\"}");
 		} else {
 			resp.getWriter().print("{\"retCode\":\"NG\"}");
 		}
+		
+//		if (svc.addCart(Integer.parseInt(cartVolume), userId, proCode)) {// {"retCode":"OK"}
+//			resp.getWriter().print("{\"retCode\":\"OK\"}");
+//		} else {
+//			resp.getWriter().print("{\"retCode\":\"NG\"}");
+//		}
+		
 	}
 
 }

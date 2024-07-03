@@ -11,12 +11,15 @@
 <!--   <logger name="co.nambang.member.mapper.MemberMapper">
     <level value="debug"/>
   </logger> -->
-  <logger name="co.nambang.*.mapper.**Mapper">
+ <!--  <logger name="co.nambang.*.mapper.**Mapper">
     <level value="debug"/>
   </logger>
   <logger name="co.nambang.qna.mapper.QnaMapper">
     <level value="debug"/>
-  </logger>
+  </logger> -->
+  <root level="debug">
+    <appender-ref ref="stdout"/>
+  </root>
   <root level="error">
     <appender-ref ref="stdout"/>
   </root>

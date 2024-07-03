@@ -19,7 +19,7 @@ function cloneDiv(product = {}) {
 
 	let cloneDiv = document.querySelector("#product_list > div:nth-of-type(1)").cloneNode(true);
 	cloneDiv.style.display = "";
-	cloneDiv.querySelector(".product_img").style.backgroundImage = `url(moImg/${product.productImage}.jpg)`;
+	cloneDiv.querySelector(".product_img").style.backgroundImage = `url(moImg/${product.productImage})`;
 	cloneDiv.querySelector("#product_title").innerHTML = `${product.company}` + `${product.productName}`;
 	cloneDiv.querySelector("#product_price").innerHTML = `${product.offPrice}` + "원";
 
@@ -36,7 +36,7 @@ function cloneDiv(product = {}) {
 			document.querySelector('.modal').style.display = 'flex';
 		}
 		document.getElementById('modal_code').textContent = `${product.productCode}`
-		document.getElementById('modal_img').style.backgroundImage = `url(moImg/${product.productImage}.jpg)`;
+		document.getElementById('modal_img').style.backgroundImage = `url(moImg/${product.productImage})`;
 		document.getElementById('modal_company').innerHTML = `${product.company}` + `${product.productName}`;
 		document.getElementById('modal_title').innerHTML = `${product.company}` + `${product.productName}`;
 
