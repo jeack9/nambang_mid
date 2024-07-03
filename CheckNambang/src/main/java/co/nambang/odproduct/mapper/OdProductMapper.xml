@@ -9,6 +9,7 @@
         		  A.user_id,
 		          A.op_volume,
 		          A.op_price,
+		          a.op_no,
 		          B.product_image,
 		          B.product_name
 		from order_product A,
