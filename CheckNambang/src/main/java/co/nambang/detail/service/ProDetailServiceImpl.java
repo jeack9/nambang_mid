@@ -35,7 +35,7 @@ public class ProDetailServiceImpl implements ProDetailService{
 	}
 	@Override
 	public boolean zzimSelect(String proCode,String userId) {
-		return mapper.zzimList(proCode,userId) == 1;
+		return mapper.zzimList(proCode,userId) == 0;
 	}
 
 }
