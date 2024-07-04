@@ -3,6 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.cart.mapper.CartMapper">
+	<resultMap type="co.nambang.cart.vo.CartVO" id="Cart">
+		
+	</resultMap>
 	<insert id="addCart" parameterType="co.nambang.cart.vo.CartVO">
 		insert into cart_ck(
 				cart_no,
@@ -25,7 +28,12 @@
 		set cart_volume = #{cartVolume}
 		where user_id = #{userId}
 		and product_code = #{productCode}
-		
 	</update>
 	
+	<select id="cartList" resultType="map">
+		select *
+		from cart_ck c
+		join products_ck p on c.product_code = p.product_code
+		where user_id = 'user01'
+	</select>
 </mapper>

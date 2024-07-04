@@ -1,5 +1,10 @@
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+
+import co.nambang.cart.mapper.CartMapper;
+import co.nambang.common.DataSource;
 import co.nambang.notice.service.NoticeService;
 import co.nambang.notice.service.NoticeServiceImpl;
 import co.nambang.notice.vo.NoticeVO;
@@ -7,12 +12,10 @@ import co.nambang.notice.vo.NoticeVO;
 public class AppTest {
 
 	public static void main(String[] args) {
-		NoticeService svc = new NoticeServiceImpl();
-
-		List<NoticeVO> list1 = svc.noticelist();
-
-		for (int i = 0; i < list1.size(); i++) {
-            System.out.println(list1.get(i));
-		}
+		SqlSession sqlSession = DataSource.getInstance().openSession(true);
+		CartMapper mapper = sqlSession.getMapper(CartMapper.class);
+		
+		List<Map<String, Object>> list = mapper.cartList("user01");
+		System.out.println(list.get(0).keySet());
 	}
 }
