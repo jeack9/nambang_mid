@@ -18,9 +18,9 @@ public class NoticeList implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		NoticeService svc = new NoticeServiceImpl();
-		List<NoticeVO> list1 = svc.noticelist();
+		List<NoticeVO> list = svc.noticelist();
 
-		req.setAttribute("noticeList", list1);
+		req.setAttribute("list", list);
 		req.setAttribute("myName", "홍길동");
 		req.getRequestDispatcher("board/noticeList.tiles").forward(req, resp);
 

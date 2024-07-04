@@ -18,4 +18,24 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.selectList();
 	}
 
+	@Override
+	public NoticeVO selectNotice(int noticeNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectNotice(noticeNo);
+	}
+
+	@Override
+	public NoticeVO noticeBoard(int noticeNo) {
+		// TODO Auto-generated method stub
+		return mapper.noticeBoard(noticeNo);
+	}
+
+	@Override
+	public List<NoticeVO> noticeList2(int noticeNo) {
+		// TODO json
+		return mapper.selectList2(noticeNo);
+	}
+
+   
+	
 }
