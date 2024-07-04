@@ -1,31 +1,37 @@
 /**
  * product.js
  */
-
+let code;
 //데이터 목록 출력하기
-
 fetch('hyunControl2.do')
 	.then(result => result.json())
 	.then(result => result.forEach(item => {
 		console.log(item);
-		//let pItem = document.querySelector('#product_id');
-		//pItem.setAttribute("id", item.productCode);
 		cloneDiv(item);
 	}))
 
+function productDetail(e){
+	console.log(e.target.id);
+	location.href ="mocontrol.do?proCode=" + e.target.id; 
+}
 let totalC = document.getElementById('totalCnt');
 function cloneDiv(product = {}) {
 
-
+	code = product.productCode;
+	console.log(code);
 	let cloneDiv = document.querySelector("#product_list > div:nth-of-type(1)").cloneNode(true);
 	cloneDiv.style.display = "";
-	cloneDiv.querySelector(".product_img").style.backgroundImage = `url(moImg/${product.productImage})`;
+	cloneDiv.querySelector(".product_img").style.backgroundImage = `url(moImg/${product.productImage})`+" ";
+	cloneDiv.querySelector(".product_img").setAttribute("id", product.productCode);
+	cloneDiv.querySelector(".product_img").addEventListener("click", productDetail);
 	cloneDiv.querySelector("#product_title").innerHTML = `${product.company}` + `${product.productName}`;
 	cloneDiv.querySelector("#product_price").innerHTML = `${product.offPrice}` + "원";
-
+	cloneDiv.querySelector("p").innerHTML = `${product.price}` + "원";
 	//할인값 없을때 일반 가격
 	let defaultPrice = cloneDiv.querySelector("#product_price")
-	if (`${product.offPrice}` == 0 || `${product.offPrice}` == null) {
+	if (`${product.offPrice}` == 0 || `${product.offPrice}` == null || `${product.offPrice}` == `${product.price}`) {
+		cloneDiv.querySelector("p").innerHTML = "";
+		cloneDiv.querySelector("#product_price").style.color = "black";
 		defaultPrice.innerHTML = `${product.price}` + "원";
 	}
 	cloneDiv.querySelector(".product_text>h6").innerHTML = "💬 " + `${product.viewCnt}`;
@@ -38,7 +44,6 @@ function cloneDiv(product = {}) {
 		document.getElementById('modal_code').textContent = `${product.productCode}`
 		document.getElementById('modal_img').style.backgroundImage = `url(moImg/${product.productImage})`;
 		document.getElementById('modal_company').innerHTML = `${product.company}` + `${product.productName}`;
-		document.getElementById('modal_title').innerHTML = `${product.company}` + `${product.productName}`;
 
 		// 할인된 값이 없을 때 기본 값 설정
 
@@ -81,11 +86,9 @@ document.querySelector('.putCart').addEventListener('click', () => {
 		if(result.retCode == 'OK'){
 			alert('장바구니담기 완료');
 		}else{
-			alert('장바구니 담기 실패');
+			alert('장바구니담기 실패');
 		}
 	}
-
-
 });
 
 

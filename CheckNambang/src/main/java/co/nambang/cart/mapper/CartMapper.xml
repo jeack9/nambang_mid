@@ -14,9 +14,18 @@
 	</insert>
 	
 	<select id="selectCart" parameterType="co.nambang.cart.vo.CartVO">
-		select * 
+		select count(*)
 		from cart_ck
 		where user_id = #{userId}
 		and product_code = #{productCode}
 	</select>
+	
+	<update id="updateCart" parameterType="co.nambang.cart.vo.CartVO">
+		update cart_ck
+		set cart_volume = #{cartVolume}
+		where user_id = #{userId}
+		and product_code = #{productCode}
+		
+	</update>
+	
 </mapper>

@@ -27,10 +27,11 @@
                    product_code
            ) h ON p.product_code = h.product_code
    ) b
-    <![CDATA[WHERE b.rn <= (#{page} * 5) ]]>
-    AND b.rn > ((#{page} - 1) * 5)
+    <![CDATA[WHERE b.rn <= (#{page} * 6) ]]>
+    AND b.rn > ((#{page} - 1) * 6)
     ORDER BY b.product_code
 	</select>
+	
 	<insert id="addCart" parameterType="co.nambang.cart.vo.CartVO">
 		insert into cart_ck(
 				cart_no,
@@ -38,7 +39,7 @@
 				user_id,
 				product_code
 				)
-		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{proCode})
+		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{productCode})
 	</insert>
 	
 </mapper>

@@ -13,6 +13,11 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
+.cart_btn {
+	margin-top: 7px;
+	width: 262.48px;
+}
+
 .modal_body {
 	position: absolute;
 	top: 50%;
@@ -32,6 +37,32 @@
 	background-size: cover; /* 이미지가 요소의 크기에 맞게 조정되도록 설정 */
 	background-position: center; /* 이미지가 중앙에 오도록 설정 */
 }
+
+table {
+	border-collapse: collapse
+}
+
+table tr {
+	border-bottom: 0.01px solid black;
+}
+
+/* 이미지 확대 효과를 적용할 요소 선택 */
+.product_img {
+	transition: transform 0.3s ease; /* 변환 애니메이션 적용 */
+}
+
+/* 마우스 오버 시 확대 효과 적용 */
+.product_img:hover {
+	transform: scale(1.1); /* 이미지 1.1배 확대 */
+}
+p{
+	text-decoration: line-through;
+   	text-decoration-thickness: 1px;
+	margin:0;
+}
+#product_price{
+	color:red;
+}
 </style>
 <section class="product spad">
 	<div class="container">
@@ -46,11 +77,6 @@
 							<li><a href="#">수산·해산·건어물</a></li>
 							<li><a href="#">정육·가공육·계란</a></li>
 							<li><a href="#">국·반찬·메인요리</a></li>
-							<li><a href="#">Butter &amp; Eggs</a></li>
-							<li><a href="#">Fastfood</a></li>
-							<li><a href="#">Fresh Onion</a></li>
-							<li><a href="#">Papayaya &amp; Crisps</a></li>
-							<li><a href="#">Oatmeal</a></li>
 						</ul>
 					</div>
 					<div class="sidebar__item">
@@ -356,113 +382,79 @@
 					</div>
 				</div>
 
+				<!--  상품리스트 -->
+				
 				<div class="row" id="product_list">
-					<div class="col-lg-4 col-md-6 col-sm-6" id="product_id" style="display: none;">
+					<div class="col-lg-4 col-md-6 col-sm-6" id="product_id"
+						style="display: none;">
 						<div class="product__item product_list">
 							<div class="product__item__pic set-bg product_img"
 								data-setbg="img/product/product-1.jpg"
 								style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
+							<a href="hyunControl4.do?proCode="></a>
 							</div>
+
 							<!-- 모달창버튼 -->
-							<button type="button" class="btn btn-primary cart_btn"
-								data-toggle="modal" data-target="#exampleModalScrollable">
-								⛟ 장바구니 담기</button>
+							<button type="button" class="btn btn-outline-success cart_btn"
+								style="width: 262.48px;" data-toggle="modal"
+								data-target="#exampleModalScrollable">⛟ 장바구니 담기</button>
 							<div class="product__item__text product_text">
-								<h5 id="product_title">Crab Pool Security</h5>
-								<h4 id="product_price">$30.00</h4>
+								<h5 id="product_title" style="font-weight: 1000;">Crab Pool
+									Security</h5>
+								<p style="front-size:5px;" id="dePrice">할인전가격</p>
+								<h5 id="product_price" style="font-weight: 700;">$30.00</h5>
 								<h6>hugiCnt</h6>
 							</div>
 						</div>
 					</div>
-
-					<!-- <div class="product__pagination">
-					<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
-						class="fa fa-long-arrow-right"></i></a>
-				</div> -->
 				</div>
-			</div>
-		</div>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalScrollableTitle"
+					aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<!-- 모달 내용 -->
+							<table>
 
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalScrollableTitle"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-scrollable" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalScrollableTitle">Modal
-							title</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<!-- 모달 내용 -->
-					<table>
-						<tr>
-							<td id="modal_code" style="display: none"></td>
-							<td id="modal_img"></td>
-							<td id="modal_company">회사이름</td>
-						</tr>
-						<tr>
-							<td id="modal_title">상품이름</td>
-						</tr>
-						<tr>
-							<td id="modal_price">가격</td>
-							<td class="quantity">
-								<div class="pro-qty">
-									<input id="totalCnt" type="text" value="1">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td id="priceSum">
-							<td>
-						</tr>
-					</table>
-					<div class="modal-body"></div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary putCart">장바구니담기</button>
+								<thead>
+									<tr>
+										<td id="modal_code" style="display: none"></td>
+										<td id="modal_img"></td>
+										<td id="modal_company" style="width: 300px;">회사이름</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td id="modal_price">가격</td>
+										<td class="quantity">
+											<div class="pro-qty">
+												<input id="totalCnt" type="text" value="1">
+											</div>
+										</td>
+									</tr>
+								</tbody>
+								<tr>
+									<td></td>
+									<td id="priceSum">
+									<td>
+								</tr>
+							</table>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">닫기</button>
+								<button type="button" class="btn btn-primary putCart">장바구니담기</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-
-
-		<!--  모달창(내용) -->
-		<!-- 
-		<div class="modal">
-			<table class="modal_body">
-			<tr>
-				<td id="modal_img"></td><td id="modal_company">회사이름</td>
-			</tr>
-			<tr>
-				<td id="modal_title">상품이름</td>
-			</tr>
-			<tr>
-				<td id="modal_price">가격</td>
-				<td class="quantity">
-					<div class="pro-qty">
-						<input id = "totalCnt" type="text" value="1">
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td id="priceSum">총 합계 : 0<td>
-			</tr>
-			<tr>
-				<td>
-				  <button class="cancel">취소</button>
-				</td>
-				<td>
-				  <button type="button" class="putCart">장바구니담기</button>
-				</td>
-			</tr>
-			</table>
-		</div> -->
 </section>
 <script>
 	const proCode = "${proCode}";

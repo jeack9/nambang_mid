@@ -15,5 +15,16 @@ public class CartServiceImpl implements CartService{
 	public boolean addCart(CartVO cvo) {
 		return mapper.addCart(cvo) == 1;
 	}
+	@Override
+	public boolean checkCart(CartVO cvo) {
+		// TODO Auto-generated method stub
+		return mapper.selectCart(cvo) == 1; // 있으면 true 값
+	}
 	
+	@Override
+	public boolean updateCart(CartVO cvo) {
+		// TODO Auto-generated method stub
+		return mapper.updateCart(cvo) == 1;
+	}
+
 }

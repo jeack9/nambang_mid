@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import co.nambang.cart.vo.CartVO;
 import co.nambang.common.DataSource;
 import co.nambang.product.mapper.ProductMapper;
 import co.nambang.product.vo.ProductVO;
@@ -20,8 +21,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public boolean addCart(int volume, String userId, String proCode) {
+	public boolean addCart(CartVO cvo) {
 		// TODO Auto-generated method stub
-		return mapper.addCart(volume, userId, proCode) == 1;
+		return mapper.addCart(cvo) == 1;
 	}
+
 }
