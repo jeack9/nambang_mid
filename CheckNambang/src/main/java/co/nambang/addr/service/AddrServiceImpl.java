@@ -25,5 +25,15 @@ public class AddrServiceImpl implements AddrService{
 		// TODO Auto-generated method stub
 		return mapper.updateAddr(avo) == 1;
 	}
+	@Override
+	public boolean basicAddress() {
+		// TODO Auto-generated method stub
+		return mapper.basicAddr() == 1;
+	}
+	@Override
+	public boolean changeAddress(int addrNo) {
+		// TODO Auto-generated method stub
+		return mapper.changeAddr(addrNo) == 1;
+	}
 	
 }

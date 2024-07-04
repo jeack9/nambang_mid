@@ -76,27 +76,29 @@
 				</div>
 				<div class="modal-body">
 				<!-- 내용 작성 1.구매 한 상품 보여 주기 2.내용 및 사진 첨부 -->
-				<form action ="woonControl16.do">
+				<form action ="woonControl16.do" method="post" enctype="multipart/form-data">
 					<div>
-						<textarea id = "hugiContent" rows="15" cols="60" placeholder="
-							상품 특성에 맞는 후기를 작성 해 주세요. 예) 레시피, 겉포장 속 실제 구성품 사진, 화장품 사용자의 피부 타입 등 	(최소 10자 이상)">
+						<textarea id = "hugiContent" name = "hugiContent" rows="15" cols="60" placeholder="상품 특성에 맞는 후기를 작성 해 주세요. 예) 레시피, 겉포장 속 실제 구성품 사진, 화장품 사용자의 피부 타입 등 	(최소 10자 이상)">
 					  </textarea>
 					</div>
 					<div>
-						<input type = "hidden" id ="productCode">
-						<input type = "hidden" id ="opNo">
-						<input type = "file" id = "hugi_pickture" name = "hugiImage">
+						<input type = "hidden" id ="productCode" name ="productCode">
+						<input type = "hidden" id = "opNo" name = "opNo">
+						<input type = "file" id = "hugiPickture" name = "hugiImage">
 					</div>
-				</form>
-				</div>
+					
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">작성 취소</button>
-					<button type="button" class="btn btn-primary" id = "hugiBtn">작성 완료</button>
+					<button type="submit" class="btn btn-primary" id = "hugiBtn">작성 완료</button>
+				</div>
+				</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
+<script>
+	const userId = "${login.userId}";
+</script>
 <script src="kdwjs/orderHistory.js"></script>

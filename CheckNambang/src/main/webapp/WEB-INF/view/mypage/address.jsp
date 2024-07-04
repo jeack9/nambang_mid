@@ -19,14 +19,23 @@
     	 #addAddress{
     	 border-bottom: 2px solid rgb(51, 51, 51);
     	 }   	
+    	 .contact__form__title{
+    	     display: flex;
+   			 justify-content: space-between;
+    	 }
+    	 
     </style>
 	<!--  시작 -->        
         <div class="contact-form spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                	<form>
+                	
+                	</form>
                     <div class="contact__form__title">
                         <h2>배송지 관리</h2>
+                        <button type="submit" class ="btn btn-Success" id = "basicBtn">기본 배송지</button>
                     </div>
                 </div>
             </div>
@@ -34,7 +43,7 @@
             		<table id = "addAddress">
             			<tbody id = "addBody">
             			    <tr  style="display :none">
-            			    	<td id="address0"><input style='zoom:2.0;'  type="checkbox"></td>
+            			    	<td id="address0"><input style='zoom:2.0;'  type="radio" ></td>
             					<td id="address1"><p style="font-size:20px">대구 광역시 중구 중앙대로 403</p></td>
             					<td id="address2"><p style="font-size:20px">5층</p></td>
             				</tr>
