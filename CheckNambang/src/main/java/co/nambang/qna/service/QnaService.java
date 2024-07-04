@@ -12,4 +12,6 @@ public interface QnaService {
 
 	int getTotalCnt(SearchVO search);
 	
+	List<String> type2List(String type1);
+	
 }

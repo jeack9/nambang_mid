@@ -23,5 +23,9 @@ public class QnaServiceImpl implements QnaService{
 	public int getTotalCnt(SearchVO search) {
 		return mapper.getTotalCnt(search);
 	}
+	@Override
+	public List<String> type2List(String type1) {
+		return mapper.type2List(type1);
+	}
 	
 }
