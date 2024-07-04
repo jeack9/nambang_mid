@@ -12,8 +12,9 @@ public class Soo implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		String noticeNo = req.getParameter("no");
+		System.out.println(noticeNo);
+		req.getRequestDispatcher("board/notice.tiles").forward(req, resp);
 	}
 
 }
