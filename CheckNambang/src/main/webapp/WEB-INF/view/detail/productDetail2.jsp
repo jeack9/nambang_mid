@@ -180,8 +180,8 @@
 
 <script>
 	const login = '${sessionScope.login.userId}';
-	const zzimProCode = '${zzim}'
-	console.log("${param.product}");
-	console.log("${param.proCode}" + ":procode");
+	//const zzimProCode = '${zzim}'
+	//console.log(zzimProCode);
+
 </script>
 <script src="moJs/test.js"></script>

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import co.nambang.detail.vo.ProDetailVO;
 import co.nambang.hugi.vo.HugiVO;
 import co.nambang.product.vo.ProductVO;
+import co.nambang.zzim.vo.ZzimVO;
 
 public interface ProDetailMapper {
 	List<ProductVO> selectList(String proCode);
@@ -16,5 +17,7 @@ public interface ProDetailMapper {
 	int insertCart(@Param("cartVolume")int cartVolume,@Param("userId")String userId,@Param("proCode")String proCode );
 	
 	List<HugiVO> hugiList(String proCode);
+	
+	int zzimList(@Param("proCode")String proCode,@Param("userId")String userId);
 
 }

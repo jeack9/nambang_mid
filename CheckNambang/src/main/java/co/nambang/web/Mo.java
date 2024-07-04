@@ -24,21 +24,23 @@ public class Mo implements Control {
 		MemberVO login = (MemberVO)session.getAttribute("login");
 		
 		String proCode = req.getParameter("proCode");
-		if(login != null) {
-			ZzimService zsvc = new ZzimServiceImpl();
-			List<ZzimVO> zzimList =  zsvc.zzimItems(login.getUserId());
-			
-			for(ZzimVO vo : zzimList) {
-				if(proCode.equals(vo.getProductCode())) {
-					req.setAttribute("zzim", true);
-				}else{
-					req.setAttribute("zzim", false);
-				}
-			}
-		}else if(login == null) {
-			req.setAttribute("zzim", false);
-		}
-		
+//		if(login != null) {
+//			ZzimService zsvc = new ZzimServiceImpl();
+//			List<ZzimVO> zzimList =  zsvc.zzimItems(login.getUserId());
+//			
+//			for(ZzimVO vo : zzimList) {
+//				if(proCode.equals(vo.getProductCode())) {
+//					req.setAttribute("zzim", true);
+//					System.out.println(vo);
+//				}else{
+//					req.setAttribute("zzim", false);
+//					System.out.println(vo);
+//				}
+//			}
+//		}else if(login == null) {
+//			req.setAttribute("zzim", false);
+//		}
+	
 		req.getRequestDispatcher("detail/productDetail2.tiles").forward(req, resp);
 
 	}
