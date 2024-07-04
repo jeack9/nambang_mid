@@ -112,13 +112,13 @@ public class FrontController extends HttpServlet {
 		map.put("/addCart.do", new AddCart()); // 장바구니 담기
 		
 		// 안준모의 테스트 컨트롤러
-		map.put("/mocontrol.do", new Mo());
-		map.put("/mocontrol2.do", new Mo2());
-		map.put("/mocontrol3.do", new Mo3());
-		map.put("/mocontrol4.do", new Mo4());
-		map.put("/mocontrol5.do", new Mo5());
-		map.put("/mocontrol6.do", new Mo6());
-		map.put("/mocontrol7.do", new Mo7());
+		map.put("/mocontrol.do", new Mo());//디테일 페이지로 보내기
+		map.put("/mocontrol2.do", new Mo2());//디테일 페이지 리스트
+		map.put("/mocontrol3.do", new Mo3());//찜 추가 기능
+		map.put("/mocontrol4.do", new Mo4());//장바구니 추가
+		map.put("/mocontrol5.do", new Mo5());//후기 리스트 불러오기
+		map.put("/mocontrol6.do", new Mo6());//찜삭제
+		map.put("/mocontrol7.do", new Mo7());//zzimprocode 가져오는 장소
 		map.put("/mocontrol8.do", new Mo8());
 		map.put("/mocontrol9.do", new Mo9());
 		map.put("/mocontrol10.do", new Mo10());

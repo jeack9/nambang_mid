@@ -9,6 +9,7 @@ import co.nambang.detail.mapper.ProDetailMapper;
 import co.nambang.detail.vo.ProDetailVO;
 import co.nambang.hugi.vo.HugiVO;
 import co.nambang.product.vo.ProductVO;
+import co.nambang.zzim.vo.ZzimVO;
 
 public class ProDetailServiceImpl implements ProDetailService{
 	
@@ -31,6 +32,10 @@ public class ProDetailServiceImpl implements ProDetailService{
 	@Override
 	public List<HugiVO> detailHugi(String proCode) {
 		return mapper.hugiList(proCode);
+	}
+	@Override
+	public boolean zzimSelect(String proCode,String userId) {
+		return mapper.zzimList(proCode,userId) == 1;
 	}
 
 }

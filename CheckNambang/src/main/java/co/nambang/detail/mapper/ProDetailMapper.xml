@@ -36,5 +36,11 @@
 		order by A.hugi_no desc
 	</select>
 	
+	<select id="zzimList" parameterType="co.nambang.zzim.vo.ZzimVO">
+		select count(1)
+		from zzim_ck
+		where product_code = #{proCode}
+		and     user_id = #{userId}
+	</select>
 
 </mapper>
