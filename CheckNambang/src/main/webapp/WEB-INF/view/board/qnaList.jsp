@@ -33,13 +33,7 @@ div.product__pagination{
 					<td>제목</td><td>작성자</td><td>작성일</td><td>답변상태</td>
 				</tr>
 			</thead>
-			<tbody>
-				<c:forEach var="qvo" items="${requestScope.list }">
-				<tr>
-					<td>${qvo.qnaTitle}</td><td>${qvo.userId}</td><td>${qvo.qnaDate}</td><td>${qvo.qnaState }</td>
-				</tr>
-				</c:forEach>
-			</tbody>
+			<tbody></tbody>
 		</table>
 	</div>
 	<div class="product__pagination">
