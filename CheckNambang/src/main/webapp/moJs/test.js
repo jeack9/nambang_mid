@@ -15,16 +15,16 @@ let offList = document.querySelector('#offList');
 //zzim productCode 비교
 let zzimCode;
 
-
+// zzimCode 의 값에 따라 처리.
 fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 	.then(result => result.json())
 	.then(result => {
 		if (result.retCode == 'OK') {
-			zzimCode = 'true';
-		} else if (result.retCode == 'NG') {
-			zzimCode = 'false';
+			document.querySelector("#zzimhart").setAttribute('class', 'icon_heart_alt');
+		} else {
+			document.querySelector("#zzimhart").setAttribute('class', 'icon_heart');
 		}
-		// zzimCode 의 값에 따라 처리.
+
 		fetch('mocontrol2.do?proCode=' + proCode)
 			.then(result => result.json())
 			.then(result => result.product.forEach(pro => {
@@ -97,6 +97,7 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				let endPrice = document.querySelector('#endPrice');
 				document.querySelector('.pro-qty').addEventListener('click', function() {
 					totalCnt = document.querySelector('#totalCnt').value;
+					console.log(totalCnt);
 					if (pro.offPrice == 0) {
 						endPrice.innerHTML = '총 상품금액 : ' + (totalCnt * pro.price) + '원';
 					} else if (pro.offPrice != 0) {
@@ -111,17 +112,19 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 					endPrice.innerHTML = '총 상품금액 : ' + pro.offPrice + '원';
 				}
 
-				let cartB = document.createElement('button');
 
+				/*		let cartB = document.createElement('button');
+				
+				
+						cartB.setAttribute('id', 'cartBtn');
+						cartB.setAttribute('class', 'primary-btn');
+				
+						console.log("zzzz:" + zzimCode);
+				
+						cartB.addEventListener('click', cartFnc)
+						cartB.innerHTML = '장바구니 추가';
+						cartbtnList.appendChild(cartB);*/
 
-				cartB.setAttribute('id', 'cartBtn');
-				cartB.setAttribute('class', 'primary-btn');
-
-				console.log("zzzz:" + zzimCode);
-
-				cartB.addEventListener('click', cartFnc)
-				cartB.innerHTML = '장바구니 추가';
-				cartbtnList.appendChild(cartB);
 
 				let descrip = document.querySelector('#tabs-1');
 				let p = document.createElement('p')
@@ -136,13 +139,15 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				}
 				img.src = 'moImg/' + infoImg;
 				info.appendChild(img);
-				
-				makeBtn();
+
+				//makeBtn(zzimCode);
 			}))
 			.catch(err => console.log(err));
 	})
 
 
+
+//start();
 
 /*async function selectZzim(){
 	const response = await fetch('mocontrol2.do?proCode=' + proCode);
@@ -157,14 +162,13 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 
 
 //버튼 만들기
-function makeBtn() {
+/*function makeBtn(zzimCode) {
 
 	let zzimB = document.createElement('button');
 	zzimB.setAttribute('class', 'primary-btn');
 	zzimB.setAttribute('id', 'zzimBtn');
-	zzimB.setAttribute('onclick','')
 	if (zzimCode == 'true') {
-		
+
 		zzimB.innerHTML = '찜 삭제';
 		zzimB.addEventListener('click', zzimDelFnc)
 		zzimbtnList.appendChild(zzimB);
@@ -174,7 +178,7 @@ function makeBtn() {
 		zzimB.addEventListener('click', zzimFnc);
 		zzimbtnList.appendChild(zzimB);
 	}
-}
+}*/
 
 // 후기 행 만들기
 fetch('mocontrol5.do?proCode=' + proCode)
@@ -203,38 +207,56 @@ fetch('mocontrol5.do?proCode=' + proCode)
 	}))
 
 //찜 추가
-//document.querySelector('#zzimBtn').addEventListener('click', zzimFnc);
-function zzimFnc() {
+document.querySelector('#zzimBtn').addEventListener('click', function() {
+	if (document.querySelector('#zzimhart').getAttribute('class') == 'icon_heart_alt') {
+		fetch('mocontrol3.do?proCode=' + proCode + '&userId=' + login)
+			.then(result => result.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+					document.querySelector('#zzimhart').setAttribute('class', 'icon_heart');
+					alert('찜 등록 성공');
+				}
+			})
+	} else {
+		fetch('mocontrol6.do?proCode=' + proCode)
+			.then(result => result.json())
+			.then(result => {
+				if (result.retCode == 'OK') {
+					document.querySelector('#zzimhart').setAttribute('class', 'icon_heart_alt');
+					alert('찜 삭제 성공');
+
+				}
+			})
+	}
+})
+/*function zzimFnc() {
 	if (login.length != 0) {
 		fetch('mocontrol3.do?proCode=' + proCode)
 			.then(result => result.json())
 			.then(result => {
-
 				if (result.retCode == 'OK') {
-					//alert('찜 등록 성공');
-					this.remove();
-					makeBtn(zzimCode);
+					alert('찜 등록 성공');
+	
 				}
 			})
 	} else {
 		alert("로그인하세요.");
 	}
-}
+}*/
 //찜삭제
-//document.querySelector('#zzimDelBtn').addEventListener('click', zzimDelFnc);
+/*document.querySelector('#zzimDelBtn').addEventListener('click', zzimDelFnc);
 function zzimDelFnc() {
 	fetch('mocontrol6.do?proCode=' + proCode)
 		.then(result => result.json())
 		.then(result => {
 			if (result.retCode == 'OK') {
-				//alert('찜 삭제 성공');
-				this.remove();
-				makeBtn(zzimCode);
+				alert('찜 삭제 성공');
+	
 			}
 		})
 }
-
-//document.querySelector('#cartBtn').addEventListener('click', cartFnc);
+*/
+document.querySelector('.primary-btn').addEventListener('click', cartFnc);
 function cartFnc() {
 	fetch('mocontrol4.do?proCode=' + proCode + '&userId=' + login + '&cartVolume=' + totalCnt)
 		.then(result => result.json())

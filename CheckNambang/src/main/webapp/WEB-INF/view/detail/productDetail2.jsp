@@ -17,10 +17,7 @@
 	padding-top: 30px;
 }
 
-#btnClass {
-	padding-left: 70px;
-	display: flex;
-}
+
 
 .quantity {
 	padding-left: 120px;
@@ -78,6 +75,9 @@
 	width: 16px;
 	height: 16px;
 }
+a:link{
+	text-decoration: none;
+}
 </style>
 
 <section class="product-details spad">
@@ -118,7 +118,8 @@
 					<div id="endPrice"></div>
 				</div>
 				<div id="btnClass">
-
+					<a href="#" class="primary-btn">장바구니 추가</a>
+                    <a href="javascript:void(0)" class="heart-icon" id = "zzimBtn"><span class="icon_heart_alt" id = "zzimhart" style ="text-decoration: none; color: black;"></span></a>
 					<div id="zzimBtnClass"></div>
 					<div id="cartBtnClass"></div>
 				</div>
