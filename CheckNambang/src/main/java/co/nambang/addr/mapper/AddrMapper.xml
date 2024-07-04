@@ -21,4 +21,17 @@
      	      getter_phone = #{getterPhone}
 		where user_id = #{userId}
 	</update>
+	
+	
+	<select id="basicAddr" parameterType="co.nambang.addr.vo.AddrVO">
+		update address_ck
+		set addr_selected = 0
+	</select>
+
+	<select id="changeAddr" parameterType="co.nambang.addr.vo.AddrVO">
+		update address_ck
+		set addr_selected = 1
+		where addr_no = #{addrNo}
+	</select>
+	
 </mapper>

@@ -11,6 +11,9 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import co.nambang.common.Control;
+import co.nambang.hugi.service.HugiService;
+import co.nambang.hugi.service.HugiServiceImpl;
+import co.nambang.hugi.vo.HugiVO;
 import co.nambang.member.vo.MemberVO;
 
 public class Woon16 implements Control {
@@ -22,22 +25,36 @@ public class Woon16 implements Control {
 		int maxSize = 1024*1024*5;
 		String encoding = "utf-8";
 		MultipartRequest mr =	new MultipartRequest(req, savePath, maxSize, encoding, new DefaultFileRenamePolicy());
-		
+		System.out.println("3");
+
 		HttpSession session = req.getSession();
 		MemberVO login = (MemberVO)session.getAttribute("login");
-		
 		String userId = login.getUserId();
 		
-		String hugiContent = req.getParameter("hugiContent");
-		String productCode = req.getParameter("productCode");
-		String opNo = req.getParameter("opNo");
-		String img = mr.getFilesystemName("img");
+		String hugiContent = mr.getParameter("hugiContent");
+		String productCode = mr.getParameter("productCode");
+		String opNo = mr.getParameter("opNo");
+		String img = mr.getFilesystemName("hugiImage");
+				
+		HugiVO hvo = new HugiVO();
 		
-		System.out.println(userId);
-		System.out.println(hugiContent);
-		System.out.println(productCode);
-		System.out.println(opNo);
-		System.out.println(img);
+		hvo.setUserId(userId);
+		hvo.setHugiContent(hugiContent);
+		hvo.setProductCode(productCode);
+		hvo.setOpNo(opNo);
+		hvo.setHugiImage(img);
+		
+		System.out.println("4");
+		HugiService svc = new HugiServiceImpl();
+		
+		if(svc.hugiAdd(hvo)) {
+			System.out.println("yes");
+			resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
+		}else {
+			System.out.println("no");
+			resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}");			
+		}
+		
 	}
 
 }
