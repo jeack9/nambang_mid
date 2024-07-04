@@ -73,3 +73,4 @@
 	</div>
 </section>
 <!-- Shoping Cart Section End -->
+<script src="js/volume.js" defer></script>

@@ -206,7 +206,7 @@
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
     proQty.on('click', '.qtybtn', function () {
-        console.log(document.querySelector(".pro-qty > input"));
+        //console.log(document.querySelector(".pro-qty > input"));
         var $button = $(this);
         var oldValue = $button.parent().find('input').val();
         if ($button.hasClass('inc')) {
