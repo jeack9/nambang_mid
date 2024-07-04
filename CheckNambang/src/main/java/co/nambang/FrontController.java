@@ -145,7 +145,7 @@ public class FrontController extends HttpServlet {
 		map.put("/hyunControl.do", new Hyun()); // 상품리스트 페이지
 		map.put("/hyunControl2.do", new Hyun2()); // 상품리스트 페이지 실행
 		map.put("/hyunControl3.do", new Hyun3()); // 장바구니 담기
-		map.put("/hyunControl4.do", new Hyun4());
+		map.put("/hyunControl4.do", new Hyun4()); // 상세페이지 연결
 		map.put("/hyunControl5.do", new Hyun5());
 		map.put("/hyunControl6.do", new Hyun6());
 		map.put("/hyunControl7.do", new Hyun7());

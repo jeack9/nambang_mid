@@ -34,6 +34,7 @@ public class Hyun2 implements Control {
 		String json = gson.toJson(list);  // 객체를 문자열로 변경하는 메소드 toJson
 		
 		resp.getWriter().print(json); // 출력
+		
 	}
 
 }
