@@ -26,11 +26,12 @@
 	<select id="basicAddr" parameterType="co.nambang.addr.vo.AddrVO">
 		update address_ck
 		set addr_selected = 0
+		where user_id = #{userId}
 	</select>
 
 	<select id="changeAddr" parameterType="co.nambang.addr.vo.AddrVO">
 		update address_ck
-		set addr_selected = 1
+		set addr_selected = #{addrSelected}
 		where addr_no = #{addrNo}
 	</select>
 	

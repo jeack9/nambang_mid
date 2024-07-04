@@ -26,14 +26,14 @@ public class AddrServiceImpl implements AddrService{
 		return mapper.updateAddr(avo) == 1;
 	}
 	@Override
-	public boolean basicAddress() {
+	public boolean basicAddress(String userId) {
 		// TODO Auto-generated method stub
-		return mapper.basicAddr() == 1;
+		return mapper.basicAddr(userId) == 1;
 	}
 	@Override
-	public boolean changeAddress(int addrNo) {
+	public boolean changeAddress(AddrVO avo) {
 		// TODO Auto-generated method stub
-		return mapper.changeAddr(addrNo) == 1;
+		return mapper.changeAddr(avo) == 1;
 	}
 	
 }
