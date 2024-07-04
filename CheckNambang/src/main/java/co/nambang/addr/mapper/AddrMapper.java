@@ -11,6 +11,6 @@ public interface AddrMapper {
 	public List<AddrVO> selectAddr(String userId);
 	public int updateAddr(AddrVO avo);
 	
-	public int basicAddr();
-	public int changeAddr(int addrNo);
+	public int basicAddr(String userId);
+	public int changeAddr(AddrVO avo);
 }

@@ -25,23 +25,23 @@ public class Woon17 implements Control {
 		
 		AddrVO avo = new AddrVO();
 		avo.setUserId(userId);
-		AddrService svc = new AddrServiceImpl();
-		svc.basicAddress();
-		
 		System.out.println(userId);
 		
+		AddrService svc = new AddrServiceImpl();
+		svc.basicAddress(userId);
 		
 		// 0 값으로 변경 먼저 실행 => addrNo 받는것을 다음 으로 실행
 		
 		int addrNo = Integer.parseInt(req.getParameter("addrNo"));
-		avo.setAddrNo(addrNo);
-		
 		System.out.println(addrNo);
+		avo.setAddrNo(addrNo);
+		avo.setAddrSelected(1);
 		
-		if(svc.changeAddress(addrNo)) {
-			resp.sendRedirect("woonControl11.do");
+		
+		if(svc.changeAddress(avo)) {
+			resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
 		}else {
-			System.out.println("잘못 되었습니다.");
+			resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}");
 		}
 		
 	}
