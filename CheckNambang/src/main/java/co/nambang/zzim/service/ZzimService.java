@@ -7,5 +7,5 @@ import co.nambang.zzim.vo.ZzimVO;
 
 public interface ZzimService {
 	List<ZzimVO> zzimItems(String userId);
-	boolean deleteZzimItems(String productCode);
+	boolean deleteZzimItems(String zzimNo);
 }

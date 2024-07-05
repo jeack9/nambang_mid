@@ -17,6 +17,9 @@
   <logger name="co.nambang.qna.mapper.QnaMapper">
     <level value="debug"/>
   </logger> -->
+<!--   <logger name="co.nambang.addr.mapper.AddrMapper">
+    <level value="debug"/>
+  </logger> -->
   <root level="debug">
     <appender-ref ref="stdout"/>
   </root>
