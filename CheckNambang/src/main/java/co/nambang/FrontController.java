@@ -98,7 +98,7 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new Logout()); // 로그아웃
 		
 		// 고객센터
-		map.put("/noticeList.do", new NoticeList()); // 공지사항 목록
+		map.put("/noticeList.do", new NoticeList()); // 공지사항 목록/페이징
 		map.put("/noticeForm.do", new NoticeForm()); // 공지사항 글쓰기폼
 		
 		map.put("/qnaList.do", new QnaList()); // qna 목록.jsp

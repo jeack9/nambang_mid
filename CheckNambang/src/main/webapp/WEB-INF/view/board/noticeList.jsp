@@ -2,7 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+.pagination {
+  display: inline-block;
+}
 
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
 
 <div class="col-lg-9 col-md-7">
 <h3>공지사항</h3>
@@ -28,6 +46,29 @@
         </c:forEach>
       </tbody>   
   </table>
+  
+  <p>${paging }</p>
+  <div class="pagination">
+  <c:if test="${paging.prev }">
+  <a href="noticeList.do?page=${paging.startPage-1 }">&laquo;</a>
+  </c:if>
+  <c:forEach var="pg" begin="${paging.startPage }" end="${paging.endPage }">
+    <c:choose>
+      <c:when test="${pg == paging.currPage }">
+        <a class="active" href="noticeList.do?page=${pg }">${pg }</a>    
+      </c:when>
+      <c:otherwise>
+        <a href="noticeList.do?page=${pg }">${pg }</a>
+      </c:otherwise>
+    </c:choose>
+  
+  </c:forEach>
+  <c:if test="${paging.next }">
+  <a href="noticeList.do?page=${paging.endPage+1 }">&raquo;</a>
+  </c:if>
+  
+</div>
+
 </div>
 
  <script src="boardJs/noticeList.js"></script>
