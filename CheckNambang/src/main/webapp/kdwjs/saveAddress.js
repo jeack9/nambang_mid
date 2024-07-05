@@ -31,13 +31,18 @@ fetch('woonControl14.do?userId='+userId)
  let basicAddr = document.querySelector('#basicBtn');
  
 basicAddr.addEventListener('click', function(){
-	let addrNo = document.querySelector('#address0>input').value;
+	let addrNo = document.querySelector('input[name="happy"]:checked').value;
 	
 	fetch('woonControl17.do?addrNo='+addrNo)
 		.then(result => result.json())
 		.then(result => {
-			console.log(result);
-		})
+			console.log(result.retCode);
+		if(result.retCode == 'Good'){
+			alert('업데이트가 잘되었습니다.')
+		}else{
+			alert('업데이트가 잘못 되었습니다')
+		}
+	})
 })
  
  

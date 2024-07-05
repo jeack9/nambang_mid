@@ -35,7 +35,7 @@
                 	</form>
                     <div class="contact__form__title">
                         <h2>배송지 관리</h2>
-                        <button type="submit" class ="btn btn-Success" id = "basicBtn">기본 배송지</button>
+                        <button type="submit" class ="btn btn-danger" id = "basicBtn">+ 기본 배송지</button>
                     </div>
                 </div>
             </div>

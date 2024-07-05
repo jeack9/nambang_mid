@@ -12,6 +12,7 @@
 		select * 
 		from address_ck
 		where user_id = #{userId}
+		order by addr_selected desc
 	</select>
 	
 	<update id = "updateAddr" parameterType="co.nambang.addr.vo.AddrVO">
@@ -23,16 +24,16 @@
 	</update>
 	
 	
-	<select id="basicAddr" parameterType="co.nambang.addr.vo.AddrVO">
+	<update id="basicAddr"  parameterType="co.nambang.addr.vo.AddrVO">
 		update address_ck
 		set addr_selected = 0
 		where user_id = #{userId}
-	</select>
+	</update>
 
-	<select id="changeAddr" parameterType="co.nambang.addr.vo.AddrVO">
+	<update id="changeAddr"  parameterType="co.nambang.addr.vo.AddrVO">
 		update address_ck
 		set addr_selected = #{addrSelected}
 		where addr_no = #{addrNo}
-	</select>
+	</update>
 	
 </mapper>

@@ -4,10 +4,22 @@
  #topItems{
  	border-bottom: 2px solid rgb(51, 51, 51);
  }
+ .quantity{
+	text-align: center;
+ }
+ .quantity>img{
+ 	max-width: 120px;	
+ }
+ #totalMoney{
+ 	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+ }
+ 
  </style>
  
  <!--  begin -->
- <form action = "woonControl8.do" name = "removeForm">
+ <form action = "woonControl8.do" name = "relayForm" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -19,25 +31,25 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products(name)</th>
+                                    <th class="shoping__product">Products</th>
+                                    <th>name</th>
                                     <th>Price</th>
-                                    <th>offPrice</th>
-                                    <th>Quantity</th>
+                                    <th>Count</th>
+                                    <th>Calculate</th>
                                     <th></th>
+                                    <th>Select</th>
                                 </tr>
                             </thead>
                             <tbody id = "itemsList">
                                 <tr style="display: none;">
                                     <td class="shoping__cart__item">
                                         <img>
-                                        <h5></h5>
+                                    </td>
+                                    <td class="shoping__cart__name">
                                     </td>
                                     <td class="shoping__cart__price">
-                                        
                                     </td>
-                                    <td class="shoping__cart__offprice">
-                                    </td>
-                                    <td class="shoping__cart__quantity">
+                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
                                                 <input type="text" value="1">
@@ -50,18 +62,17 @@
                                         <button type = "submit"class = "btn btn-danger" id = "deleteBtn"><span>삭제</span></button>
                                     </td>
                                       <td class="shoping__cart__item__close">
-                                        <button type = "button" class = "btn btn-warning" id = "containBtn" style = "color: rgb(95, 0, 128)"><span>담기</span></button>
+                                    	<button type="button" class="btn btn-primary"  id = "containBtn"><span>담기</span></button> 
                                     </td>
                                 </tr>
-                             
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>		 
- </form> 
+ </form>
  <script>
  const userId = "${login.userId}";
  </script>
-<script src = "kdwjs/pick.js"></script>	
+<script src = "kdwjs/pick.js"></script>

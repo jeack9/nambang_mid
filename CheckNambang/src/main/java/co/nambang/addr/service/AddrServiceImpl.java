@@ -28,7 +28,7 @@ public class AddrServiceImpl implements AddrService{
 	@Override
 	public boolean basicAddress(String userId) {
 		// TODO Auto-generated method stub
-		return mapper.basicAddr(userId) == 1;
+		return mapper.basicAddr(userId) ==1;
 	}
 	@Override
 	public boolean changeAddress(AddrVO avo) {
