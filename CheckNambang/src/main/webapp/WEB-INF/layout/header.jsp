@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <section class="hero hero-normal">
 	<div class="container">
 		<div class="row">
@@ -30,7 +32,7 @@
 							<div class="hero__search__categories">
 								All Categories <span class="arrow_carrot-down"></span>
 							</div>
-							<input type="text" placeholder="What do yo u need?">
+							<input type="text" placeholder="What do yo u need?" value="${keyword }">
 							<button type="submit" class="site-btn">SEARCH</button>
 						</form>
 					</div>

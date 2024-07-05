@@ -12,7 +12,6 @@ public class ProductList implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String proCode = req.getParameter("proCode");
 
 		req.getRequestDispatcher("product/product.tiles").forward(req, resp);
 	}

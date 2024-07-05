@@ -26,6 +26,7 @@
                GROUP BY
                    product_code
            ) h ON p.product_code = h.product_code
+           where product_name like '%'|| #{keyword} ||'%'
    ) b
     <![CDATA[WHERE b.rn <= (#{page} * 6) ]]>
     AND b.rn > ((#{page} - 1) * 6)
@@ -41,5 +42,11 @@
 				)
 		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{productCode})
 	</insert>
+	
+	<select id="totalCnt">
+		select count(*)
+		from products_ck
+		where product_name like '%'|| #{keyword} ||'%'
+	</select>
 	
 </mapper>

@@ -42,8 +42,9 @@ table {
 	border-collapse: collapse
 }
 
-table tr {
-	border-bottom: 0.01px solid black;
+table tr, table td {
+   border-bottom: 0.01px dotted black;
+   text-align: center;
 }
 
 /* 이미지 확대 효과를 적용할 요소 선택 */
@@ -55,7 +56,7 @@ table tr {
 .product_img:hover {
 	transform: scale(1.1); /* 이미지 1.1배 확대 */
 }
-p{
+#dePrice{
 	text-decoration: line-through;
    	text-decoration-thickness: 1px;
 	margin:0;
@@ -63,7 +64,12 @@ p{
 #product_price{
 	color:red;
 }
+a.active{
+    background: #7fad39;
+    color: #ffffff;
+}
 </style>
+
 <section class="product spad">
 	<div class="container">
 		<div class="row">
@@ -349,7 +355,7 @@ p{
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-9 col-md-7">
+			<div class="col-lg-9 col-md-7 tbody">
 				<div class="filter__item">
 					<div class="row">
 						<div class="col-lg-4 col-md-5">
@@ -383,38 +389,47 @@ p{
 				</div>
 
 				<!--  상품리스트 -->
-				
-				<div class="row" id="product_list">
-					<div class="col-lg-4 col-md-6 col-sm-6" id="product_id"
-						style="display: none;">
-						<div class="product__item product_list">
-							<div class="product__item__pic set-bg product_img"
-								data-setbg="img/product/product-1.jpg"
-								style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
-							<a href="hyunControl4.do?proCode="></a>
-							</div>
+				<div class="col-lg-4 col-md-6 col-sm-6" id="product_id"
+					style="display: none;">
+					<div class="product__item product_list">
+						<div class="product__item__pic set-bg product_img"
+							data-setbg="img/product/product-1.jpg"
+							style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
+						<a href="hyunControl4.do?proCode="></a>
+						</div>
 
-							<!-- 모달창버튼 -->
-							<button type="button" class="btn btn-outline-success cart_btn"
-								style="width: 262.48px;" data-toggle="modal"
-								data-target="#exampleModalScrollable">⛟ 장바구니 담기</button>
-							<div class="product__item__text product_text">
-								<h5 id="product_title" style="font-weight: 1000;">Crab Pool
-									Security</h5>
-								<p style="front-size:5px;" id="dePrice">할인전가격</p>
-								<h5 id="product_price" style="font-weight: 700;">$30.00</h5>
-								<h6>hugiCnt</h6>
-							</div>
+						<!-- 모달창버튼 -->
+						<button type="button" class="btn btn-outline-success cart_btn"
+							style="width: 262.48px;" data-toggle="modal"
+							data-target="#exampleModalScrollable">⛟ 장바구니 담기</button>
+						<div class="product__item__text product_text">
+							<h5 id="product_title" style="font-weight: 1000;">Crab Pool
+								Security</h5>
+							<p style="front-size:5px;" id="dePrice">할인전가격</p>
+							<h5 id="product_price" style="font-weight: 700;">$30.00</h5>
+							<h6>hugiCnt</h6>
 						</div>
 					</div>
 				</div>
+				<div class="row" id="product_list">
+					
+				</div>
+				<!--  페이지 -->
+			 <div class="product__pagination">		
+		     	<a href="#" style="display:none"><i class="fa fa-long-arrow-left"></i></a>
+				<a href="#" style="display:none">1</a>
+				<a href="#" style="display:none"><i class="fa fa-long-arrow-right"></i></a>
+				<div></div>
+			</div>
+		</div> <!--  end of tbody -->
 				<!-- Modal -->
 				<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalScrollableTitle"
 					aria-hidden="true">
-					<div class="modal-dialog modal-dialog-scrollable" role="document">
+					<div class="modal-dialog modal-dialog-scrollable" role="document" style="text-align">
 						<div class="modal-content">
 							<div class="modal-header">
+								⛟ 장바구니 담기
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
