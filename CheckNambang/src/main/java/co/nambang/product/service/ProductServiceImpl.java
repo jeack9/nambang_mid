@@ -15,15 +15,20 @@ public class ProductServiceImpl implements ProductService{
 	ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
   
 	@Override
-	public List<ProductVO> productList(int page) {
+	public List<ProductVO> productList(int page, String kw) {
 		// TODO Auto-generated method stub
-		return mapper.productList(page);
+		return mapper.productList(page, kw);
 	}
 	
 	@Override
 	public boolean addCart(CartVO cvo) {
 		// TODO Auto-generated method stub
 		return mapper.addCart(cvo) == 1;
+	}
+
+	@Override
+	public int totalCnt() {
+		return mapper.totalCnt();
 	}
 
 }
