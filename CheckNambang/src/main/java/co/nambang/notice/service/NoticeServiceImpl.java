@@ -24,13 +24,21 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.selectNotice(noticeNo);
 	}
 
-
 	@Override
 	public List<NoticeVO> noticeList2(int noticeNo) {
 		// TODO json
 		return mapper.selectList2(noticeNo);
 	}
 
-   
-	
+	@Override
+	public List<NoticeVO> pagingNotice(int page) {
+		// TODO Auto-generated method stub
+		return mapper.pagingNotice(page);
+	}
+
+	@Override
+	public int pagingNo() {
+		return mapper.pagingNo();
+	}
+
 }

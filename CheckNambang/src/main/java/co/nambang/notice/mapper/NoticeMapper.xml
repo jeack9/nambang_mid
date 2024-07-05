@@ -22,4 +22,22 @@ from notice_ck
 	where notice_no = #{noticeNo}
 </select>
 
+<select id="pagingNotice" parameterType="int" resultType="co.nambang.notice.vo.NoticeVO">
+SELECT b.*
+FROM(SELECT ROWNUM rn, a.*
+     FROM (SELECT *
+           FROM notice_ck
+           order by notice_no) a
+     <![CDATA[
+     where ROWNUM <= (#{page} * 5) ) b
+     ]]>
+WHERE b.rn > (#{page} - 1) * 5
+</select>
+
+<select id="pagingNo" parameterType ="int">
+SELECT COUNT(*)
+from notice_ck
+</select>
+
+
 </mapper>
