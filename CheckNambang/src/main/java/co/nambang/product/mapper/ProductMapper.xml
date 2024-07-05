@@ -42,4 +42,9 @@
 		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{productCode})
 	</insert>
 	
+	<select id="getProduct">
+		select product_code, product_name, price, off_price, weight, package_type, company, descript_image, descript, product_image, category, volume, sales_volume, brand_chosung
+		from products_ck
+		where product_code = #{productCode}
+	</select>
 </mapper>

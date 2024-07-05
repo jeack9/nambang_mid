@@ -6,6 +6,17 @@
 	<resultMap type="co.nambang.cart.vo.CartVO" id="Cart">
 		
 	</resultMap>
+	<update id="editCart">
+		update cart_ck
+		set cart_volume = #{cartVolume}
+		where cart_no = #{cartNo}
+	</update>
+	<select id="getCart">
+		select cart_no, cart_volume, user_id, product_code
+		from cart_ck
+		where cart_no = #{cartNo}
+	</select>
+	
 	<insert id="addCart" parameterType="co.nambang.cart.vo.CartVO">
 		insert into cart_ck(
 				cart_no,
@@ -34,6 +45,6 @@
 		select *
 		from cart_ck c
 		join products_ck p on c.product_code = p.product_code
-		where user_id = 'user01'
+		where user_id = #{userId}
 	</select>
 </mapper>

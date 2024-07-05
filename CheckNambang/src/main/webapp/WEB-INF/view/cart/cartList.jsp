@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Shoping Cart Section Begin -->
+<style>
+.shoping__cart__total li{
+	list-style : none;
+}
+.shoping__cart__total li:nth-of-type(2){
+	color: rgb(181, 181, 181);
+    text-decoration: line-through;
+}
+</style>
 <section class="shoping-cart spad">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="shoping__cart__table">
-				<form>
 					<table>
 						<thead>
 							<tr>
@@ -19,24 +28,41 @@
 						</thead>
 						<tbody>
 							<tr>
+							<td><img src="img/냉동.jpg" width="50"></td>
+							<td colspan="4"><h4 style="text-align: left">냉동</h4></td>
+							</tr>
+							<c:forEach var="cart" items="${cartList}"> <!-- List<map>  -->
+							<tr id="C${cart.get('CART_NO') }">
 								<td><input type="checkbox"></td>
 								<td class="shoping__cart__item"><img
-									src="img/cart/cart-1.jpg" alt="">
-									<h5>Vegetable’s Package</h5></td>
+									src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
+									<h5>${cart.get('COMPANY') }${cart.get('PRODUCT_NAME') }</h5></td>
 								<td class="shoping__cart__quantity">
 									<div class="quantity">
-										<div class="pro-qty">
-											<input type="text" value="1">
+										<div class="pro-qty" data-no="${cart.get('CART_NO') }">
+											<input type="text" value="${cart.get('CART_VOLUME') }">
 										</div>
 									</div>
 								</td>
-								<td class="shoping__cart__total">$110.00</td>
-								<td class="shoping__cart__item__close"><span
-									class="icon_close"></span></td>
+								<td class="shoping__cart__total">
+								<ul>
+								<c:choose>
+								  <c:when test="${!empty cart.get('OFF_PRICE') }">
+								  <li id="off${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</li>
+								  <li id="cost${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
+								  </c:when>
+								  <c:otherwise>
+								  <li>${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
+								  <li></li>
+								  </c:otherwise>
+								</c:choose>
+								</ul>
+								</td>
+								<td class="shoping__cart__item__close"><span class="icon_close"></span></td>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-				</form>
 				</div>
 			</div> <!-- 카트상품 END -->
 		</div>

@@ -8,4 +8,6 @@ import co.nambang.product.vo.ProductVO;
 public interface ProductService {
 	List<ProductVO> productList(int page);
 	boolean addCart(CartVO cvo);
+	
+	ProductVO getProduct(int pno);
 }

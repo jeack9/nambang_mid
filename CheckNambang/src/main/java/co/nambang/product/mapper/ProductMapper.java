@@ -15,4 +15,6 @@ public interface ProductMapper {
 	public int addCart(CartVO cvo);
 	//장바구니 상품 조회(아이디, 상품코드)
 	public CartVO selectCart(CartVO cvo);
+	// 상품 한개의 정보 조회
+	public ProductVO getProduct(int pno);
 }

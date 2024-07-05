@@ -26,4 +26,9 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.addCart(cvo) == 1;
 	}
 
+	@Override
+	public ProductVO getProduct(int pno) {
+		return mapper.getProduct(pno);
+	}
+
 }
