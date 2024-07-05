@@ -12,4 +12,5 @@ public interface CartService {
 	public List<Map<String, Object>> cartList(String userId);
 	public CartVO getCart(int cartNo);
 	public boolean editCart(CartVO cvo);
+	public boolean removeCart(int cartNo);
 }

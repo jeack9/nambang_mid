@@ -18,5 +18,5 @@ public interface ProductMapper {
 	// 상품 총 개수
 	public int totalCnt();
 	// 상품 한개의 정보 조회
-	public ProductVO getProduct(int pno);
+	public ProductVO getProduct(String pno);
 }

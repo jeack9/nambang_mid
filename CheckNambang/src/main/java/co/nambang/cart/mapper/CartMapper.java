@@ -17,4 +17,6 @@ public interface CartMapper {
 	public CartVO getCart(int cartNo); // 한 개의 카트 정보 조회
 	
 	public int editCart(CartVO cvo); // 카트의 볼륨 변경
+	
+	public int deleteCart(int cartNo); // 한 개의 카트 삭제 primary키 userId 필요없음
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.nambang.cart.web.AddCart;
 import co.nambang.cart.web.CartList;
 import co.nambang.cart.web.EditCartAjax;
+import co.nambang.cart.web.RemoveCartAjax;
 import co.nambang.common.Control;
 import co.nambang.member.web.CheckId;
 import co.nambang.member.web.JoinForm;
@@ -105,7 +106,7 @@ public class FrontController extends HttpServlet {
 		map.put("/qnaList.do", new QnaList()); // qna 목록.jsp
 		map.put("/qnaListAjax.do", new QnaListAjax()); // qna 목록 ajax		
 		map.put("/qnaForm.do", new QnaForm()); // qna 쓰기폼(수정 or 등록).
-		map.put("/type2Ajax.do", new Type2()); // 상세유형 불러오기 json 
+		map.put("/type2Ajax.do", new Type2()); // 상세유형 불러오기 json
 		
 		// 상품
 		map.put("/productList.do", new ProductList()); // 상품목록 페이지 이동 -- Hyun()
@@ -115,6 +116,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addCart.do", new AddCart()); // 장바구니 담기
 		map.put("/cartList.do", new CartList()); // 장바구니 페이지 이동
 		map.put("/editCartAjax.do", new EditCartAjax()); // 장바구니 개수 수정
+		map.put("/removeCartAjax.do", new RemoveCartAjax()); // 장바구니 카트 삭제
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());//디테일 페이지로 보내기

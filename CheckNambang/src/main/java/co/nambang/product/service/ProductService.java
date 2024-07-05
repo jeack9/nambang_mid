@@ -10,5 +10,5 @@ public interface ProductService {
 	boolean addCart(CartVO cvo);
 	int totalCnt();
 	
-	ProductVO getProduct(int pno);
+	ProductVO getProduct(String pno);
 }

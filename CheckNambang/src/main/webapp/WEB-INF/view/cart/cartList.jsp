@@ -39,7 +39,7 @@
 									<h5>${cart.get('COMPANY') }${cart.get('PRODUCT_NAME') }</h5></td>
 								<td class="shoping__cart__quantity">
 									<div class="quantity">
-										<div class="pro-qty" data-no="${cart.get('CART_NO') }">
+										<div class="pro-qty" data-no="${cart.get('CART_NO') }" data-pcode="${cart.get('PRODUCT_CODE') }">
 											<input type="text" value="${cart.get('CART_VOLUME') }">
 										</div>
 									</div>
@@ -48,17 +48,17 @@
 								<ul>
 								<c:choose>
 								  <c:when test="${!empty cart.get('OFF_PRICE') }">
-								  <li id="off${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</li>
-								  <li id="cost${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
+								  <li class="off" id="off${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</li>
+								  <li class="cost" id="cost${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
 								  </c:when>
 								  <c:otherwise>
-								  <li>${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
-								  <li></li>
+								  <li class="cost" id="cost${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
+								  <li class="off" id="off${cart.get('CART_NO')}" style="display: none;">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
 								  </c:otherwise>
 								</c:choose>
 								</ul>
 								</td>
-								<td class="shoping__cart__item__close"><span class="icon_close"></span></td>
+								<td class="shoping__cart__item__close"><span class="icon_close" data-no="${cart.get('CART_NO')}"></span></td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -69,28 +69,28 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="shoping__cart__btns">
-					<a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a> <a
-						href="#" class="primary-btn cart-btn cart-btn-right"><span
-						class="icon_loading"></span> Upadate Cart</a>
+					<a href="productList.do" class="primary-btn cart-btn">쇼핑 계속하기</a> 
+					<a href="cartList.do" class="primary-btn cart-btn cart-btn-right"><span
+						class="icon_loading"></span> 장바구니 업데이트</a>
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="shoping__continue">
-					<div class="shoping__discount">
+					<!-- <div class="shoping__discount">
 						<h5>Discount Codes</h5>
 						<form action="#">
 							<input type="text" placeholder="Enter your coupon code">
 							<button type="submit" class="site-btn">APPLY COUPON</button>
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="shoping__checkout">
 					<h5>Cart Total</h5>
 					<ul>
-						<li>Subtotal <span>$454.98</span></li>
-						<li>Total <span>$454.98</span></li>
+						<li>상품금액 <span id="subtotal" style="color:#000;">$454.98</span></li>
+						<li>결제 예정 금액 <span id="total">$454.98</span></li>
 					</ul>
 					<a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
 				</div>

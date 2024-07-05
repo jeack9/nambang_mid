@@ -26,6 +26,7 @@ public class EditCartAjax implements Control {
 		// 카트 + - 눌렀을때 현 유저의 카트 업데이트 volume, cart_no 정보 필요
 		String cartNo = req.getParameter("cartNo");
 		String volume = req.getParameter("volume");
+		String pcode = req.getParameter("pcode");
 		
 		CartService csvc = new CartServiceImpl();
 		CartVO cvo = new CartVO();
@@ -39,14 +40,21 @@ public class EditCartAjax implements Control {
 			if(csvc.editCart(cvo)) {
 				cvo = csvc.getCart(Integer.parseInt(cartNo));
 				ProductService psvc = new ProductServiceImpl();
-				ProductVO pvo = psvc.getProduct(Integer.parseInt(cartNo));
+				ProductVO pvo = psvc.getProduct(pcode);
 				map.put("cart", cvo);
 				map.put("product", pvo);
 				map.put("retCode", "OK");
 				String json = gson.toJson(map);
 				resp.getWriter().print(json);
+			}else {
+				map.put("retCode", "NO");
+				String json = gson.toJson(map);
+				resp.getWriter().print(json);
 			}
 		} catch (Exception e) {
+			map.put("retCode", "NO");
+			String json = gson.toJson(map);
+			resp.getWriter().print(json);
 			e.printStackTrace();
 		}
 		
