@@ -15,6 +15,7 @@ import co.nambang.notice.service.NoticeService;
 import co.nambang.notice.service.NoticeServiceImpl;
 import co.nambang.notice.vo.NoticeVO;
 
+
 public class Soo2 implements Control {
 
 	@Override

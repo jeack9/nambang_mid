@@ -1,10 +1,10 @@
 /**
  * 
  */
+let query = window.location.search;
+let param = new URLSearchParams(query);
+let notice = param.get('no');
 
-function notice(){
-		location.href="sooControl.do?no=" + event.target.parentElement.children[0].innerHTML;
-}
 fetch('sooControl2.do?no=' + notice)
 		.then(result => result.json())
 		.then(result => {

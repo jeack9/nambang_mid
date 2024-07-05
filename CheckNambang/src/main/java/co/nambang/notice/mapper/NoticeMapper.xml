@@ -15,16 +15,6 @@ from notice_ck
 	where notice_no = #{noticeNo}
 </select>
 
-<select id="noticeBoard" parameterType="int" resultType="co.nambang.notice.vo.NoticeVO">
-select notice_title,
-       notice_writer,
-       notice_creation,
-       notice_content
-from notice_ck
-where notice_no = (select notice_no
-                        from notice_ck
-                        where notice_no = #{noticeNo})
-</select>
 
 <select id="selectList2" parameterType="int" resultType="co.nambang.notice.vo.NoticeVO">
 	select *
