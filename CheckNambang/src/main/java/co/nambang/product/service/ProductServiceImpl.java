@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public ProductVO getProduct(int pno) {
+	public ProductVO getProduct(String pno) {
 		return mapper.getProduct(pno);
 	}
 

@@ -47,4 +47,9 @@
 		join products_ck p on c.product_code = p.product_code
 		where user_id = #{userId}
 	</select>
+	
+	<delete id="deleteCart" parameterType="int">
+		delete from cart_ck
+		where cart_no = #{cartNo}
+	</delete>
 </mapper>

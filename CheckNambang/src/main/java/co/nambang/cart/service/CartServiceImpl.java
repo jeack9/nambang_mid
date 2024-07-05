@@ -42,5 +42,9 @@ public class CartServiceImpl implements CartService{
 	public boolean editCart(CartVO cvo) {
 		return mapper.editCart(cvo) == 1;
 	}
+	@Override
+	public boolean removeCart(int cartNo) {
+		return mapper.deleteCart(cartNo) == 1;
+	}
 
 }

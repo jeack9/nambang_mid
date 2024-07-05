@@ -1,30 +1,74 @@
 /**
  * 
  */
-document.querySelectorAll(".dec").forEach(dec => {
-  dec.addEventListener("click", (e) => {
+document.querySelectorAll(".dec").forEach(dec => { // 장바구니 상품 개수 감소
+  dec.addEventListener("click", async (e) => {
     let cartNo = e.target.parentElement.dataset.no;
     let volume = e.target.parentElement.children[1].value - 1;
-    volume = volume < 0 ? 0 : volume;
-    if(updateCart(cartNo, volume)){// 카트 수정되면 view 변경
-      
+    let pcode = e.target.parentElement.dataset.pcode;
+    volume = volume < 1 ? 1 : volume;
+    let jsonData = await updateCart({cartNo, volume, pcode});
+    if(jsonData.retCode == "OK"){// 카트 수정되면 view 변경
+   	  let cost = document.querySelector(`#cost${cartNo}`);
+      cost.innerHTML = jsonData.product.price * jsonData.cart.cartVolume;
+      let off = document.querySelector(`#off${cartNo}`);
+   	  off.innerHTML = jsonData.product.offPrice != 0 ? jsonData.product.offPrice * jsonData.cart.cartVolume : cost.innerHTML;
+      calcPrice();
     }
-	});
+  });
 });
-document.querySelectorAll(".inc").forEach(inc =>{
-  inc.addEventListener("click", (e) => {
+document.querySelectorAll(".inc").forEach(inc =>{ // 장바구니 상품 개수 증가
+  inc.addEventListener("click", async (e) => {
     let cartNo = e.target.parentElement.dataset.no;
-    let volume = parseInt(e.target.parentElement.children[1].value) + 1; 
-    updateCart(cartNo, volume);
+    let volume = parseInt(e.target.parentElement.children[1].value) + 1;
+    let pcode = e.target.parentElement.dataset.pcode;
+    let jsonData = await updateCart({cartNo, volume, pcode});
+    if(jsonData.retCode == "OK"){// 카트 수정되면 view 변경
+      let cost = document.querySelector(`#cost${cartNo}`);
+   	  cost.innerHTML = jsonData.product.price * jsonData.cart.cartVolume;
+   	  let off = document.querySelector(`#off${cartNo}`);
+   	  off.innerHTML = jsonData.product.offPrice != 0 ? jsonData.product.offPrice * jsonData.cart.cartVolume : cost.innerHTML;
+      calcPrice();
+    }
   });
 });
 
-async function updateCart(cartNo, volume){
-  let url = `editCartAjax.do?cartNo=${cartNo}&volume=${volume}`;
+async function updateCart(cvo = {}){ // fetch 장바구니 개수 업데이트
+  let url = `editCartAjax.do?cartNo=${cvo.cartNo}&volume=${cvo.volume}&pcode=${cvo.pcode}`;
   let response = await fetch(url);
-  let jsonData = await response.json();
-  return jsonData.retCode == "OK";
+  let jsonData = await response.json();// return 해주면 promise 객체로 리턴됨... => 이벤트리스너 콜백함수 자체를 async 로 변경
+  return jsonData;
 }
+
+// 상품 총 금액, 결제 예정금액 계산
+function calcPrice(){
+  let subtotal = 0;
+  document.querySelectorAll(".cost").forEach(cost =>{
+    subtotal += parseInt(cost.innerText);
+  });
+  let total = 0;
+  document.querySelectorAll(".off").forEach(cost =>{
+    total += parseInt(cost.innerText);
+  });
+  document.querySelector("#subtotal").innerText = subtotal;
+  document.querySelector("#total").innerText = total;
+}
+calcPrice();
+
+// 장바구니 삭제 이벤트
+document.querySelectorAll(".icon_close").forEach(removeBtn =>{
+  removeBtn.addEventListener("click", (e)=> {
+    fetch(`removeCartAjax.do?cartNo=${e.target.dataset.no}`)
+      .then(result => result.json())
+      .then(result => {
+        if(result.retCode == "OK"){
+          calcPrice();
+          document.querySelector(`#C${e.target.dataset.no}`).remove();
+        }
+      })
+      .catch(err => console.log(err));
+  });
+});
 
 //let tr = document.querySelector("tbody> tr:nth-of-type(1)").cloneNode(true);
 //document.querySelector("tbody").appendChild(tr);
