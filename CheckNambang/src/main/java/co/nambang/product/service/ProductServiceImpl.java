@@ -30,5 +30,10 @@ public class ProductServiceImpl implements ProductService{
 	public int totalCnt() {
 		return mapper.totalCnt();
 	}
+	
+	@Override
+	public ProductVO getProduct(int pno) {
+		return mapper.getProduct(pno);
+	}
 
 }

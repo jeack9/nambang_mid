@@ -1,5 +1,8 @@
 package co.nambang.cart.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import co.nambang.cart.mapper.CartMapper;
@@ -25,6 +28,19 @@ public class CartServiceImpl implements CartService{
 	public boolean updateCart(CartVO cvo) {
 		// TODO Auto-generated method stub
 		return mapper.updateCart(cvo) == 1;
+	}
+	@Override
+	public List<Map<String, Object>> cartList(String userId) {
+		// TODO Auto-generated method stub
+		return mapper.cartList(userId);
+	}
+	@Override
+	public CartVO getCart(int cartNo) {
+		return mapper.getCart(cartNo);
+	}
+	@Override
+	public boolean editCart(CartVO cvo) {
+		return mapper.editCart(cvo) == 1;
 	}
 
 }

@@ -9,4 +9,6 @@ public interface ProductService {
 	List<ProductVO> productList(int page, String kw);
 	boolean addCart(CartVO cvo);
 	int totalCnt();
+	
+	ProductVO getProduct(int pno);
 }

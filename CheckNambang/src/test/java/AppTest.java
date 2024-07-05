@@ -16,6 +16,6 @@ public class AppTest {
 		CartMapper mapper = sqlSession.getMapper(CartMapper.class);
 		
 		List<Map<String, Object>> list = mapper.cartList("user01");
-		System.out.println(list.get(0).keySet());
+		System.out.println(list.get(0).get("PRICE"));
 	}
 }

@@ -17,4 +17,6 @@ public interface ProductMapper {
 	public CartVO selectCart(CartVO cvo);
 	// 상품 총 개수
 	public int totalCnt();
+	// 상품 한개의 정보 조회
+	public ProductVO getProduct(int pno);
 }

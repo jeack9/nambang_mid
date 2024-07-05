@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.nambang.cart.web.AddCart;
 import co.nambang.cart.web.CartList;
+import co.nambang.cart.web.EditCartAjax;
 import co.nambang.common.Control;
 import co.nambang.member.web.CheckId;
 import co.nambang.member.web.JoinForm;
@@ -113,6 +114,7 @@ public class FrontController extends HttpServlet {
 		// 카트
 		map.put("/addCart.do", new AddCart()); // 장바구니 담기
 		map.put("/cartList.do", new CartList()); // 장바구니 페이지 이동
+		map.put("/editCartAjax.do", new EditCartAjax()); // 장바구니 개수 수정
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());//디테일 페이지로 보내기
