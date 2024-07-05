@@ -24,11 +24,6 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.selectNotice(noticeNo);
 	}
 
-	@Override
-	public NoticeVO noticeBoard(int noticeNo) {
-		// TODO Auto-generated method stub
-		return mapper.noticeBoard(noticeNo);
-	}
 
 	@Override
 	public List<NoticeVO> noticeList2(int noticeNo) {
