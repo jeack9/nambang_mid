@@ -22,10 +22,13 @@ public class Mo5 implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/json;charset=utf-8");
+
 		String proCode = req.getParameter("proCode");
+		String page = req.getParameter("page");
 		
 		ProDetailService svc = new ProDetailServiceImpl();
-		List<HugiVO> list = svc.detailHugi(proCode);
+		List<HugiVO> list = svc.detailHugi(proCode, Integer.parseInt(page));
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
