@@ -36,4 +36,10 @@
 		where addr_no = #{addrNo}
 	</update>
 	
+	<select id="getAddrPick">
+		select *
+		from address_ck
+		where user_id = #{userId}
+		and addr_selected = 1
+	</select>
 </mapper>

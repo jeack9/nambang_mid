@@ -41,7 +41,8 @@ public class Woon12 implements Control {
 		AddrService svc = new AddrServiceImpl();
 		
 		if(svc.addAddr(avo)) {
-			resp.sendRedirect("main.do");		
+			if(req.getParameter("mode").equals("1")) req.getRequestDispatcher("woonControl11.do?mode=1").forward(req, resp);
+			else resp.sendRedirect("main.do");		
 		}				
 	}
 

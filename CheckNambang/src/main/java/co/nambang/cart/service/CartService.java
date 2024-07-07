@@ -13,4 +13,6 @@ public interface CartService {
 	public CartVO getCart(int cartNo);
 	public boolean editCart(CartVO cvo);
 	public boolean removeCart(int cartNo);
+	
+	public boolean delCarts(int[] cartNoArr);
 }
