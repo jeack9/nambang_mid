@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.product.mapper.ProductMapper">
-	<select id="productList" parameterType="co.nambang.product.vo.ProductVO">
+	<select id="productList" parameterType="co.nambang.product.vo.SearchVO">
    SELECT * FROM (
        SELECT
            p.product_code,
@@ -27,6 +27,13 @@
                    product_code
            ) h ON p.product_code = h.product_code
            where product_name like '%'|| #{keyword} ||'%'
+<!--          <choose>
+            <when test="searchCondition != -1">
+                  AND p.category = #{category}
+            </when>
+               <otherwise>
+               </otherwise>
+           </choose>  -->
    ) b
     <![CDATA[WHERE b.rn <= (#{page} * 6) ]]>
     AND b.rn > ((#{page} - 1) * 6)
@@ -43,10 +50,17 @@
 		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{productCode})
 	</insert>
 	
-	<select id="totalCnt">
+	<select id="totalCnt" parameterType="co.nambang.product.vo.SearchVO">
 		select count(*)
 		from products_ck
 		where product_name like '%'|| #{keyword} ||'%'
+<!-- 	<choose>
+        <when test= "searchCondition != -1">
+             AND p.category = #{category}
+         </when>
+            <otherwise>
+            </otherwise>
+     </choose>  -->
 	</select>
 	
 	<select id="getProduct">

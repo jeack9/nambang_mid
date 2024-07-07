@@ -8,6 +8,7 @@ import co.nambang.cart.vo.CartVO;
 import co.nambang.common.DataSource;
 import co.nambang.product.mapper.ProductMapper;
 import co.nambang.product.vo.ProductVO;
+import co.nambang.product.vo.SearchVO;
 
 
 public class ProductServiceImpl implements ProductService{
@@ -15,9 +16,9 @@ public class ProductServiceImpl implements ProductService{
 	ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
   
 	@Override
-	public List<ProductVO> productList(int page, String kw) {
+	public List<ProductVO> productList(SearchVO svo) {
 		// TODO Auto-generated method stub
-		return mapper.productList(page, kw);
+		return mapper.productList(svo);
 	}
 	
 	@Override
@@ -27,8 +28,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int totalCnt() {
-		return mapper.totalCnt();
+	public int totalCnt(SearchVO svo) {
+		return mapper.totalCnt(svo);
 	}
 	
 	@Override

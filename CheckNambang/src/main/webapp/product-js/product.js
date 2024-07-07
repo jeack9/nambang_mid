@@ -8,7 +8,7 @@ let pageDTO = {};
 //데이터 목록 출력하기
 
 function proList(search = {}){
-fetch(`hyunControl2.do?page=${search.page}`)
+fetch(`hyunControl2.do?page=${search.page}&kw=${search.keyword || ''}`)
 	.then(result => result.json())
 	.then(result => {
 		document.querySelector("#product_list").innerHTML = "";
@@ -21,6 +21,24 @@ fetch(`hyunControl2.do?page=${search.page}`)
 	});
 }
 proList(search);
+
+
+//검색창 이벤트
+//엔터 누를시
+document.querySelector("input[type='text']").addEventListener("keyup" ,(e) => {
+	if(e.keyCode == 13){
+		search.keyword = e.target.value;
+		proList(search);
+	}
+})
+
+// 버튼 클릭시
+document.querySelector(".site-btn").addEventListener("click", (e)=>{
+		search.keyword = document.querySelector("input[type='text']").value;
+		proList(search);
+})
+
+
 // 페이지 만들기
 function paging(pageDTO = {}){
 	let pageBody = document.querySelector(".product__pagination > div");
@@ -143,10 +161,7 @@ document.querySelector('.putCart').addEventListener('click', () => {
 });
 
 
-//검색창 이벤트
-document.querySelector("input[type='text']").addEventListener("keyup" ,(e) => {
-	console.log(e);
-})
+
 
 
 
