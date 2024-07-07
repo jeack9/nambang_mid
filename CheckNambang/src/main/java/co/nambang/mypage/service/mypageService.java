@@ -9,6 +9,6 @@ import co.nambang.mypage.vo.orderhistoryVO;
 public interface mypageService {
 	List<mypageVO> mypageView(String userId);	// 수정전 정보 조회
 	boolean modifyMember(mypageVO mvo);
-	List<orderhistoryVO> orderList(String userId);
+	List<orderhistoryVO> orderList(String userId);	// 주문 상태 처리
 	mypageVO checkCurrent(String userId, String userPw);
 }

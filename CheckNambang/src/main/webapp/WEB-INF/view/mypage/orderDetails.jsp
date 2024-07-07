@@ -56,6 +56,7 @@
 		</div>
 	</div>
 </section>
-
-
+<script>
+	const userId = "${login.userId}";
+</script>
 <script src="kdwjs/orderList.js"></script>
