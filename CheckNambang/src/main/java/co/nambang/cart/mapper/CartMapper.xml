@@ -64,7 +64,8 @@
 	
 	<select id="orderCarts">
 		select *
-		from cart_ck
+		from cart_ck c
+		join products_ck p on c.product_code = p.product_code
 		where cart_no in
 		<foreach collection="array" item="cartNo" open="(" close=")" separator=", ">
 		#{cartNo}

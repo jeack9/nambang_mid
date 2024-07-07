@@ -22,5 +22,5 @@ public interface CartMapper {
 	
 	public int delCarts(int[] cartNoArr);
 	
-	public List<CartVO> orderCarts(int[] arr); // 주문할 카트리스트 조회
+	public List<Map<String, Object>> orderCarts(int[] arr); // 주문할 카트리스트 조회
 }

@@ -15,4 +15,5 @@ public interface CartService {
 	public boolean removeCart(int cartNo);
 	
 	public boolean delCarts(int[] cartNoArr);
+	public List<Map<String, Object>> orderCarts(int[] arr);
 }
