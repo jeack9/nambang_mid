@@ -9,11 +9,13 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import co.nambang.common.Control;
+import co.nambang.member.vo.MemberVO;
 import co.nambang.mypage.service.mypageService;
 import co.nambang.mypage.service.mypageServiceImpl;
 import co.nambang.mypage.vo.mypageVO;
@@ -22,7 +24,9 @@ public class Woon2 implements Control {
 
     @Override
     public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String userId = req.getParameter("userId");
+		HttpSession session = req.getSession();
+		MemberVO login = (MemberVO)session.getAttribute("login");
+		String userId = login == null ? "" : login.getUserId();
        System.out.println(userId);      
        
        mypageService svc = new mypageServiceImpl();

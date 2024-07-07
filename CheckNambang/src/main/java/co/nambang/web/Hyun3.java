@@ -25,13 +25,14 @@ public class Hyun3 implements Control {
 		
 		HttpSession session = req.getSession();
 	    MemberVO login = (MemberVO)session.getAttribute("login");
-	    String userId = login.getUserId();
+	    String userId = login == null ? "" : login.getUserId();
 
 	    CartVO cvo = new CartVO();
 	    cvo.setCartVolume(Integer.parseInt(cartVolume));
 	    cvo.setProductCode(proCode);
 	    cvo.setUserId(userId);
-	    
+	    System.out.println("2222");
+	    System.out.println(cvo.toString());
 		ProductService svc = new ProductServiceImpl();
 		//카트안에 갯수 체크 및 업데이트
 		CartService csvc = new CartServiceImpl();
