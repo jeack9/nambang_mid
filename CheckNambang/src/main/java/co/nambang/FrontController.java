@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.nambang.cart.web.AddCart;
 import co.nambang.cart.web.CartList;
+import co.nambang.cart.web.DelCartsAjax;
 import co.nambang.cart.web.EditCartAjax;
 import co.nambang.cart.web.RemoveCartAjax;
 import co.nambang.common.Control;
@@ -23,6 +24,7 @@ import co.nambang.member.web.Logout;
 import co.nambang.member.web.Test;
 import co.nambang.notice.web.NoticeForm;
 import co.nambang.notice.web.NoticeList;
+import co.nambang.order.web.OrderForm;
 import co.nambang.product.web.ProductList;
 import co.nambang.product.web.ProductListJson;
 import co.nambang.qna.web.QnaForm;
@@ -117,6 +119,10 @@ public class FrontController extends HttpServlet {
 		map.put("/cartList.do", new CartList()); // 장바구니 페이지 이동
 		map.put("/editCartAjax.do", new EditCartAjax()); // 장바구니 개수 수정
 		map.put("/removeCartAjax.do", new RemoveCartAjax()); // 장바구니 카트 삭제
+		map.put("/delCartsAjax.do", new DelCartsAjax()); // 카트 선택삭제
+		
+		// 주문
+		map.put("/orderForm.do", new OrderForm());
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());//디테일 페이지로 보내기

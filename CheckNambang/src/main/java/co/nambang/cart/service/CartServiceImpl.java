@@ -46,5 +46,9 @@ public class CartServiceImpl implements CartService{
 	public boolean removeCart(int cartNo) {
 		return mapper.deleteCart(cartNo) == 1;
 	}
+	@Override
+	public boolean delCarts(int[] cartNoArr) {
+		return mapper.delCarts(cartNoArr) > 0;
+	}
 
 }

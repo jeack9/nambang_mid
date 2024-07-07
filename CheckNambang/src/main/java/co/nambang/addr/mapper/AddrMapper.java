@@ -13,4 +13,6 @@ public interface AddrMapper {
 	
 	public int basicAddr(String userId);
 	public int changeAddr(AddrVO avo);
+	
+	public AddrVO getAddrPick(String userId);
 }

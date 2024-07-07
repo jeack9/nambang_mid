@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import co.nambang.addr.service.AddrService;
+import co.nambang.addr.service.AddrServiceImpl;
+import co.nambang.addr.vo.AddrVO;
 import co.nambang.cart.service.CartService;
 import co.nambang.cart.service.CartServiceImpl;
 import co.nambang.common.Control;
@@ -24,7 +27,11 @@ public class CartList implements Control {
 		
 		CartService csvc = new CartServiceImpl();
 		List<Map<String, Object>> cartList = csvc.cartList(userId);
-		req.setAttribute("cartList", cartList);
+		req.setAttribute("cartList", cartList);// 카트 정보
+		
+		AddrService asvc = new AddrServiceImpl();
+		AddrVO avo = asvc.getAddrPick(userId);
+		req.setAttribute("addr", avo);
 		
 		req.getRequestDispatcher("cart/cartList.tiles").forward(req, resp);
 	}

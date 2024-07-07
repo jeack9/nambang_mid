@@ -35,5 +35,9 @@ public class AddrServiceImpl implements AddrService{
 		// TODO Auto-generated method stub
 		return mapper.changeAddr(avo) == 1;
 	}
+	@Override
+	public AddrVO getAddrPick(String userId) {
+		return mapper.getAddrPick(userId);
+	}
 	
 }

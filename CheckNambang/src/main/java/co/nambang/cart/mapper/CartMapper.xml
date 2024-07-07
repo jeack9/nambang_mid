@@ -52,4 +52,22 @@
 		delete from cart_ck
 		where cart_no = #{cartNo}
 	</delete>
+	
+	<delete id="delCarts">
+		delete 
+		from cart_ck
+		where cart_no in
+		<foreach collection="array" item="cartNo" open="(" close=")" separator=", " >
+		#{cartNo}
+		</foreach>
+	</delete>
+	
+	<select id="orderCarts">
+		select *
+		from cart_ck
+		where cart_no in
+		<foreach collection="array" item="cartNo" open="(" close=")" separator=", ">
+		#{cartNo}
+		</foreach>
+	</select>
 </mapper>
