@@ -27,25 +27,31 @@ public class Hyun2 implements Control {
 		// TODO Auto-generated method stub
 		String page = req.getParameter("page");
 		String kw = req.getParameter("kw");
+		String sc = req.getParameter("sc");
 		 
 		
 		page = page == null ? "1" : page; // 페이지값이 null 이면 1페이지를 보여줌
 		kw = kw == null ? "" : kw ; // 키워드가 null인 경우 빈 공간  
+		SearchVO svo = new SearchVO();
+		
+		//svo 변수담기
+		svo.setKeyword(kw);
+		svo.setSearchCondition(sc);
+		svo.setPage(Integer.parseInt(page));
 		//목록
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> list = svc.productList(Integer.parseInt(page), kw);
+		List<ProductVO> list = svc.productList(svo);
+		
 		
 		// 페이징 처리를 위한 페이지에 대한 정보
-		int totalCnt = svc.totalCnt();
+		int totalCnt = svc.totalCnt(svo);
 		PageDTO dto = new PageDTO(Integer.parseInt(page), totalCnt);
 		
-		SearchVO svo = new SearchVO();
-		svo.setKeyword(kw);
 		 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("dto", dto);
-		map.put("pvd", svo);
+		map.put("svo", svo);
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create(); // gson 라이브러리 부르기
 		String json = gson.toJson(map);  // 객체를 문자열로 변경하는 메소드 toJson
