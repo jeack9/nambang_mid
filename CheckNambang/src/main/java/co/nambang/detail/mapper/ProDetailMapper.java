@@ -17,7 +17,10 @@ public interface ProDetailMapper {
 	int insertCart(@Param("cartVolume")int cartVolume,@Param("userId")String userId,@Param("proCode")String proCode );
 	
 	List<HugiVO> hugiList(String proCode);
+	List<HugiVO> hugiPaging(@Param("proCode") String proCode, @Param("page") int page);
 	
 	int zzimList(@Param("proCode")String proCode,@Param("userId")String userId);
+	
+	int hugiCnt(String proCode);
 
 }
