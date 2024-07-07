@@ -9,21 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.nambang.cart.web.AddCart;
+import co.nambang.addr.web.MyAddress;
+import co.nambang.cart.web.AddCartAjax;
 import co.nambang.cart.web.CartList;
 import co.nambang.cart.web.DelCartsAjax;
 import co.nambang.cart.web.EditCartAjax;
 import co.nambang.cart.web.RemoveCartAjax;
 import co.nambang.common.Control;
 import co.nambang.member.web.CheckId;
+import co.nambang.member.web.EditMemberJson;
 import co.nambang.member.web.JoinForm;
 import co.nambang.member.web.JoinMember;
 import co.nambang.member.web.LoginForm;
 import co.nambang.member.web.LoginMember;
 import co.nambang.member.web.Logout;
+import co.nambang.member.web.MyPageForm;
+import co.nambang.member.web.MyPageJson;
+import co.nambang.member.web.MyZzim;
 import co.nambang.member.web.Test;
 import co.nambang.notice.web.NoticeForm;
 import co.nambang.notice.web.NoticeList;
+import co.nambang.order.web.MyOrderList;
 import co.nambang.order.web.OrderForm;
 import co.nambang.order.web.PayOrder;
 import co.nambang.product.web.ProductList;
@@ -101,6 +107,14 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginForm()); // 로그인 폼
 		map.put("/loginMember.do", new LoginMember()); // 로그인
 		map.put("/logout.do", new Logout()); // 로그아웃
+		map.put("/myPageForm.do", new MyPageForm()); // 마이페이지 첫 페이지 이동 woon()
+		map.put("/myPageJson.do", new MyPageJson()); // 마이페이지 페이지 정보조회 json woon2()
+		map.put("/editMemberJson", new EditMemberJson()); // 회원 정보 변경 json woon3()
+		map.put("/myOrderList.do", new MyOrderList()); // 마이페이지 주문내역 페이지 이동 woon4()
+		map.put("/myZzim.do", new MyZzim()); // 찜 페이지 이동
+		map.put("/myAddress.do", new MyAddress()); // 배송지 관리 페이지 이동
+		
+		
 		
 		// 고객센터
 		map.put("/noticeList.do", new NoticeList()); // 공지사항 목록/페이징
@@ -116,7 +130,7 @@ public class FrontController extends HttpServlet {
 		map.put("/productListJson.do", new ProductListJson()); // 상품목록 데이터 가져오기 Json -- Hyun2()
 				
 		// 카트
-		map.put("/addCart.do", new AddCart()); // 장바구니 담기
+		map.put("/addCartAjax.do", new AddCartAjax()); // 장바구니 담기 -- Json Hyun3()
 		map.put("/cartList.do", new CartList()); // 장바구니 페이지 이동
 		map.put("/editCartAjax.do", new EditCartAjax()); // 장바구니 개수 수정
 		map.put("/removeCartAjax.do", new RemoveCartAjax()); // 장바구니 카트 삭제
@@ -126,6 +140,8 @@ public class FrontController extends HttpServlet {
 		map.put("/orderForm.do", new OrderForm());
 		map.put("/payOrder.do", new PayOrder());
 		
+		
+			
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());//디테일 페이지로 보내기
 		map.put("/mocontrol2.do", new Mo2());//디테일 페이지 리스트
@@ -138,17 +154,17 @@ public class FrontController extends HttpServlet {
 		map.put("/mocontrol9.do", new Mo9());
 		map.put("/mocontrol10.do", new Mo10());
 		// 김대운의 테스트 컨트롤러
-		map.put("/woonControl.do", new Woon());	// 회원정보 변경 페이지
-		map.put("/woonControl2.do", new Woon2());	// 회원정보 보여주기
-		map.put("/woonControl3.do", new Woon3());	// 정보 변경
-		map.put("/woonControl4.do", new Woon4());	// 주문 상태 페이지
+		//map.put("/woonControl.do", new Woon());	// 회원정보 변경 페이지
+		//map.put("/woonControl2.do", new Woon2());	// 회원정보 보여주기
+		//map.put("/woonControl3.do", new Woon3());	// 정보 변경
+		//map.put("/woonControl4.do", new Woon4());	// 주문 상태 페이지
 		map.put("/woonControl5.do", new Woon5());	// 주문 처리
 		map.put("/woonControl6.do", new Woon6());	// 찜 페이지
 		map.put("/woonControl7.do", new Woon7());	// 찜 처리
 		map.put("/woonControl8.do", new Woon8());	// 찜 삭제
 		map.put("/woonControl9.do", new Woon9());	// 주문내역 상세 페이지
 		map.put("/woonControl10.do", new Woon10());		// 상세 페이지 처리
-		map.put("/woonControl11.do", new Woon11());		// 배송지 관리
+		//map.put("/woonControl11.do", new Woon11());		// 배송지 관리
 		map.put("/woonControl12.do", new Woon12());		// 배송지 추가 처리
 		map.put("/woonControl13.do", new Woon13());		// 배송지 변경 처리
 		map.put("/woonControl14.do", new Woon14());		// 배송지 보여주기
@@ -157,10 +173,10 @@ public class FrontController extends HttpServlet {
 		map.put("/woonControl17.do", new Woon17());		// 기본 배송지 처리
 
 		// 이상현의 테스트 컨트롤러
-		map.put("/hyunControl.do", new Hyun()); // 상품리스트 페이지
-		map.put("/hyunControl2.do", new Hyun2()); // 상품리스트 페이지 실행
-		map.put("/hyunControl3.do", new Hyun3()); // 장바구니 담기
-		map.put("/hyunControl4.do", new Hyun4()); // 상세페이지 연결
+		//map.put("/hyunControl.do", new Hyun()); // 상품리스트 페이지
+		//map.put("/hyunControl2.do", new Hyun2()); // 상품리스트 페이지 실행
+		//map.put("/hyunControl3.do", new Hyun3()); // 장바구니 담기
+		//map.put("/hyunControl4.do", new Hyun4()); // 상세페이지 연결
 		map.put("/hyunControl5.do", new Hyun5());
 		map.put("/hyunControl6.do", new Hyun6());
 		map.put("/hyunControl7.do", new Hyun7());
