@@ -35,9 +35,15 @@
 									<c:forEach var="cart" items="${list}">
 										<!-- List<map>  -->
 										<tr>
-											<td class="shoping__cart__item"><img src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
-												<h5>[${cart.get('COMPANY') }] ${cart.get('PRODUCT_NAME') }</h5></td>
-											<td class="shoping__cart__quantity">${cart.get('CART_VOLUME') }</td>
+											<td class="shoping__cart__item">
+												<input type="text" value="${cart.get('PRODUCT_CODE') }" name="code" hidden="hidden">
+												<img src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
+												<h5>[${cart.get('COMPANY') }] ${cart.get('PRODUCT_NAME') }</h5>
+											</td>
+											<td class="shoping__cart__quantity">
+												<input type="text" value="${cart.get('CART_VOLUME') }" name="volume" hidden="hidden">
+												${cart.get('CART_VOLUME') }
+											</td>
 											<td class="shoping__cart__total">
 												<ul>
 													<c:choose>
@@ -57,6 +63,19 @@
 								</tbody>
 							</table>
 						</div> <!-- div.shoping__cart__table END-->
+						<div id="orderInfo">
+							<h4>주문자 정보</h4>
+							<p>보내는분: ${login.userName }</p>
+							<p>휴대폰: ${login.phone}</p>
+							<p>이메일: ${login.email}</p>
+						</div>
+						<div id="deliverInfo">
+							<input type="text" value="${avo.addrNo }" name="addrNo" hidden="hidden">
+							<h4>배송 정보</h4>
+							<p>배송지: ${avo.addr1} / ${avo.addr2 }</p>
+							<p>휴대폰: ${login.phone}</p>
+							<p><label for="yocheong">요청사항: </label><input class="form-control" type="text" id="yocheong" name="yocheong"></p>
+						</div>
 					</div>
 					<div class="col-lg-4 col-md-6">
 						<div class="checkout__order" style="position: sticky; top: 0;">
@@ -67,10 +86,10 @@
 							<c:forEach var="cart" items="${list}">
 								<c:choose>
 									<c:when test="${!empty cart.get('OFF_PRICE') }">
-									<li>${cart.get('PRODUCT_NAME')}<span>${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</span></li>
+									<li>${cart.get('PRODUCT_NAME')}<span class="price">${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</span></li>
 									</c:when>
 									<c:otherwise>
-									<li>${cart.get('PRODUCT_NAME')}<span>${cart.get('CART_VOLUME') * cart.get('PRICE')}</span></li>
+									<li>${cart.get('PRODUCT_NAME')}<span class="price">${cart.get('CART_VOLUME') * cart.get('PRICE')}</span></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -79,13 +98,17 @@
 								Subtotal <span>$750.99</span>
 							</div> -->
 							<div class="checkout__order__total">
-								최종결제금액 <span></span>
+							최종결제금액
+							<span id="order_price">22</span>
+							<input type="text" name="orderPrice" value="" hidden="hidden">
 							</div>
 							<div class="checkout__input__checkbox">
-								<label for="payment"> 결제 확인 <input type="checkbox" id="payment" checked> <span class="checkmark"></span>
+								<label for="payment"> 결제 확인 <input type="checkbox" id="isPayment" checked> <span class="checkmark"></span>
 								</label>
 							</div>
+							<c:if test="${!empty login }">
 							<button type="submit" class="site-btn">결제하기</button>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -94,8 +117,17 @@
 	</div>
 </section>
 <script>
+//최종 결제금액 view 업데이트
+let orderPrice = 0;
+document.querySelectorAll(".price").forEach(price => {
+	orderPrice += parseInt(price.innerText);
+});
+document.querySelector("#order_price").innerText = orderPrice;
+document.querySelector("#order_price+input").value = orderPrice;
+
+// 결제동의 체크
 function ckPay() {
-	let isPayment = document.querySelector("input#payment").checked;
+	let isPayment = document.querySelector("input#isPayment").checked;
 	if(!isPayment) alert("결제 확인을 동의해주세요.");
 	return isPayment;
 }

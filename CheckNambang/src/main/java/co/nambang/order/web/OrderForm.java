@@ -38,7 +38,7 @@ public class OrderForm implements Control {
 		MemberVO login = (MemberVO)session.getAttribute("login");
 		String userId = login != null ? login.getUserId() : "";
 		AddrVO avo = asvc.getAddrPick(userId);
-		req.setAttribute("addr", avo);
+		req.setAttribute("avo", avo);
 		
 		req.getRequestDispatcher("order/orderForm.tiles").forward(req, resp);
 	}
