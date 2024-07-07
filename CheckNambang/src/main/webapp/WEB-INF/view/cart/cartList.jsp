@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="shoping__cart__table">
-				<h2 class="d-flex justify-content-center">장바구니</h2>
+				<h2 class="d-flex justify-content-center" style="margin-bottom: 10px">장바구니</h2>
 					<table>
 						<thead>
 							<tr>
@@ -33,10 +33,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<!-- <tr>
 							<td><img src="img/냉동.jpg" width="50"></td>
 							<td colspan="4"><h4 style="text-align: left">냉동</h4></td>
-							</tr>
+							</tr> -->
 							<c:forEach var="cart" items="${cartList}"> <!-- List<map>  -->
 							<tr id="C${cart.get('CART_NO') }">
 								<td><input type="checkbox" id="cart${cart.get('CART_NO') }" name="cartNo" value="${cart.get('CART_NO') }" onclick="check(this)" checked></td>
@@ -96,7 +96,9 @@
 						<p>${addr.addr1} ${addr.addr2}</p>
 						<p>수취인 : ${addr.getter }</p>
 						<p>연락처 : ${addr.getterPhone }</p>
+						<c:if test="${!empty login }">
 						<button type="button" onclick="modiAddr(event)" class="primary-btn">배송지 변경</button>
+						</c:if>
 					</div>
 				</div>
 			</div>

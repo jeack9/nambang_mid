@@ -3,4 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.order.mapper.OrderMapper">
+	<insert id="insertOrder" parameterType="co.nambang.order.vo.OrderVO">
+	insert into order_ck(order_no, addr_no, order_price, order_yocheong)
+	values(order_seq.nextval, #{addrNo}, #{orderPrice}, #{orderYocheong})
+	</insert>
 </mapper>

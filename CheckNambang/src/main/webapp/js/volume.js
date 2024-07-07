@@ -146,5 +146,5 @@ function modiAddr(e){
 	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 	let popupY= (window.screen.height / 2) - (800 / 2);
 	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-	window.open('woonControl11.do?mode=1', '배송지 변경', 'width=700px,height=800px,scrollbars=yes, left='+ popupX + ', top='+ popupY);
+	window.open('myAddress.do?mode=1', '배송지 변경', 'width=700px,height=800px,scrollbars=yes, left='+ popupX + ', top='+ popupY);
 }

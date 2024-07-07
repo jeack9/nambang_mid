@@ -18,5 +18,10 @@ public class OdProductServiceImpl implements OdProductService{
 		// TODO Auto-generated method stub
 		return mapper.orderHistory(orderNo);
 	}
+
+	@Override
+	public int addOdProducts(OdProductVO[] arr) {
+		return mapper.addOdProducts(arr);
+	}
 	
 }

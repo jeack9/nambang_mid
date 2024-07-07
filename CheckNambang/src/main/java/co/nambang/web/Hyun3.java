@@ -37,8 +37,6 @@ public class Hyun3 implements Control {
 		//카트안에 갯수 체크 및 업데이트
 		CartService csvc = new CartServiceImpl();
 		
-	
-		
 		if (csvc.checkCart(cvo)) {
 			if(csvc.updateCart(cvo)) {
 				resp.getWriter().print("{\"retCode\":\"OK\"}");
