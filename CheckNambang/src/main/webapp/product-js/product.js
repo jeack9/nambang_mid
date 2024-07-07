@@ -8,7 +8,7 @@ let pageDTO = {};
 //데이터 목록 출력하기
 
 function proList(search = {}){
-fetch(`hyunControl2.do?page=${search.page}&kw=${search.keyword || ''}`)
+fetch(`productListJson.do?page=${search.page}&kw=${search.keyword || ''}`)
 	.then(result => result.json())
 	.then(result => {
 		document.querySelector("#product_list").innerHTML = "";
