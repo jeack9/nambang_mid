@@ -15,7 +15,7 @@ fetch('woonControl14.do?userId='+userId)
 
 
  function cloneRow(addr={}){
-	let copy = document.querySelector('tbody>tr').cloneNode(true);
+	let copy = document.querySelector('thead>tr').cloneNode(true);
 	copy.querySelector('#address0>input').setAttribute('value',addr.addrNo);
 	copy.querySelector('#address0>input').setAttribute('name','addrNo');
 	copy.querySelector('#address1>p').innerHTML = addr.addr1;
@@ -52,7 +52,6 @@ basicAddr.addEventListener('click', function(e){
 			console.log(result);
 		if(result.retCode == 'Good'){
 			alert('업데이트가 잘되었습니다.');
-			document.querySelector('#addBody').innerHTML = '';
 			console.log(result);
 			reloadAddresses();
 		}else{
