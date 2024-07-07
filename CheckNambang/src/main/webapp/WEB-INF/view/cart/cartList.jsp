@@ -16,7 +16,7 @@
 }
 </style>
 <section class="shoping-cart spad">
-	<form action="" name="orderfrm" method="get">
+	<form action="orderForm.do" name="orderfrm" method="get">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -42,7 +42,7 @@
 								<td><input type="checkbox" id="cart${cart.get('CART_NO') }" name="cartNo" value="${cart.get('CART_NO') }" onclick="check(this)" checked></td>
 								<td class="shoping__cart__item"><img
 									src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
-									<h5>${cart.get('COMPANY') }${cart.get('PRODUCT_NAME') }</h5></td>
+									<h5>[${cart.get('COMPANY') }] ${cart.get('PRODUCT_NAME') }</h5></td>
 								<td class="shoping__cart__quantity">
 									<div class="quantity">
 										<div class="pro-qty" data-no="${cart.get('CART_NO') }" data-pcode="${cart.get('PRODUCT_CODE') }">

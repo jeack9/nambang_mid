@@ -25,6 +25,7 @@ import co.nambang.member.web.Test;
 import co.nambang.notice.web.NoticeForm;
 import co.nambang.notice.web.NoticeList;
 import co.nambang.order.web.OrderForm;
+import co.nambang.order.web.PayOrder;
 import co.nambang.product.web.ProductList;
 import co.nambang.product.web.ProductListJson;
 import co.nambang.qna.web.QnaForm;
@@ -123,6 +124,7 @@ public class FrontController extends HttpServlet {
 		
 		// 주문
 		map.put("/orderForm.do", new OrderForm());
+		map.put("/payOrder.do", new PayOrder());
 		
 		// 안준모의 테스트 컨트롤러
 		map.put("/mocontrol.do", new Mo());//디테일 페이지로 보내기

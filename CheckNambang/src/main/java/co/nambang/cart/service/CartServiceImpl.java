@@ -50,5 +50,9 @@ public class CartServiceImpl implements CartService{
 	public boolean delCarts(int[] cartNoArr) {
 		return mapper.delCarts(cartNoArr) > 0;
 	}
+	@Override
+	public List<Map<String, Object>> orderCarts(int[] arr) {
+		return mapper.orderCarts(arr);
+	}
 
 }
