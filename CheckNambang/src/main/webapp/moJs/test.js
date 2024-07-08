@@ -166,12 +166,15 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				if (!imageName.includes('.')) {
 					imageName += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 				}
-
-				img.src = 'moImg/' + imageName;
+				let imagePath = 'image/' + imageName;
+    			img.src = imagePath;
+				img.onerror = function() {
+			        console.error('이미지를 불러오지 못했습니다: ' + imagePath);
+			      
+			    };
 
 				let title = document.querySelector('#titleList');
 				title.innerHTML = pro.company + pro.productName;
-
 
 				let price = document.querySelector('.product__details__price');
 				let price2 = document.querySelector('.product__details__price2');
@@ -254,7 +257,7 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				if (!infoImg.includes('.')) {
 					infoImg += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 				}
-				img.src = 'moImg/' + infoImg;
+				img.src = 'image/' + infoImg;
 				info.appendChild(img);
 
 				makeHugi(page);
