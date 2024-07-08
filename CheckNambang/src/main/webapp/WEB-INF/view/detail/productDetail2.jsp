@@ -39,8 +39,8 @@
 	color: #bebebe;
 }
 
-#zzimBtnClass {
-	padding-right: 10px;
+#btnClass {
+	text-align: center;
 }
 
 #offPriceList {
@@ -155,10 +155,10 @@ a {
 					<div id="endPrice"></div>
 				</div>
 				<div id="btnClass">
-					<a href="#" class="primary-btn">장바구니 추가</a> <a
-						href="javascript:void(0)" class="heart-icon" id="zzimBtn"><span
+					<a href="javascript:void(0)" class="heart-icon" id="zzimBtn"><span
 						class="icon_heart_alt" id="zzimhart"
-						style="text-decoration: none; color: black;"></span></a>
+						style="text-decoration: none; color: black;"></span></a> <a href="#"
+						class="primary-btn">장바구니 추가</a>
 					<div id="zzimBtnClass"></div>
 					<div id="cartBtnClass"></div>
 				</div>
@@ -177,17 +177,14 @@ a {
 						<div id="tabs-1"></div>
 						<div id="tabs-2"></div>
 						<div id="tabs-3">
-
 							<h3>상품 후기</h3>
 							<table id="hugiList">
 							</table>
-						</div>
-						<div class="center">
-							<div class="hugipaging">
-								<a href="#tabs-3">1</a> 
-								<a href="#tabs-3" class="active">2</a> 
-								<a href="#tabs-3">3</a>
-								<a href="#tabs-3">4</a>
+							<div class="center">
+								<div class="hugipaging">
+									<a href="#tabs-3">1</a> <a href="#tabs-3" class="active">2</a>
+									<a href="#tabs-3">3</a> <a href="#tabs-3">4</a>
+								</div>
 							</div>
 						</div>
 					</div>
