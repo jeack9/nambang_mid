@@ -38,6 +38,7 @@ import co.nambang.qna.web.QnaForm;
 import co.nambang.qna.web.QnaList;
 import co.nambang.qna.web.QnaListAjax;
 import co.nambang.qna.web.RegisterForm;
+import co.nambang.qna.web.RegisterQna;
 import co.nambang.qna.web.Type2;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
@@ -124,6 +125,7 @@ public class FrontController extends HttpServlet {
 		map.put("/qnaListAjax.do", new QnaListAjax()); // qna 목록 ajax		
 		map.put("/qnaForm.do", new QnaForm()); // qna 쓰기폼(수정 or 등록).
 		map.put("/type2Ajax.do", new Type2()); // 상세유형 불러오기 json
+		map.put("/registerQna.do", new RegisterQna()); // 글 등록 (+사진)
 		
 		// 상품
 		map.put("/productList.do", new ProductList()); // 상품목록 페이지 이동 -- Hyun()

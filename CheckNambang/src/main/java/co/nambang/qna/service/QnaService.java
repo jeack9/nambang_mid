@@ -14,4 +14,6 @@ public interface QnaService {
 	
 	List<String> type2List(String type1);
 	
+	boolean registerQna(QnaVO qvo);
+	
 }

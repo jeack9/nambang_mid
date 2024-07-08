@@ -10,4 +10,5 @@ public interface QnaMapper {
 	public int getTotalCnt(SearchVO search); // qna 페이징용
 	public List<QnaVO> qnaList(SearchVO search); // qna 목록
 	public List<String> type2List(String type1); // 문의폼 상세유형 종류
+	public int registerQna(QnaVO qvo); // 글등록
 }
