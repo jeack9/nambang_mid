@@ -10,7 +10,7 @@ let pageDTO = {};
 
 
 function proList(proSearch = {}){
-fetch(`hyunControl2.do?page=${proSearch.page}&kw=${proSearch.keyword || ''}&cate=${proSearch.category || ''}&cho=${proSearch.chosung}`)
+fetch(`productListJson.do?page=${proSearch.page}&kw=${proSearch.keyword || ''}&cate=${proSearch.category || ''}&cho=${proSearch.chosung}`)
 	.then(result => result.json())
 	.then(result => {
 		document.querySelector("#product_list").innerHTML = "";
@@ -169,7 +169,7 @@ document.querySelector('.putCart').addEventListener('click', () => {
 	console.log(totalCnt);
 	console.log(proCode);
 	const putAjax = new XMLHttpRequest();
-	putAjax.open('get', 'hyunControl3.do?proCode=' + proCode //
+	putAjax.open('get', 'addCartAjax.do?proCode=' + proCode //
 		+ '&userId=' + userId + '&cartVolume=' + totalCnt);
 	putAjax.send();
 	putAjax.onload = function() {
