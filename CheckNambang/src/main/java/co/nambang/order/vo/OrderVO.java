@@ -6,10 +6,11 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class OdProductVO {
+public class OrderVO {
 	private int orderNo;
 	private int addrNo;
 	private int orderPrice;
 	private String orderYocheong;
 	private Date orderDate;
+	private String userId;
 }

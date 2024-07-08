@@ -15,6 +15,137 @@ let offList = document.querySelector('#offList');
 //zzim productCode 비교
 let zzimCode;
 
+let page = 1;
+
+// 후기 행 만들기
+function makeHugi(page) {
+	let hugiList = document.querySelector('#hugiList');
+	hugiList.innerHTML = '';
+	fetch('mocontrol5.do?proCode=' + proCode + '&page=' + page)
+		.then(result => result.json())
+		.then(result => result.forEach((hugi, idx) => {
+
+			field1 = [hugi.userName];
+			field2 = [hugi.company + hugi.productName, hugi.hugiContent, hugi.hugiImage, hugi.hugiDate]
+			for (let i = 0; i < field1.length; i++) {
+				let tr = document.createElement('tr');
+				let th = document.createElement('th');
+				th.innerHTML = field1[i];
+				tr.appendChild(th);
+
+				for (let j = 0; j < field2.length; j++) {
+					let td = document.createElement('td');
+					td.innerHTML = field2[j];
+					tr.appendChild(td);
+				}
+
+				hugiList.appendChild(tr);
+			}
+
+		}))
+
+}
+function updatePaging(currentPage) {
+	let paging = document.querySelectorAll('.hugipaging a');
+	paging.forEach(a => {
+		a.classList.remove('active');
+		if (parseInt(a.getAttribute('data-page')) === currentPage) {
+			page = currentPage;
+			console.log(page,'ppppppp');
+			a.classList.add('active');
+		}
+	});
+	a();
+}
+
+//후기 페이징
+let hugiPaging = document.querySelector('.hugipaging');
+function a(){
+	
+fetch('mocontrol8.do?proCode=' + proCode)
+	.then(result => result.json())
+	.then(result => {
+			
+		let totalCnt = result; //댓글 건수
+		console.log(totalCnt);
+		let startPage, endPage;
+		let prev, next;
+		let realEnd = Math.ceil(totalCnt / 5);
+		
+		endPage = Math.ceil(page / 10) * 10;
+		startPage = endPage - 9;
+		endPage = endPage > realEnd ? realEnd : endPage;
+
+		prev = startPage > 1;
+		next = endPage < realEnd;
+		
+		console.log(page);
+
+		hugiPaging.innerHTML = '';
+
+		if (prev) {
+			let a = document.createElement('a');
+			a.setAttribute('class','aTag')
+			a.setAttribute('data-page', startPage - 1);
+			a.setAttribute('href', '#');
+			a.innerHTML = "&laquo";
+			a.addEventListener('click', function(e) {
+				e.preventDefault();
+				page = parseInt(a.getAttribute('data-page')); // 페이지 변경
+				updatePaging(page);
+				makeHugi(page); // 변경된 페이지의 후기 목록 생성
+			});
+			hugiPaging.appendChild(a);
+
+		}
+				
+			for (let p = startPage; p <= endPage; p++) {
+				let a = document.createElement('a');
+				a.setAttribute('data-page', p);
+				a.setAttribute('href', '#');
+				a.innerHTML = p;
+				
+				if (page == p) {
+					a.className = 'active';
+				}
+				a.addEventListener('click', function(e) {
+					e.preventDefault();
+					page = parseInt(a.getAttribute('data-page'));
+					updatePaging(page);
+					makeHugi(page);
+				});
+				hugiPaging.appendChild(a);
+			}	
+			
+			
+
+		if (next) {
+			let a = document.createElement('a');
+			a.setAttribute('data-page', endPage + 1);
+			a.setAttribute('href', '#');
+			a.innerHTML = "&raquo";
+			a.addEventListener('click', function(e) {
+				e.preventDefault();
+				page = parseInt(a.getAttribute('data-page'));
+				updatePaging(page);
+				makeHugi(page);
+				//hugiPaging.innerHTML = '';
+				//nextHugi();
+				console.log(page,'page1');
+				console.log(endPage,'end1');
+			
+			});
+			console.log(page,'page2');
+			hugiPaging.appendChild(a);
+
+		}
+	})
+}
+a();
+	
+		
+
+
 // zzimCode 의 값에 따라 처리.
 fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 	.then(result => result.json())
@@ -97,7 +228,6 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				let endPrice = document.querySelector('#endPrice');
 				document.querySelector('.pro-qty').addEventListener('click', function() {
 					totalCnt = document.querySelector('#totalCnt').value;
-					console.log(totalCnt);
 					if (pro.offPrice == 0) {
 						endPrice.innerHTML = '총 상품금액 : ' + (totalCnt * pro.price) + '원';
 					} else if (pro.offPrice != 0) {
@@ -111,19 +241,6 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 
 					endPrice.innerHTML = '총 상품금액 : ' + pro.offPrice + '원';
 				}
-
-
-				/*		let cartB = document.createElement('button');
-				
-				
-						cartB.setAttribute('id', 'cartBtn');
-						cartB.setAttribute('class', 'primary-btn');
-				
-						console.log("zzzz:" + zzimCode);
-				
-						cartB.addEventListener('click', cartFnc)
-						cartB.innerHTML = '장바구니 추가';
-						cartbtnList.appendChild(cartB);*/
 
 
 				let descrip = document.querySelector('#tabs-1');
@@ -140,122 +257,39 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				img.src = 'moImg/' + infoImg;
 				info.appendChild(img);
 
-				//makeBtn(zzimCode);
+				makeHugi(page);
 			}))
 			.catch(err => console.log(err));
 	})
 
 
+	/
+	//페이징 시 원댓글 삭제
 
-//start();
+	//찜 추가,삭제
+	document.querySelector('#zzimBtn').addEventListener('click', function() {
+		if (document.querySelector('#zzimhart').getAttribute('class') == 'icon_heart_alt') {
+			fetch('mocontrol3.do?proCode=' + proCode + '&userId=' + login)
+				.then(result => result.json())
+				.then(result => {
+					if (result.retCode == 'OK') {
+						document.querySelector('#zzimhart').setAttribute('class', 'icon_heart');
+						alert('찜 등록 성공');
+					}
+				})
+		} else {
+			fetch('mocontrol6.do?proCode=' + proCode)
+				.then(result => result.json())
+				.then(result => {
+					if (result.retCode == 'OK') {
+						document.querySelector('#zzimhart').setAttribute('class', 'icon_heart_alt');
+						alert('찜 삭제 성공');
 
-/*async function selectZzim(){
-	const response = await fetch('mocontrol2.do?proCode=' + proCode);
-	  const jsonData = await response.json();
-	  jsonData.zzim.forEach(item => {
-		if(zzimProCode.indexOf(item.productCode) == -1) {
-			zzimProCode.push(item.productCode);
+					}
+				})
 		}
-	});
-}*/
+	})
 
-
-
-//버튼 만들기
-/*function makeBtn(zzimCode) {
-
-	let zzimB = document.createElement('button');
-	zzimB.setAttribute('class', 'primary-btn');
-	zzimB.setAttribute('id', 'zzimBtn');
-	if (zzimCode == 'true') {
-
-		zzimB.innerHTML = '찜 삭제';
-		zzimB.addEventListener('click', zzimDelFnc)
-		zzimbtnList.appendChild(zzimB);
-
-	} else {
-		zzimB.innerHTML = '찜 추가';
-		zzimB.addEventListener('click', zzimFnc);
-		zzimbtnList.appendChild(zzimB);
-	}
-}*/
-
-// 후기 행 만들기
-fetch('mocontrol5.do?proCode=' + proCode)
-	.then(result => result.json())
-	.then(result => result.forEach(hugi => {
-		let hugiList = document.querySelector('#hugiList');
-
-		field1 = [hugi.userName];
-		field2 = [hugi.company + hugi.productName, hugi.hugiContent, hugi.hugiImage, hugi.hugiDate]
-		for (let i = 0; i < field1.length; i++) {
-			let tr = document.createElement('tr');
-			let th = document.createElement('th');
-			th.innerHTML = field1[i];
-			tr.appendChild(th);
-
-			for (let j = 0; j < field2.length; j++) {
-				let td = document.createElement('td');
-				td.innerHTML = field2[j];
-				tr.appendChild(td);
-			}
-
-
-			hugiList.appendChild(tr);
-		}
-		return hugiList;
-	}))
-
-//찜 추가
-document.querySelector('#zzimBtn').addEventListener('click', function() {
-	if (document.querySelector('#zzimhart').getAttribute('class') == 'icon_heart_alt') {
-		fetch('mocontrol3.do?proCode=' + proCode + '&userId=' + login)
-			.then(result => result.json())
-			.then(result => {
-				if (result.retCode == 'OK') {
-					document.querySelector('#zzimhart').setAttribute('class', 'icon_heart');
-					alert('찜 등록 성공');
-				}
-			})
-	} else {
-		fetch('mocontrol6.do?proCode=' + proCode)
-			.then(result => result.json())
-			.then(result => {
-				if (result.retCode == 'OK') {
-					document.querySelector('#zzimhart').setAttribute('class', 'icon_heart_alt');
-					alert('찜 삭제 성공');
-
-				}
-			})
-	}
-})
-/*function zzimFnc() {
-	if (login.length != 0) {
-		fetch('mocontrol3.do?proCode=' + proCode)
-			.then(result => result.json())
-			.then(result => {
-				if (result.retCode == 'OK') {
-					alert('찜 등록 성공');
-	
-				}
-			})
-	} else {
-		alert("로그인하세요.");
-	}
-}*/
-//찜삭제
-/*document.querySelector('#zzimDelBtn').addEventListener('click', zzimDelFnc);
-function zzimDelFnc() {
-	fetch('mocontrol6.do?proCode=' + proCode)
-		.then(result => result.json())
-		.then(result => {
-			if (result.retCode == 'OK') {
-				alert('찜 삭제 성공');
-	
-			}
-		})
-}
-*/
 document.querySelector('.primary-btn').addEventListener('click', cartFnc);
 function cartFnc() {
 	fetch('mocontrol4.do?proCode=' + proCode + '&userId=' + login + '&cartVolume=' + totalCnt)

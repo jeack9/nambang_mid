@@ -30,12 +30,15 @@ public class ProDetailServiceImpl implements ProDetailService{
 		return mapper.insertCart(cartVolume, unserId, proCode) == 1;
 	}
 	@Override
-	public List<HugiVO> detailHugi(String proCode) {
-		return mapper.hugiList(proCode);
+	public List<HugiVO> detailHugi(String proCode, int page) {
+		return mapper.hugiPaging(proCode, page);
 	}
 	@Override
 	public boolean zzimSelect(String proCode,String userId) {
 		return mapper.zzimList(proCode,userId) == 0;
 	}
-
+	@Override
+	public int hugiListCnt(String proCode) {
+		return mapper.hugiCnt(proCode);
+	}
 }

@@ -14,8 +14,10 @@ public interface ProDetailService {
 	
 	boolean insCart(int cartVolume, String unserId, String proCode);
 	
-	List<HugiVO> detailHugi(String proCode);
+	List<HugiVO> detailHugi(String proCode, int page);
 	 
 	boolean zzimSelect(String proCode,String userId);
+	
+	int hugiListCnt(String proCode);
 
 }

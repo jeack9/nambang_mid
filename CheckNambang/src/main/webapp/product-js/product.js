@@ -8,6 +8,7 @@ let pageDTO = {};
 
 //데이터 목록 출력하기
 
+
 function proList(proSearch = {}){
 fetch(`hyunControl2.do?page=${proSearch.page}&kw=${proSearch.keyword || ''}&cate=${proSearch.category || ''}&cho=${proSearch.chosung}`)
 	.then(result => result.json())

@@ -17,8 +17,6 @@
 	padding-top: 30px;
 }
 
-
-
 .quantity {
 	padding-left: 120px;
 }
@@ -41,8 +39,8 @@
 	color: #bebebe;
 }
 
-#zzimBtnClass {
-	padding-right: 10px;
+#btnClass {
+	text-align: center;
 }
 
 #offPriceList {
@@ -50,33 +48,72 @@
 	text-decoration-thickness: 2px;
 	display: inline-block;
 }
-#offList{
+
+#offList {
 	display: inline;;
 }
-#priceInfo{
+
+#priceInfo {
 	text-decoration: line-through;
 	text-decoration-thickness: 2px;
 	font-size: 20px;
 	font-weight: bold;
 }
-#offInfo{
+
+#offInfo {
 	font-size: 20px;
 	font-weight: bold;
 }
-#imgBtn{
-	background-color : white;
+
+#imgBtn {
+	background-color: white;
 	border: none;
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
 	padding: 0px;
 }
-#offImg{
+
+#offImg {
 	width: 16px;
 	height: 16px;
 }
-a:link{
+
+a:link {
 	text-decoration: none;
+}
+</style>
+<style>
+.center {
+	text-align: center;
+}
+
+.hugipaging {
+	display: inline-block;
+}
+
+.hugipaging a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	margin: 0 4px;
+}
+
+.hugipaging a.active {
+	background-color: #4CAF50;
+	color: white;
+	border: 1px solid #4CAF50;
+}
+
+.hugipaging a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+a {
+	text-decoration-line: none;
 }
 </style>
 
@@ -118,8 +155,10 @@ a:link{
 					<div id="endPrice"></div>
 				</div>
 				<div id="btnClass">
-					<a href="#" class="primary-btn">장바구니 추가</a>
-                    <a href="javascript:void(0)" class="heart-icon" id = "zzimBtn"><span class="icon_heart_alt" id = "zzimhart" style ="text-decoration: none; color: black;"></span></a>
+					<a href="javascript:void(0)" class="heart-icon" id="zzimBtn"><span
+						class="icon_heart_alt" id="zzimhart"
+						style="text-decoration: none; color: black;"></span></a> <a href="#"
+						class="primary-btn">장바구니 추가</a>
 					<div id="zzimBtnClass"></div>
 					<div id="cartBtnClass"></div>
 				</div>
@@ -138,11 +177,15 @@ a:link{
 						<div id="tabs-1"></div>
 						<div id="tabs-2"></div>
 						<div id="tabs-3">
-
 							<h3>상품 후기</h3>
 							<table id="hugiList">
 							</table>
-
+							<div class="center">
+								<div class="hugipaging">
+									<a href="#tabs-3">1</a> <a href="#tabs-3" class="active">2</a>
+									<a href="#tabs-3">3</a> <a href="#tabs-3">4</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -166,9 +209,9 @@ a:link{
 					</button>
 				</div>
 				<div class="modal-body">
-					<p id= "priceInfo"></p>
+					<p id="priceInfo"></p>
 					<p>판매 가격입니다. 이가격은 시장 현황등에 따라 변경될 수 있습니다.</p>
-					<p id = "offInfo"></p>
+					<p id="offInfo"></p>
 					<p>현 시점 모든 할인이 적용된 가격입니다.</p>
 				</div>
 				<div class="modal-footer">
@@ -183,6 +226,5 @@ a:link{
 	const login = '${sessionScope.login.userId}';
 	//const zzimProCode = '${zzim}'
 	//console.log(zzimProCode);
-
 </script>
 <script src="moJs/test.js"></script>
