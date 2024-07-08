@@ -12,12 +12,19 @@
 	</insert>
 	
 	<select id="orderHistroyList" resultType="map">
-	select oc.order_no, oc.order_date, op.op_price, op.op_volume, p.product_name, p.product_image, p.company
-	from order_ck oc join order_product op
-	                 on oc.order_no = op.order_no
-	                 join products_ck p
-	                 on p.product_code = op.product_code
-	where user_id = #{userId}	                 
-	order by 1 desc
+		SELECT
+		    oc.order_no as "order_no",
+		    oc.order_date as "order_date",
+		    to_char(op.op_price) as "op_price",
+		    to_char(op.op_volume) as "op_volume",
+		    p.product_name as "product_name",
+		    p.product_image as "product_image",
+		    p.company as "company"
+		FROM order_ck oc
+		    JOIN order_product op ON oc.order_no = op.order_no
+		    JOIN products_ck   p ON p.product_code = op.product_code
+		WHERE
+		    oc.user_id = #{userId}
+		ORDER BY 1 DESC
 	</select>
 </mapper>

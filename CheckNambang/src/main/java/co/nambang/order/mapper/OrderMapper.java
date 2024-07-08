@@ -9,5 +9,5 @@ import co.nambang.order.vo.OrderVO;
 public interface OrderMapper {
 	public int insertOrder(OrderVO ovo);
 	
-	public List<Map<String, Object>> orderHistroyList(String userId);
+	public List<Map<Object, Object>> orderHistroyList(String userId);
 }

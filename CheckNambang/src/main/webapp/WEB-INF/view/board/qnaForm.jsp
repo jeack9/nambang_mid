@@ -28,34 +28,30 @@ div.order-box{
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-				<form method="get" action="">
-					<div>
-						<input type="radio" id="order">
-						<label for="order"> 2024.06.26 <span style="color: #6f6f6f;">주문번호: dfdfdf</span></label>
-						<span>
-						<svg width="30" height="30" viewBox="0 5 30 30"
-									xmlns="http://www.w3.org/2000/svg"
-									xmlns:xlink="http://www.w3.org/1999/xlink">
-									<defs>
-									<path id="7a02qqg3ja" d="M11 12h9v9"></path></defs>
-									<g fill="none" fill-rule="evenodd">
-									<path d="M0 0h30v30H0z"></path>
-									<use stroke="#333" stroke-width="2" stroke-linecap="square"
-										transform="rotate(135 15.5 16.5)" href="#7a02qqg3ja"></use></g></svg>
-						</span>
-						<div class="order-box">
-							<img alt="" src="img/basic.jpg" width="50" class="f-item1">
-							<p class="f-item2">브랜드]상품이름</p>
-							<ul class="f-item3">
-							<li>개수</li>
-							<li>가격</li>
-							</ul>
-						</div>
+				<c:forEach var="item" items="${map }">
+				<div>
+					<input type="radio" id="order${item.key }" value="${item.key }" name="orderNo">
+					<span style="color: #6f6f6f;">주문번호:${item.key }</span>
+					<label for="order${item.key }">주문일자: <fmt:formatDate value="${item.value[0].orderDate }" pattern="yyyy.MM.dd"/>
+					</label>
+					<button type="button" onclick="view(event)" class="btn btn-info" data-key="view${item.key }">자세히보기</button>
+				</div>
+				<c:forEach var="list" items="${item.value }">
+				<div style="display:none;" class="view${item.key }">
+					<div class="order-box">
+						<img alt="" src="img/${list.productImage}" width="50" class="f-item1">
+						<p class="f-item2">${list.productName}</p>
+						<ul class="f-item3">
+						<li>${list.opVolume1} 개</li>
+						<li><fmt:formatNumber value="${list.opPrice1}" pattern="#,###" /> 원</li>
+						</ul>
 					</div>
-				</form>
+				</div> <!-- 주문히스토리 영역 -->
+				</c:forEach>
+				</c:forEach>
 				</div>
 				<div class="modal-footer">					
-					<button type="button" class="btn btn-primary">선택</button>
+					<button type="button" class="btn btn-primary" onclick="pickOrder()">선택</button>
 				</div>
 			</div>
 		</div>
@@ -74,7 +70,7 @@ div.order-box{
 					<option value="서비스/오류/기타">서비스/오류/기타</option>
 			</select>
 	  	</td>
-	  	<td class="col-md-5 align-middle" id="test">
+	  	<td class="col-md-5 align-middle">
 				<select class="w-100" id="type2" name="type2" required>
 					<option value="-1">상세유형 선택</option>
 				</select>
@@ -108,30 +104,38 @@ div.order-box{
 		
 </div> <!-- col-lg-9 col-md-7 END -->
 <script>
-	function selectType(e){ // 유형 선택 -> 상세유형 목록 띄우기
-		let url = "type2Ajax.do?type1=" + e.target.value;
-		fetch(url) // 상세유형 데이터 가져오기
-		.then(result => result.json())
-		.then(result =>{
-				// 기본 유형 '취소교환반품' 선택시 주문 상품 선택창
-				(e.target.value == "취소/교환/반품") ? $("#op_pick").css("display", "") : $("#op_pick").css("display", "none");
-				// 상세유형 option 생성후 추가
-				document.querySelector("#type2").innerHTML = "";
-				let option = document.createElement("option");
-				option.innerText = "상세유형 선택";
-				document.querySelector("#type2").appendChild(option);
-				result.forEach(type2 => {
-					let option = document.createElement("option");
-					document.querySelector("#type2").appendChild(option);
-					option.innerText = type2;
-					option.value = type2;
-				});
-				$("select").niceSelect("update"); // bootstrap
-			});
-	}
-
-	var myModalEl = document.getElementById('staticBackdrop'); 
-	myModalEl.addEventListener('show.bs.modal', function (event) { // 모달창 열렸을때 호출
-		
+function view(e){ // 주문 상품선택 자세히보기 버튼
+	let details = document.querySelectorAll(`div.\${e.target.dataset.key}`);
+	details.forEach(div =>{
+		if(div.style.display == "none") div.style.display = "";
+		else div.style.display = "none";
 	});
+}
+function pickOrder(){ // 주문상품 선택버튼
+	$('#staticBackdrop').modal("hide");
+}
+
+function selectType(e){ // 유형 선택 -> 상세유형 목록 띄우기
+	let url = "type2Ajax.do?type1=" + e.target.value;
+	fetch(url) // 상세유형 데이터 가져오기
+	.then(result => result.json())
+	.then(result =>{
+			// 기본 유형 '취소교환반품' 선택시 주문 상품 선택창
+			(e.target.value == "취소/교환/반품") ? $("#op_pick").css("display", "") : $("#op_pick").css("display", "none");
+			// 상세유형 option 생성후 추가
+			document.querySelector("#type2").innerHTML = "";
+			let option = document.createElement("option");
+			option.innerText = "상세유형 선택";
+			document.querySelector("#type2").appendChild(option);
+			result.forEach(type2 => {
+				let option = document.createElement("option");
+				document.querySelector("#type2").appendChild(option);
+				option.innerText = type2;
+				option.value = type2;
+			});
+			$("select").niceSelect("update"); // bootstrap
+		});
+}
+
+
 </script>
