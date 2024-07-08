@@ -43,8 +43,8 @@ table {
 }
 
 table tr, table td {
-   border-bottom: 0.01px dotted black;
-   text-align: center;
+	border-bottom: 0.01px dotted black;
+	text-align: center;
 }
 
 /* 이미지 확대 효과를 적용할 요소 선택 */
@@ -56,17 +56,24 @@ table tr, table td {
 .product_img:hover {
 	transform: scale(1.1); /* 이미지 1.1배 확대 */
 }
-#dePrice{
+
+#dePrice {
 	text-decoration: line-through;
-   	text-decoration-thickness: 1px;
-	margin:0;
+	text-decoration-thickness: 1px;
+	margin: 0;
 }
-#product_price{
-	color:red;
+
+#product_price {
+	color: red;
 }
-a.active{
-    background: #7fad39;
-    color: #ffffff;
+
+a.active {
+	background: #7fad39;
+	color: #ffffff;
+}
+
+.sidebar__item ul li a:hover {
+	color: red;
 }
 </style>
 
@@ -76,65 +83,28 @@ a.active{
 			<div class="col-lg-3 col-md-5">
 				<div class="sidebar">
 					<div class="sidebar__item">
-						<h4>Department</h4>
+						<h4>카테고리</h4>
 						<ul>
-							<li><a href="#">채소</a></li>
-							<li><a href="#">과일·견과·쌀</a></li>
-							<li><a href="#">수산·해산·건어물</a></li>
-							<li><a href="#">정육·가공육·계란</a></li>
-							<li><a href="#">국·반찬·메인요리</a></li>
+							<c:forEach var="vo" items="${category }">
+								<li><a href="#">${vo.category }</a></li>
+							</c:forEach>
 						</ul>
 					</div>
-					<div class="sidebar__item">
-						<h4>Price</h4>
-						<div class="price-range-wrap">
-							<div
-								class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-								data-min="10" data-max="540">
-								<div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-								<span tabindex="0"
-									class="ui-slider-handle ui-corner-all ui-state-default"
-									style="left: 0%;"></span> <span tabindex="0"
-									class="ui-slider-handle ui-corner-all ui-state-default"
-									style="left: 100%;"></span>
-								<div class="ui-slider-range ui-corner-all ui-widget-header"
-									style="left: 0%; width: 100%;"></div>
-							</div>
-							<div class="range-slider">
-								<div class="price-input">
-									<input type="text" id="minamount"> <input type="text"
-										id="maxamount">
-								</div>
-							</div>
-						</div>
-					</div>
+
 					<div class="sidebar__item sidebar__item__color--option">
-						<h4>Colors</h4>
-						<div class="sidebar__item__color sidebar__item__color--white">
-							<label for="white"> White <input type="radio" id="white">
-							</label>
-						</div>
-						<div class="sidebar__item__color sidebar__item__color--gray">
-							<label for="gray"> Gray <input type="radio" id="gray">
-							</label>
-						</div>
-						<div class="sidebar__item__color sidebar__item__color--red">
-							<label for="red"> Red <input type="radio" id="red">
-							</label>
-						</div>
-						<div class="sidebar__item__color sidebar__item__color--black">
-							<label for="black"> Black <input type="radio" id="black">
-							</label>
-						</div>
-						<div class="sidebar__item__color sidebar__item__color--blue">
-							<label for="blue"> Blue <input type="radio" id="blue">
-							</label>
-						</div>
-						<div class="sidebar__item__color sidebar__item__color--green">
-							<label for="green"> Green <input type="radio" id="green">
-							</label>
+						<h4>브랜드 초성</h4>
+						<div class="sidebar__item__color sidebar__item__color--white sidebar_chosung">
+								<c:forEach var="cho" items="${chosung }">
+									<li><a href="#">${cho.brandChosung }</a></li>
+								</c:forEach>
 						</div>
 					</div>
+
+					<!-- 임시로 데이터 확인 -->
+					<c:forEach var="cho" items="${choSung}">
+						<p>${cho.chosung}</p>
+					</c:forEach>
+
 					<div class="sidebar__item">
 						<h4>Popular Size</h4>
 						<div class="sidebar__item__size">
@@ -395,7 +365,7 @@ a.active{
 						<div class="product__item__pic set-bg product_img"
 							data-setbg="img/product/product-1.jpg"
 							style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
-						<a href="hyunControl4.do?proCode="></a>
+							<a href="hyunControl4.do?proCode="></a>
 						</div>
 
 						<!-- 모달창버튼 -->
@@ -405,71 +375,72 @@ a.active{
 						<div class="product__item__text product_text">
 							<h5 id="product_title" style="font-weight: 1000;">Crab Pool
 								Security</h5>
-							<p style="front-size:5px;" id="dePrice">할인전가격</p>
+							<p style="front-size: 5px;" id="dePrice">할인전가격</p>
 							<h5 id="product_price" style="font-weight: 700;">$30.00</h5>
 							<h6>hugiCnt</h6>
 						</div>
 					</div>
 				</div>
-				<div class="row" id="product_list">
-					
-				</div>
+				<div class="row" id="product_list"></div>
 				<!--  페이지 -->
-			 <div class="product__pagination">		
-		     	<a href="#" style="display:none"><i class="fa fa-long-arrow-left"></i></a>
-				<a href="#" style="display:none">1</a>
-				<a href="#" style="display:none"><i class="fa fa-long-arrow-right"></i></a>
-				<div></div>
+				<div class="product__pagination">
+					<a href="#" style="display: none"><i
+						class="fa fa-long-arrow-left"></i></a> <a href="#"
+						style="display: none">1</a> <a href="#" style="display: none"><i
+						class="fa fa-long-arrow-right"></i></a>
+					<div></div>
+				</div>
 			</div>
-		</div> <!--  end of tbody -->
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
-					role="dialog" aria-labelledby="exampleModalScrollableTitle"
-					aria-hidden="true">
-					<div class="modal-dialog modal-dialog-scrollable" role="document" style="text-align">
-						<div class="modal-content">
-							<div class="modal-header">
-								⛟ 장바구니 담기
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<!-- 모달 내용 -->
-							<table>
+			<!--  end of tbody -->
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalScrollableTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-scrollable" role="document"
+					style="">
+					<div class="modal-content">
+						<div class="modal-header">
+							⛟ 장바구니 담기
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<!-- 모달 내용 -->
+						<table>
 
-								<thead>
-									<tr>
-										<td id="modal_code" style="display: none"></td>
-										<td id="modal_img"></td>
-										<td id="modal_company" style="width: 300px;">회사이름</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td></td>
-										<td id="modal_price">가격</td>
-										<td class="quantity">
-											<div class="pro-qty">
-												<input id="totalCnt" type="text" value="1">
-											</div>
-										</td>
-									</tr>
-								</tbody>
+							<thead>
+								<tr>
+									<td id="modal_code" style="display: none"></td>
+									<td id="modal_img"></td>
+									<td id="modal_company" style="width: 300px;">회사이름</td>
+								</tr>
+							</thead>
+							<tbody>
 								<tr>
 									<td></td>
-									<td id="priceSum">
-									<td>
+									<td id="modal_price">가격</td>
+									<td class="quantity">
+										<div class="pro-qty">
+											<input id="totalCnt" type="text" value="1">
+										</div>
+									</td>
 								</tr>
-							</table>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-primary putCart">장바구니담기</button>
-							</div>
+							</tbody>
+							<tr>
+								<td></td>
+								<td id="priceSum">
+								<td>
+							</tr>
+						</table>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">닫기</button>
+							<button type="button" class="btn btn-primary putCart">장바구니담기</button>
 						</div>
 					</div>
 				</div>
+			</div>
 </section>
 <script>
 	const proCode = "${proCode}";
