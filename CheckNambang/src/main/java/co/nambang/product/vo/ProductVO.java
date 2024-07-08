@@ -21,4 +21,5 @@ public class ProductVO {
 	private int salesVolume;
 	private String brandChosung;
 	private int productBonus; // 상품별 적립금
+	private int searchCondition; // 0: 답변대기, 1: 답변완료
 }

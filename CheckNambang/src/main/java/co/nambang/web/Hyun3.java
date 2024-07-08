@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import co.nambang.cart.service.CartService;
 import co.nambang.cart.service.CartServiceImpl;
+import co.nambang.cart.vo.CartVO;
 import co.nambang.common.Control;
 import co.nambang.member.vo.MemberVO;
 import co.nambang.product.service.ProductService;
@@ -24,27 +25,33 @@ public class Hyun3 implements Control {
 		
 		HttpSession session = req.getSession();
 	    MemberVO login = (MemberVO)session.getAttribute("login");
-	      
-	    String userId = login.getUserId();
+	    String userId = login == null ? "" : login.getUserId();
 
+	    CartVO cvo = new CartVO();
+	    cvo.setCartVolume(Integer.parseInt(cartVolume));
+	    cvo.setProductCode(proCode);
+	    cvo.setUserId(userId);
+	    System.out.println("2222");
+	    System.out.println(cvo.toString());
 		ProductService svc = new ProductServiceImpl();
-		System.out.println("ㄴㄴㄴ " + cartVolume);
-		System.out.println("ㄴㄴㄴ " + proCode);
+		//카트안에 갯수 체크 및 업데이트
 		CartService csvc = new CartServiceImpl();
 		
-
-		if (svc.addCart(Integer.parseInt(cartVolume), userId, proCode)) {// {"retCode":"OK"}
-			resp.getWriter().print("{\"retCode\":\"OK\"}");
-		} else {
-			resp.getWriter().print("{\"retCode\":\"NG\"}");
+		if (csvc.checkCart(cvo)) {
+			if(csvc.updateCart(cvo)) {
+				resp.getWriter().print("{\"retCode\":\"OK\"}");
+			} else {
+				resp.getWriter().print("{\"retCode\":\"NG\"}");
+			}
+		}else {
+			if (svc.addCart(cvo)) {// {"retCode":"OK"}
+				resp.getWriter().print("{\"retCode\":\"OK\"}");
+			} else {
+				resp.getWriter().print("{\"retCode\":\"NG\"}");
+			}
 		}
 		
-//		if (svc.addCart(Integer.parseInt(cartVolume), userId, proCode)) {// {"retCode":"OK"}
-//			resp.getWriter().print("{\"retCode\":\"OK\"}");
-//		} else {
-//			resp.getWriter().print("{\"retCode\":\"NG\"}");
-//		}
 		
-	}
+	} //end of exec
 
 }

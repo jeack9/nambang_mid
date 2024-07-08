@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import co.nambang.addr.service.AddrService;
 import co.nambang.addr.service.AddrServiceImpl;
 import co.nambang.addr.vo.AddrVO;
@@ -36,6 +39,10 @@ public class Woon13 implements Control {
 		avo.setGetterPhone(getterPhone);
 		
 		AddrService svc = new AddrServiceImpl();
+		
+		//Gson gson = new GsonBuilder().create();
+		//String json = gson.toJson(list);
+		//resp.getWriter().print(json);
 		
 		if(svc.updateAddr(avo)) {
 			resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");

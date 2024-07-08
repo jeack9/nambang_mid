@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import co.nambang.cart.vo.CartVO;
 import co.nambang.common.DataSource;
 import co.nambang.product.mapper.ProductMapper;
 import co.nambang.product.vo.ProductVO;
+import co.nambang.product.vo.SearchVO;
 
 
 public class ProductServiceImpl implements ProductService{
@@ -14,14 +16,25 @@ public class ProductServiceImpl implements ProductService{
 	ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
   
 	@Override
-	public List<ProductVO> productList(int page) {
+	public List<ProductVO> productList(SearchVO svo) {
 		// TODO Auto-generated method stub
-		return mapper.productList(page);
+		return mapper.productList(svo);
 	}
 	
 	@Override
-	public boolean addCart(int volume, String userId, String proCode) {
+	public boolean addCart(CartVO cvo) {
 		// TODO Auto-generated method stub
-		return mapper.addCart(volume, userId, proCode) == 1;
+		return mapper.addCart(cvo) == 1;
 	}
+
+	@Override
+	public int totalCnt(SearchVO svo) {
+		return mapper.totalCnt(svo);
+	}
+	
+	@Override
+	public ProductVO getProduct(String pno) {
+		return mapper.getProduct(pno);
+	}
+
 }

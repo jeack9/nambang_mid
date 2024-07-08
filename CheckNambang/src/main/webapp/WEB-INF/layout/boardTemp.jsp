@@ -12,6 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogani | Template</title>
+    
+    <!-- 모달관련 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -46,8 +50,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="myZzim.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -63,7 +67,7 @@
         	  </c:when>
         	  <c:otherwise>
 	        	  <div class="header__top__right__auth">
-		               <a href="#"><i class="fa fa-user"></i> ${login.userName}</a>
+		               <a href="myPageForm.do"><i class="fa fa-user"></i> ${login.userName}</a>
 	           	  </div>
 	           	  <div class="header__top__right__auth">
 		                <a href="logout.do"><i class="fa fa-user"></i>로그아웃</a>
@@ -74,9 +78,9 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="main.do">Home</a></li>
                 <li><a href="productList.do">Shop</a></li>
-                <li><a href="#">Pages</a>
+                <!-- <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
                         <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -85,7 +89,7 @@
                     </ul>
                 </li>
                 <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./contact.html">Contact</a></li> -->
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -145,7 +149,7 @@
 				        	  </c:when>
 				        	  <c:otherwise>
 					        	  <div class="header__top__right__auth">
-						               <a href="#"><i class="fa fa-user"></i> ${login.userName}</a>
+						               <a href="myPageForm.do"><i class="fa fa-user"></i> ${login.userName}</a>
 					           	  </div>
 					           	  <div class="header__top__right__auth">
 						                <a href="logout.do"><i class="fa fa-user"></i>로그아웃</a>
@@ -167,9 +171,9 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="main.do">Home</a></li>
                             <li><a href="productList.do">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                           <!--  <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -178,15 +182,15 @@
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="./contact.html">Contact</a></li> -->
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="myZzim.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>

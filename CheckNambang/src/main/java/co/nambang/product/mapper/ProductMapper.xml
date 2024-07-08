@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.product.mapper.ProductMapper">
-	<select id="productList" parameterType="co.nambang.product.vo.ProductVO">
+	<select id="productList" parameterType="co.nambang.product.vo.SearchVO">
    SELECT * FROM (
        SELECT
            p.product_code,
@@ -26,11 +26,20 @@
                GROUP BY
                    product_code
            ) h ON p.product_code = h.product_code
+           where product_name like '%'|| #{keyword} ||'%'
+<!--          <choose>
+            <when test="searchCondition != -1">
+                  AND p.category = #{category}
+            </when>
+               <otherwise>
+               </otherwise>
+           </choose>  -->
    ) b
-    <![CDATA[WHERE b.rn <= (#{page} * 5) ]]>
-    AND b.rn > ((#{page} - 1) * 5)
+    <![CDATA[WHERE b.rn <= (#{page} * 6) ]]>
+    AND b.rn > ((#{page} - 1) * 6)
     ORDER BY b.product_code
 	</select>
+	
 	<insert id="addCart" parameterType="co.nambang.cart.vo.CartVO">
 		insert into cart_ck(
 				cart_no,
@@ -38,7 +47,25 @@
 				user_id,
 				product_code
 				)
-		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{proCode})
+		values (cart_seq.nextval, #{cartVolume}, #{userId}, #{productCode})
 	</insert>
 	
+	<select id="totalCnt" parameterType="co.nambang.product.vo.SearchVO">
+		select count(*)
+		from products_ck
+		where product_name like '%'|| #{keyword} ||'%'
+<!-- 	<choose>
+        <when test= "searchCondition != -1">
+             AND p.category = #{category}
+         </when>
+            <otherwise>
+            </otherwise>
+     </choose>  -->
+	</select>
+	
+	<select id="getProduct">
+		select product_code, product_name, price, off_price, weight, package_type, company, descript_image, descript, product_image, category, volume, sales_volume, brand_chosung
+		from products_ck
+		where product_code = #{productCode}
+	</select>
 </mapper>

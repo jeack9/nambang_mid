@@ -14,4 +14,10 @@ public interface AddrService {
 	// 배송지 업데이트
 	public boolean updateAddr(AddrVO avo);
 	
+	// 배송지 변경 전 0값 처리
+	public boolean basicAddress(String userId);
+	// 배송지 변경
+	public boolean changeAddress(AddrVO avo);
+	
+	public AddrVO getAddrPick(String userId); // 선택된 배송지 조회
 }

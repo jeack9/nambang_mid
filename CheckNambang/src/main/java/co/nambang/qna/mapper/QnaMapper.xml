@@ -32,4 +32,10 @@
 		</when>
 	  	</choose>
 	</select>
+	
+	<select id="type2List" parameterType="string" resultType="string">
+		select type2
+		from ask_type_ck
+		where type1 = #{type1}
+	</select>
 </mapper>

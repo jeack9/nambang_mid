@@ -36,11 +36,32 @@
 		order by A.hugi_no desc
 	</select>
 	
+	<select id="hugiPaging">
+		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no,
+	           B.user_name, C.product_name, C.company
+	    from (
+	        SELECT /*+index_desc(r reply_pk)*/ rownum rn, r.* 
+	        FROM hugi_ck r
+	        WHERE product_code = #{proCode}
+	    ) A
+	    join member_ck B on A.user_id = B.user_id
+	    join products_ck C on A.product_code = C.product_code
+	    where A.rn &lt;= #{page} * 5
+	    and A.rn &gt; (#{page} - 1) * 5
+	    and A.product_code = #{proCode}
+	    order by A.hugi_no DESC
+	</select>
+	
 	<select id="zzimList" parameterType="co.nambang.zzim.vo.ZzimVO">
 		select count(1)
 		from zzim_ck
 		where product_code = #{proCode}
 		and     user_id = #{userId}
 	</select>
-
+	
+	<select id="hugiCnt">
+		select count(1)
+		from hugi_ck
+		where product_code = #{proCode}
+	</select>
 </mapper>

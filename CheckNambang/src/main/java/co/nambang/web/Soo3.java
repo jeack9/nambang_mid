@@ -17,3 +17,4 @@ public class Soo3 implements Control {
 	}
 
 }
+

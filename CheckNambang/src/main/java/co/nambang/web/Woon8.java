@@ -17,7 +17,10 @@ public class Woon8 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String productCode = req.getParameter("productCode");
+		
 		ZzimVO zvo = new ZzimVO();
+		System.out.println(productCode);
+		
 		
 		ZzimService svc = new ZzimServiceImpl();
 		if(svc.deleteZzimItems(productCode)) {

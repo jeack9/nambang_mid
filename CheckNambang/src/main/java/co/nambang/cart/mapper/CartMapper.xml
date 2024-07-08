@@ -3,6 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.cart.mapper.CartMapper">
+	<resultMap type="co.nambang.cart.vo.CartVO" id="Cart">
+		
+	</resultMap>
+	<update id="editCart">
+		update cart_ck
+		set cart_volume = #{cartVolume}
+		where cart_no = #{cartNo}
+	</update>
+	<select id="getCart">
+		select cart_no, cart_volume, user_id, product_code
+		from cart_ck
+		where cart_no = #{cartNo}
+	</select>
+	
 	<insert id="addCart" parameterType="co.nambang.cart.vo.CartVO">
 		insert into cart_ck(
 				cart_no,
@@ -14,9 +28,47 @@
 	</insert>
 	
 	<select id="selectCart" parameterType="co.nambang.cart.vo.CartVO">
-		select * 
+		select count(*)
 		from cart_ck
 		where user_id = #{userId}
 		and product_code = #{productCode}
+	</select>
+	
+	<update id="updateCart" parameterType="co.nambang.cart.vo.CartVO">
+		update cart_ck
+		set cart_volume = #{cartVolume}
+		where user_id = #{userId}
+		and product_code = #{productCode}
+	</update>
+	
+	<select id="cartList" resultType="map">
+		select *
+		from cart_ck c
+		join products_ck p on c.product_code = p.product_code
+		where user_id = #{userId}
+	</select>
+	
+	<delete id="deleteCart" parameterType="int">
+		delete from cart_ck
+		where cart_no = #{cartNo}
+	</delete>
+	
+	<delete id="delCarts">
+		delete 
+		from cart_ck
+		where cart_no in
+		<foreach collection="array" item="cartNo" open="(" close=")" separator=", " >
+		#{cartNo}
+		</foreach>
+	</delete>
+	
+	<select id="orderCarts">
+		select *
+		from cart_ck c
+		join products_ck p on c.product_code = p.product_code
+		where cart_no in
+		<foreach collection="array" item="cartNo" open="(" close=")" separator=", ">
+		#{cartNo}
+		</foreach>
 	</select>
 </mapper>

@@ -19,5 +19,18 @@
 		and order_no = #{orderNo}
 </select>
 
+<insert id="addOdProducts" parameterType="co.nambang.odproduct.vo.OdProductVO">
+INSERT INTO order_product(op_no, order_no, product_code, user_id, op_volume, op_price)
+SELECT op_seq.nextval, op.* FROM(
+	<foreach collection="array" item="item" separator="UNION ALL">
+	SELECT  #{item.orderNo} as "order_no",
+            #{item.productCode} as "product_code", 
+            #{item.userId} as "user_id", 
+            #{item.opVolume} as "op_volume", 
+            #{item.opPrice} as "op_price" 
+            FROM DUAL
+	</foreach>
+	) op
+</insert>
 
 </mapper>

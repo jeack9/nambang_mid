@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class PageDTO {
 	private int startPage, endPage; // 현재 페이지 기준 10개페이징 스타트, 엔드
-	private boolean prev, next;
-	private int currPage; // 현재페이지
+	private boolean prev, next; // 이전 페이지 10개 , 이후 페이지 10개
+	private int page; // 현재페이지
 	
 	public PageDTO(int currpage, int totalCtn) {
-		this.currPage = currpage; // 현재페이지
+		this.page = currpage; // 현재페이지
 		this.endPage = (int) (Math.ceil(currpage / 5.0) * 5); // 10개의 페이지 버튼 제공
 		this.startPage = this.endPage - 4;
 		
