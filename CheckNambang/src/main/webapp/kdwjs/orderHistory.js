@@ -8,9 +8,7 @@ let orderNo = param.get('orderNo');
  fetch('woonControl10.do?orderNo='+ orderNo)
  	.then(result => result.json())
  	.then(result =>{
-		console.log(param);
-		console.log(orderNo);
-		console.log(result);
+
 		let orderNo = document.querySelector('#num');
 		orderNo.innerHTML = result[0].orderNo;
 		let productCode = document.querySelector('#productCode');
