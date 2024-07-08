@@ -16,4 +16,7 @@ public interface QnaService {
 	
 	boolean registerQna(QnaVO qvo);
 	
+	QnaVO getQna(int no);
+	
+	boolean removeQna(int no);
 }

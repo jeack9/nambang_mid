@@ -3,6 +3,7 @@ package co.nambang.qna.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
