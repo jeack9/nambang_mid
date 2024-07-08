@@ -8,5 +8,5 @@ import co.nambang.order.vo.OrderVO;
 public interface OrderService {
 	public boolean addOrder(OrderVO ovo);
 	
-	public List<Map<String, Object>> orderHistroyList(String userId);
+	public List<Map<Object, Object>> orderHistroyList(String userId);
 }

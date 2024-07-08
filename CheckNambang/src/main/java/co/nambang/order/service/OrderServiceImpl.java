@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Map<String, Object>> orderHistroyList(String userId) {
+	public List<Map<Object, Object>> orderHistroyList(String userId) {
 		return mapper.orderHistroyList(userId);
 	}
 	
