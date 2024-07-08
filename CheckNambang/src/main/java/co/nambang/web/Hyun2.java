@@ -27,17 +27,19 @@ public class Hyun2 implements Control {
 		// TODO Auto-generated method stub
 		String page = req.getParameter("page");
 		String kw = req.getParameter("kw");
-		String sc = req.getParameter("sc");
+		String cate = req.getParameter("cate");
 		 
 		
 		page = page == null ? "1" : page; // 페이지값이 null 이면 1페이지를 보여줌
-		kw = kw == null ? "" : kw ; // 키워드가 null인 경우 빈 공간  
+		kw = kw == null ? "" : kw ; // 키워드가 null인 경우 빈 공간 
+		cate = cate == null ? "" : cate ;
 		SearchVO svo = new SearchVO();
 		
 		//svo 변수담기
 		svo.setKeyword(kw);
-		svo.setSearchCondition(sc);
+		svo.setCategory(cate);
 		svo.setPage(Integer.parseInt(page));
+		
 		//목록
 		ProductService svc = new ProductServiceImpl();
 		List<ProductVO> list = svc.productList(svo);
