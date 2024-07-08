@@ -31,5 +31,13 @@ public class QnaServiceImpl implements QnaService{
 	public boolean registerQna(QnaVO qvo) {
 		return mapper.registerQna(qvo) == 1;
 	}
+	@Override
+	public QnaVO getQna(int no) {
+		return mapper.getQna(no);
+	}
+	@Override
+	public boolean removeQna(int no) {
+		return mapper.removeQna(no) == 1;
+	}
 	
 }

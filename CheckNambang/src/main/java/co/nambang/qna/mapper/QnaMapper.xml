@@ -42,4 +42,15 @@
 		from ask_type_ck
 		where type1 = #{type1}
 	</select>
+	
+	<select id="getQna">
+	select *
+	from qna_ck
+	where qna_no = #{no}
+	</select>
+	
+	<delete id="removeQna">
+		delete from qna_ck
+		where qna_no = #{qnaNo}
+	</delete>
 </mapper>

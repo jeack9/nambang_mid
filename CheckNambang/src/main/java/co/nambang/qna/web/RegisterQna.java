@@ -22,7 +22,7 @@ public class RegisterQna implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 파일첨부일 경우에는 multipart 요청을 처리.
 		// Multipart 요청(1.요청정보, 2.저장위치, 3.최대크기, 4.인코딩방식, 5.리네임정책)
-		String savePath = req.getServletContext().getRealPath("image");
+		String savePath = req.getServletContext().getRealPath("qnaImage");
 		int maxSize = 1024 * 1024 * 5; // 5mb
 		String encoding = "utf-8";
 		System.out.println(savePath + "세이브패스");
@@ -33,8 +33,9 @@ public class RegisterQna implements Control {
 		String type2 = mr.getParameter("type2");
 		String title = mr.getParameter("title");
 		String content = mr.getParameter("content");
-		String image = mr.getParameter("image");
-		System.out.println(orderNo);
+		String image = mr.getFilesystemName("image");
+		System.out.println(image);
+		System.out.println("이미징미지이미지");
 		orderNo = orderNo.equals("") ? "-1" : orderNo;
 		HttpSession session = req.getSession();
 		MemberVO login = (MemberVO)session.getAttribute("login");

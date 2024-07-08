@@ -9,4 +9,6 @@ import co.nambang.zzim.vo.ZzimVO;
 public interface ZzimMapper {
 	 List<ZzimVO> pickItems(String userId);
 	 int pickDelete(String productCode);
+	 
+	 int zzimCnt(String userId);
 }

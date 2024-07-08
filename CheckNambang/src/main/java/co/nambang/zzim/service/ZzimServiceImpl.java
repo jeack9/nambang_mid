@@ -24,5 +24,10 @@ public class ZzimServiceImpl implements ZzimService{
 		// TODO Auto-generated method stub
 		return mapper.pickDelete(productCode) == 1;
 	}
+
+	@Override
+	public int zzimCnt(String userId) {
+		return mapper.zzimCnt(userId);
+	}
 	
 }
