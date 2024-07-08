@@ -22,7 +22,7 @@
 </style>
 <!-- 새로 적용 -->
 
-	<form action="woonControl3.do" method="get">
+	<form action="editMemberJson.do" method="get">
 	  <section class="product spad">
         <div class="container">
             <div class="row">

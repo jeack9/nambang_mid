@@ -109,7 +109,7 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new Logout()); // 로그아웃
 		map.put("/myPageForm.do", new MyPageForm()); // 마이페이지 첫 페이지 이동 woon()
 		map.put("/myPageJson.do", new MyPageJson()); // 마이페이지 페이지 정보조회 json woon2()
-		map.put("/editMemberJson", new EditMemberJson()); // 회원 정보 변경 json woon3()
+		map.put("/editMemberJson.do", new EditMemberJson()); // 회원 정보 변경 json woon3()
 		map.put("/myOrderList.do", new MyOrderList()); // 마이페이지 주문내역 페이지 이동 woon4()
 		map.put("/myZzim.do", new MyZzim()); // 찜 페이지 이동
 		map.put("/myAddress.do", new MyAddress()); // 배송지 관리 페이지 이동
