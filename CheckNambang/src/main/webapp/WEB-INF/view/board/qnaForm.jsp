@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+div.order-box{
+	display: flex;
+}
+.f-item1{
+	flex-grow : 1;
+}
+.f-item2{
+	padding-left : 10px;
+	flex-grow : 5;
+}
+.f-item3{
+	flex-grow : 3;
+	list-style : none;
+}
+
+</style>
  <!-- 주문상품 선택 모달창 -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -9,7 +28,31 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					내용
+				<form method="get" action="">
+					<div>
+						<input type="radio" id="order">
+						<label for="order"> 2024.06.26 <span style="color: #6f6f6f;">주문번호: dfdfdf</span></label>
+						<span>
+						<svg width="30" height="30" viewBox="0 5 30 30"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink">
+									<defs>
+									<path id="7a02qqg3ja" d="M11 12h9v9"></path></defs>
+									<g fill="none" fill-rule="evenodd">
+									<path d="M0 0h30v30H0z"></path>
+									<use stroke="#333" stroke-width="2" stroke-linecap="square"
+										transform="rotate(135 15.5 16.5)" href="#7a02qqg3ja"></use></g></svg>
+						</span>
+						<div class="order-box">
+							<img alt="" src="img/basic.jpg" width="50" class="f-item1">
+							<p class="f-item2">브랜드]상품이름</p>
+							<ul class="f-item3">
+							<li>개수</li>
+							<li>가격</li>
+							</ul>
+						</div>
+					</div>
+				</form>
 				</div>
 				<div class="modal-footer">					
 					<button type="button" class="btn btn-primary">선택</button>

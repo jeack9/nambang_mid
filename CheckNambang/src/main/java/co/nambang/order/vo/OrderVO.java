@@ -12,4 +12,5 @@ public class OrderVO {
 	private int orderPrice;
 	private String orderYocheong;
 	private Date orderDate;
+	private String userId;
 }

@@ -36,6 +36,7 @@
 										<!-- List<map>  -->
 										<tr>
 											<td class="shoping__cart__item">
+												<input type="text" value="${cart.get('CART_NO') }" name="cartNo" hidden="hidden">
 												<input type="text" value="${cart.get('PRODUCT_CODE') }" name="code" hidden="hidden">
 												<img src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
 												<h5>[${cart.get('COMPANY') }] ${cart.get('PRODUCT_NAME') }</h5>
@@ -50,10 +51,12 @@
 														<c:when test="${!empty cart.get('OFF_PRICE') }">
 															<li>${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</li>
 															<li>${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
+															<input type="text" value="${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}" name="proPrice" hidden="hidden">
 														</c:when>
 														<c:otherwise>
 															<li>${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
 															<li style="display: none;">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
+															<input type="text" value="${cart.get('CART_VOLUME') * cart.get('PRICE')}" name="proPrice" hidden="hidden">
 														</c:otherwise>
 													</c:choose>
 												</ul>
@@ -103,7 +106,7 @@
 							<input type="text" name="orderPrice" value="" hidden="hidden">
 							</div>
 							<div class="checkout__input__checkbox">
-								<label for="payment"> 결제 확인 <input type="checkbox" id="isPayment" checked> <span class="checkmark"></span>
+								<label for="isPayment"> 결제 확인 <input type="checkbox" id="isPayment" checked> <span class="checkmark"></span>
 								</label>
 							</div>
 							<c:if test="${!empty login }">
