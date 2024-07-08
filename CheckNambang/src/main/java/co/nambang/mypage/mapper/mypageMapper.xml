@@ -26,7 +26,7 @@
 		select *
 		from order_ck
 		where user_id = #{userId}
-		order by order_no
+		order by order_no desc
   	</select>
   	
    	<select id ="currentPw" parameterType="String" resultType="co.nambang.mypage.vo.mypageVO">		<!--비밀번호 확인 중복  -->
