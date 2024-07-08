@@ -21,10 +21,13 @@
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
-
+<form action="sooControl4.do">
 <div class="col-lg-9 col-md-7">
 <h3>공지사항</h3>
-<p>${myName}님 컬리의 새로운 소식들과 유용한 정보들을 한눈에 확인하세요.</p>
+
+<p>컬리의 새로운 소식들과 유용한 정보들을 한눈에 확인하세요.</p>
+<input type="submit" value="등록하기" class="btn btn-primary" >
+<br>
 <br>
   <table class="table table-hover" id="listTable">
       <thead>
@@ -47,6 +50,7 @@
       </tbody>   
   </table>
   
+  
   <p>${paging }</p>
   <div class="pagination">
   <c:if test="${paging.prev }">
@@ -54,7 +58,7 @@
   </c:if>
   <c:forEach var="pg" begin="${paging.startPage }" end="${paging.endPage }">
     <c:choose>
-      <c:when test="${pg == paging.currPage }">
+      <c:when test="${pg == paging.page }">
         <a class="active" href="noticeList.do?page=${pg }">${pg }</a>    
       </c:when>
       <c:otherwise>
@@ -69,6 +73,7 @@
   
 </div>
 
-</div>
 
+</div>
+</form>
  <script src="boardJs/noticeList.js"></script>

@@ -27,7 +27,7 @@ SELECT b.*
 FROM(SELECT ROWNUM rn, a.*
      FROM (SELECT *
            FROM notice_ck
-           order by notice_no) a
+           order by notice_no desc) a
      <![CDATA[
      where ROWNUM <= (#{page} * 5) ) b
      ]]>
@@ -38,6 +38,11 @@ WHERE b.rn > (#{page} - 1) * 5
 SELECT COUNT(*)
 from notice_ck
 </select>
+
+<insert id="addNotice" parameterType = "co.nambang.notice.vo.NoticeVO">
+insert into notice_ck(notice_no, notice_title, notice_writer, notice_content)
+values(notice_seq.nextval, #{noticeTitle}, #{noticeWriter}, #{noticeContent})
+</insert>
 
 
 </mapper>

@@ -11,12 +11,12 @@ public interface NoticeMapper {
     NoticeVO selectNotice(int noticeNo);
     // 목록 json
     List<NoticeVO> selectList2(int noticeNo);
-    //추가
-    boolean addNotice(NoticeVO bvo);
-    //삭제
-    boolean removeNotice(NoticeVO bvo);
     //공지사항 페이징
     List<NoticeVO> pagingNotice(int page);
     //페이지 갯수
     int pagingNo();
+    //추가
+    int addNotice(NoticeVO bvo);
+    //삭제
+    int removeNotice(NoticeVO bvo);
 }

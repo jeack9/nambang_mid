@@ -1,0 +1,3 @@
+/**
+ * boardJs/notice.js
+ */
