@@ -119,4 +119,9 @@
 	</form>
 </section>
 <!-- Shoping Cart Section End -->
+<script>
+if('${msg}' != ""){
+	alert('${msg}');
+}
+</script>
 <script src="js/volume.js" defer></script>
