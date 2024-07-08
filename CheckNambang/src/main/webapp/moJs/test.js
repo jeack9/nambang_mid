@@ -166,8 +166,11 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				if (!imageName.includes('.')) {
 					imageName += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 				}
-				let imagePath = 'image/' + imageName;
+				
+				let encodedImageName = encodeURIComponent(imageName);
+    			let imagePath = 'image/' + encodedImageName;
     			img.src = imagePath;
+    			
 				img.onerror = function() {
 			        console.error('이미지를 불러오지 못했습니다: ' + imagePath);
 			      
@@ -257,9 +260,16 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				if (!infoImg.includes('.')) {
 					infoImg += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 				}
-				img.src = 'image/' + infoImg;
+				let encodedImageName2 = encodeURIComponent(infoImg);
+    			let imagePath2 = 'image/' + encodedImageName2;
+				
+				img.src = imagePath2;
 				info.appendChild(img);
-
+				img.onerror = function() {
+			        console.error('이미지를 불러오지 못했습니다: ' + imagePath2);
+			      
+			    };
+				
 				makeHugi(page);
 			}))
 			.catch(err => console.log(err));
