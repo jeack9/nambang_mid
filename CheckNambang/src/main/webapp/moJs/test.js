@@ -16,6 +16,7 @@ let offList = document.querySelector('#offList');
 let zzimCode;
 
 let page = 1;
+
 // 후기 행 만들기
 function makeHugi(page) {
 	let hugiList = document.querySelector('#hugiList');
@@ -23,8 +24,6 @@ function makeHugi(page) {
 	fetch('mocontrol5.do?proCode=' + proCode + '&page=' + page)
 		.then(result => result.json())
 		.then(result => result.forEach((hugi, idx) => {
-
-
 
 			field1 = [hugi.userName];
 			field2 = [hugi.company + hugi.productName, hugi.hugiContent, hugi.hugiImage, hugi.hugiDate]
@@ -40,39 +39,55 @@ function makeHugi(page) {
 					tr.appendChild(td);
 				}
 
-
 				hugiList.appendChild(tr);
 			}
 
 		}))
 
 }
+function updatePaging(currentPage) {
+	let paging = document.querySelectorAll('.hugipaging a');
+	paging.forEach(a => {
+		a.classList.remove('active');
+		if (parseInt(a.getAttribute('data-page')) === currentPage) {
+			page = currentPage;
+			console.log(page,'ppppppp');
+			a.classList.add('active');
+		}
+	});
+	a();
+}
 
 //후기 페이징
 let hugiPaging = document.querySelector('.hugipaging');
+function a(){
+	
 fetch('mocontrol8.do?proCode=' + proCode)
 	.then(result => result.json())
 	.then(result => {
+			
 		let totalCnt = result; //댓글 건수
 		console.log(totalCnt);
 		let startPage, endPage;
 		let prev, next;
 		let realEnd = Math.ceil(totalCnt / 5);
-			console.log(realEnd);
-
-		endPage = Math.ceil(page / 10) * 10; // 1페이지일 경우 현재 10페이지까지 보여주겠다 ceil이 올림이라서
+		
+		endPage = Math.ceil(page / 10) * 10;
 		startPage = endPage - 9;
 		endPage = endPage > realEnd ? realEnd : endPage;
 
 		prev = startPage > 1;
 		next = endPage < realEnd;
+		
+		console.log(page);
 
 		hugiPaging.innerHTML = '';
 
 		if (prev) {
-			let a = document.createElement('a'); //<a data-page = startpage-1 href = '#'>
+			let a = document.createElement('a');
+			a.setAttribute('class','aTag')
 			a.setAttribute('data-page', startPage - 1);
-			a.setAttribute('href', '#tabs-3');
+			a.setAttribute('href', '#');
 			a.innerHTML = "&laquo";
 			a.addEventListener('click', function(e) {
 				e.preventDefault();
@@ -83,50 +98,54 @@ fetch('mocontrol8.do?proCode=' + proCode)
 			hugiPaging.appendChild(a);
 
 		}
+				
+			for (let p = startPage; p <= endPage; p++) {
+				let a = document.createElement('a');
+				a.setAttribute('data-page', p);
+				a.setAttribute('href', '#');
+				a.innerHTML = p;
+				
+				if (page == p) {
+					a.className = 'active';
+				}
+				a.addEventListener('click', function(e) {
+					e.preventDefault();
+					page = parseInt(a.getAttribute('data-page'));
+					updatePaging(page);
+					makeHugi(page);
+				});
+				hugiPaging.appendChild(a);
+			}	
+			
+			
 
-		for (let p = startPage; p <= endPage; p++) {
-			let a = document.createElement('a');
-			a.setAttribute('data-page', p);
-			a.setAttribute('href', '#tabs-3');
-			a.innerHTML = p;
-			if (page == p) {
-				a.className = 'active';
-			}
-			a.addEventListener('click', function(e) {
-				e.preventDefault();
-				page = parseInt(a.getAttribute('data-page'));
-				updatePaging(page);
-				makeHugi(page);
-			});
-			hugiPaging.appendChild(a);
-		}
 		if (next) {
 			let a = document.createElement('a');
 			a.setAttribute('data-page', endPage + 1);
-			a.setAttribute('href', '#tabs-3');
+			a.setAttribute('href', '#');
 			a.innerHTML = "&raquo";
 			a.addEventListener('click', function(e) {
 				e.preventDefault();
 				page = parseInt(a.getAttribute('data-page'));
 				updatePaging(page);
 				makeHugi(page);
+				//hugiPaging.innerHTML = '';
+				//nextHugi();
+				console.log(page,'page1');
+				console.log(endPage,'end1');
+			
 			});
+			console.log(page,'page2');
 			hugiPaging.appendChild(a);
 
 		}
-
-
 	})
-
-function updatePaging(currentPage) {
-	let paging = document.querySelectorAll('.hugipaging a');
-	paging.forEach(link => {
-		link.classList.remove('active');
-		if (parseInt(link.getAttribute('data-page')) === currentPage) {
-			link.classList.add('active');
-		}
-	});
 }
+a();
+	
+		
+
+
 // zzimCode 의 값에 따라 처리.
 fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 	.then(result => result.json())
