@@ -26,7 +26,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<NoticeVO> noticeList2(int noticeNo) {
-		// TODO json
 		return mapper.selectList2(noticeNo);
 	}
 
@@ -40,5 +39,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public int pagingNo() {
 		return mapper.pagingNo();
 	}
+
+	@Override
+	public boolean addNotice(NoticeVO bvo) {
+		// TODO Auto-generated method stub
+		return mapper.addNotice(bvo) == 1;
+	}
+
 
 }

@@ -186,8 +186,8 @@ public class FrontController extends HttpServlet {
 		// 김지수의 테스트 컨트롤러
 		map.put("/sooControl.do", new Soo()); // 공지사항 상세페이지 이동
 		map.put("/sooControl2.do", new Soo2());//공지사항 상세페이지 정보 노출
-		map.put("/sooControl3.do", new Soo3());
-		map.put("/sooControl4.do", new Soo4());
+		map.put("/sooControl3.do", new Soo3());//공지사항 게시글 등록
+		map.put("/sooControl4.do", new Soo4()); //등록 페이지 이동
 		map.put("/sooControl5.do", new Soo5());
 		map.put("/sooControl6.do", new Soo6());
 		map.put("/sooControl7.do", new Soo7());

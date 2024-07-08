@@ -13,4 +13,6 @@ public interface NoticeService {
 	List<NoticeVO> pagingNotice(int page);
 	//페이지 갯수
 	int pagingNo();
+	//게시글 등록
+	boolean addNotice(NoticeVO bvo);
 }
