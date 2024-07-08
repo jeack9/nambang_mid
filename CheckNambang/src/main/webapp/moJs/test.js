@@ -97,7 +97,6 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				let endPrice = document.querySelector('#endPrice');
 				document.querySelector('.pro-qty').addEventListener('click', function() {
 					totalCnt = document.querySelector('#totalCnt').value;
-					console.log(totalCnt);
 					if (pro.offPrice == 0) {
 						endPrice.innerHTML = '총 상품금액 : ' + (totalCnt * pro.price) + '원';
 					} else if (pro.offPrice != 0) {
