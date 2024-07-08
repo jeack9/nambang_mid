@@ -99,6 +99,8 @@
 	</div>
 </section>
 <script>
+	//const orderNo = "${orderNo}";
+	
 	const userId = "${login.userId}";
 </script>
 <script src="kdwjs/orderHistory.js"></script>

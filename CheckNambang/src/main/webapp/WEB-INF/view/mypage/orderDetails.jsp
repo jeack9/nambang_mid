@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <style>
 #mypage_container {
 	/* display: flex;
@@ -34,17 +35,19 @@
 					<div></div>
 					<div id="orderlists">
 						<table class="table">
-							<thead>
+							<thead style="display: none;">
 								<tr>
-									<td id="paymentTime">결제 시간</td>
-									<td><a
-										href="http://localhost/CheckNambang/woonControl9.do">주문 상세</a></td>
+									<td id="paymentTime">결제 시간 >  2024년 07월 08일</td>
+									<td ><a href="woonControl9.do?orderNo=" class="detaileView">주문 상세</a></td>
 								</tr>
 								<tr>
-									<td>상품명</td>
-									<td>주문 번호</td>
-									<td>결제 금액</td>
-									<td>주문 상태</td>
+									<td id = "orderNo">주문 번호>  1</td>
+								</tr>
+								<tr>
+									<td  id = "orderPrice">결제 금액>  7800원</td>
+								</tr>
+								<tr>
+									<td id = "orderStatus">주문 상태>  주문 완료</td>
 								</tr>
 							</thead>
 							<tbody id="target">

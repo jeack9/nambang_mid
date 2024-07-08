@@ -8,14 +8,48 @@ const target = document.querySelector('#target');
 fetch('woonControl5.do?userId'+userId)
  	.then(result => result.json())
  	.then(result => {
+		console.log(result);
 			result.forEach(center =>{
-			target.appendChild(makeRow(center));	
+				console.log(center);
+			//target.appendChild(makeRow(center));	
+			cloneRow(center);
+			
 		})
 })
-		
+function productDetail(e){
+	let on = e.target.orderNo;
+	console.log(on);
+	location.href ='woonControl10.do?orderNo='+on
+	
+}
+
+function cloneRow(cart={}){
+	let orderList = document.querySelector('thead').cloneNode(true);
+	orderList.querySelector('#paymentTime').innerHTML = "결제시간>" + cart.orderDate;
+	orderList.querySelector('#orderNo').innerHTML = "주문번호> " + cart.orderNo;
+	orderList.querySelector('#orderPrice').innerHTML = "결제금액> " + cart.orderPrice;
+	orderList.querySelector('#orderStatus').innerHTML = "주문상태> 주문완료" ;
+	orderList.querySelector('.detaileView').setAttribute("href", "woonControl9.do?orderNo=" + cart.orderNo);
+	//orderList.setAttribute('src', )
+	orderList.style.display = "";
+	document.querySelector('#target').appendChild(orderList);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 	
-let fields = ['productName', 'orderNo','orderPrice','paymentStatus']	
+/*let fields = ['orderNo','orderPrice','paymentStatus']	
 function makeRow(center){
 	console.log(center);
 	let paymentTime = document.querySelector('#paymentTime');
@@ -34,7 +68,7 @@ function makeRow(center){
 		tr.appendChild(td);
 	})
 	return tr;
-}	
+}	*/
 	
 	
 	

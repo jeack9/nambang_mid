@@ -3,9 +3,13 @@
  */
 
 
- fetch('woonControl10.do?orderNo=1')
+let param = new URLSearchParams(window.location.search);
+let orderNo = param.get('orderNo');
+ fetch('woonControl10.do?orderNo='+ orderNo)
  	.then(result => result.json())
  	.then(result =>{
+		console.log(param);
+		console.log(orderNo);
 		console.log(result);
 		let orderNo = document.querySelector('#num');
 		orderNo.innerHTML = result[0].orderNo;
@@ -25,7 +29,7 @@ function cloneRow(cart ={}){
 	console.log(cart);
 	
 	let historyclone = document.querySelector('tbody>tr:nth-of-type(1)').cloneNode(true);
-	historyclone.querySelector('.shoping__cart__item>img').setAttribute('src', `image/${cart.productImage}`)
+	historyclone.querySelector('.shoping__cart__item>img').setAttribute('src', `img/${cart.productImage}`)
 	historyclone.querySelector('.shoping__cart__item_name>h5').innerHTML = cart.productName;
 	historyclone.querySelector('.shoping__cart__price').innerHTML = cart.opPrice + "원";
 	historyclone.querySelector('.shoping__cart__quantity').innerHTML = cart.opVolume;

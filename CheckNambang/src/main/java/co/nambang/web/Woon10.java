@@ -21,10 +21,9 @@ public class Woon10 implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int orderNo = Integer.parseInt(req.getParameter("orderNo"));
-				
+		int orderNo =Integer.parseInt(req.getParameter("orderNo"));
+		System.out.println(orderNo);		
 		OdProductService svc = new OdProductServiceImpl();
-		
 		List<OdProductVO> list = svc.orderHistoryList(orderNo);
 		
 		System.out.println(list);
