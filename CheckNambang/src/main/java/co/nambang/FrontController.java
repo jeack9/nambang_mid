@@ -8,14 +8,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.nambang.addr.web.MyAddress;
+import co.nambang.cart.service.CartService;
+import co.nambang.cart.service.CartServiceImpl;
 import co.nambang.cart.web.AddCartAjax;
 import co.nambang.cart.web.CartList;
 import co.nambang.cart.web.DelCartsAjax;
 import co.nambang.cart.web.EditCartAjax;
 import co.nambang.cart.web.RemoveCartAjax;
 import co.nambang.common.Control;
+import co.nambang.member.vo.MemberVO;
 import co.nambang.member.web.CheckId;
 import co.nambang.member.web.EditMemberJson;
 import co.nambang.member.web.JoinForm;
@@ -41,6 +45,7 @@ import co.nambang.qna.web.RegisterQna;
 import co.nambang.qna.web.RemoveQna;
 import co.nambang.qna.web.Type2;
 import co.nambang.qna.web.ViewQna;
+import co.nambang.qna.web.qnaListAdmin;
 import co.nambang.web.Hyun;
 import co.nambang.web.Hyun10;
 import co.nambang.web.Hyun2;
@@ -89,6 +94,8 @@ import co.nambang.web.Woon6;
 import co.nambang.web.Woon7;
 import co.nambang.web.Woon8;
 import co.nambang.web.Woon9;
+import co.nambang.zzim.service.ZzimService;
+import co.nambang.zzim.service.ZzimServiceImpl;
 
 public class FrontController extends HttpServlet {
 	private Map<String, Control> map;
@@ -129,6 +136,7 @@ public class FrontController extends HttpServlet {
 		map.put("/registerQna.do", new RegisterQna()); // 글 등록 (+사진)
 		map.put("/viewQna.do", new ViewQna()); // qna 글 보기
 		map.put("/removeQna.do", new RemoveQna()); // qna 글 삭제 qna는 해당 유저글만 뜸 -> 삭제버튼 처리 x
+		map.put("/qnaListAdmin.do", new qnaListAdmin()); // 관리자 qna 보기
 		
 		// 상품
 		map.put("/productList.do", new ProductList()); // 상품목록 페이지 이동 -- Hyun()

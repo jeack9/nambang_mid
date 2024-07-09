@@ -106,6 +106,7 @@ document.querySelector(".shoping__cart__btns > a:nth-of-type(1)").addEventListen
 });
 
 
+
 // 선택삭제
 async function checkRemoveJSON(data) {
   try {
@@ -114,7 +115,7 @@ async function checkRemoveJSON(data) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: 'id=12,13,14,15'//JSON.stringify(data),
     });
     
     const result = await response.json();

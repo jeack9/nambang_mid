@@ -131,7 +131,12 @@
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li><a href="noticeList.do">공지사항</a></li>
+                                    <c:if test="${login.userId ne 'tiger' }">
                                     <li><a href="qnaList.do">1:1 문의</a></li>
+                                    </c:if>
+                                    <c:if test="${login.userId eq 'tiger' }">
+                                    <li><a href="ss">1:1 문의</a></li>
+                                    </c:if>
                                 </ul>
                             </div>
 				        	<c:choose>
