@@ -134,11 +134,7 @@ a {
 			<div class="col-lg-6 col-md-6">
 				<div class="product__details__text">
 					<h3 id="titleList"></h3>
-					<div class="product__details__rating">
-						<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-							class="fa fa-star-half-o"></i> <span>(18 reviews)</span>
-					</div>
+					
 					<div class="product__details__price" style="margin-bottom: 0;"></div>
 					<div class="product__details__price2" id="offPriceList"></div>
 

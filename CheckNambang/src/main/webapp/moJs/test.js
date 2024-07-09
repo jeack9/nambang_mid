@@ -37,6 +37,7 @@ function makeHugi(page) {
             let imagePath = 'image/' + encodedImageName;
             img1.src = imagePath;
             img1.setAttribute('id', 'hugiImg');
+            
             tr.appendChild(img1);
             
             // 필드 2 추가
@@ -278,7 +279,7 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 	})
 
 
-	/
+	
 	//페이징 시 원댓글 삭제
 
 	//찜 추가,삭제
