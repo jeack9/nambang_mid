@@ -43,6 +43,9 @@ function cloneRow(qna = {}){
   cloneTr.querySelector("td:nth-of-type(3)").innerHTML = qna.qnaDate;
   cloneTr.querySelector("td:nth-of-type(4)").innerHTML = qna.qnaState == 0 ? "대기 중" : "답변완료";
   cloneTr.style.display = "";
+  cloneTr.addEventListener("click", (e) =>{
+	location.href = `viewQna.do?no=${qna.qnaNo}`;
+  });
   document.querySelector("tbody").appendChild(cloneTr);
 }
 

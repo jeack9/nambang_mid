@@ -41,7 +41,7 @@
 							<tr id="C${cart.get('CART_NO') }">
 								<td><input type="checkbox" id="cart${cart.get('CART_NO') }" name="cartNo" value="${cart.get('CART_NO') }" onclick="check(this)" checked></td>
 								<td class="shoping__cart__item"><img
-									src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
+									src="image/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
 									<h5>[${cart.get('COMPANY') }] ${cart.get('PRODUCT_NAME') }</h5></td>
 								<td class="shoping__cart__quantity">
 									<div class="quantity">
@@ -53,7 +53,7 @@
 								<td class="shoping__cart__total">
 								<ul>
 								<c:choose>
-								  <c:when test="${!empty cart.get('OFF_PRICE') }">
+								  <c:when test="${cart.get('OFF_PRICE') ne 0}">
 								  <li class="off" id="off${cart.get('CART_NO')}" data-no="${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</li>
 								  <li class="cost" id="cost${cart.get('CART_NO')}" data-no="${cart.get('CART_NO')}">${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
 								  </c:when>

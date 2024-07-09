@@ -24,6 +24,11 @@
 			delete from zzim_ck
 			where product_code = #{productCode}
 		</delete>
-
+		
+		<select id="zzimCnt">
+		select count(*)
+		from zzim_ck
+		where user_id = #{userId}
+		</select>
 
 </mapper>

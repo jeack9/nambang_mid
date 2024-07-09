@@ -27,5 +27,17 @@ public class QnaServiceImpl implements QnaService{
 	public List<String> type2List(String type1) {
 		return mapper.type2List(type1);
 	}
+	@Override
+	public boolean registerQna(QnaVO qvo) {
+		return mapper.registerQna(qvo) == 1;
+	}
+	@Override
+	public QnaVO getQna(int no) {
+		return mapper.getQna(no);
+	}
+	@Override
+	public boolean removeQna(int no) {
+		return mapper.removeQna(no) == 1;
+	}
 	
 }

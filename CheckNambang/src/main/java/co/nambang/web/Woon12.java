@@ -28,11 +28,11 @@ public class Woon12 implements Control {
 		MemberVO login = (MemberVO)session.getAttribute("login");
 		String userId = login == null ? "" : login.getUserId();
 		
-		System.out.println(addr1);
-		System.out.println(addr2);
-		System.out.println(getter);
-		System.out.println(getterPhone);
-		System.out.println(userId);
+		//System.out.println(addr1);
+		//System.out.println(addr2);
+		//System.out.println(getter);
+		//System.out.println(getterPhone);
+		//System.out.println(userId);
 		
 		
 		AddrVO avo = new AddrVO();

@@ -63,8 +63,6 @@ public class ProductListJson implements Control {
 		
 		resp.getWriter().print(json); // 출력
 		
-		
-		//페이지 계산
 	}
 
 }

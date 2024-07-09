@@ -100,7 +100,7 @@
 						<input type="text" id="getter" name="getter"
 							placeholder="이름을 입력 해 주세요"> <input type="text"
 							id="getterPhone" name="getterPhone" placeholder="전화 번호를 입력 해 주세요">
-						<button type="submit" class="site-btn">주소 추가</button>
+						<button type="submit" class="site-btn" name = "mode" value = "1">주소 추가</button>
 					</div>
 				</div>
 			</form>

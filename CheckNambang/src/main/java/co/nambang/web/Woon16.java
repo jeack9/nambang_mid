@@ -49,10 +49,10 @@ public class Woon16 implements Control {
 		
 		if(svc.hugiAdd(hvo)) {
 			System.out.println("yes");
-			resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
+			resp.sendRedirect("myOrderList.do");
 		}else {
 			System.out.println("no");
-			resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}");			
+			resp.sendRedirect("myOrderList.do");
 		}
 		
 	}

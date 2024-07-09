@@ -23,4 +23,6 @@ public interface CartMapper {
 	public int delCarts(int[] cartNoArr);
 	
 	public List<Map<String, Object>> orderCarts(int[] arr); // 주문할 카트리스트 조회
+	
+	public int cartCnt(String userId); // 유저의 카트 수 조회
 }

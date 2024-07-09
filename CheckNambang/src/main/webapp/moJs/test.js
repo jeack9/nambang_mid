@@ -19,130 +19,132 @@ let page = 1;
 
 // 후기 행 만들기
 function makeHugi(page) {
-	let hugiList = document.querySelector('#hugiList');
-	hugiList.innerHTML = '';
-	fetch('mocontrol5.do?proCode=' + proCode + '&page=' + page)
-		.then(result => result.json())
-		.then(result => result.forEach((hugi, idx) => {
+    let hugiList = document.querySelector('#hugiList');
+    hugiList.innerHTML = '';
+    fetch('mocontrol5.do?proCode=' + proCode + '&page=' + page)
+        .then(result => result.json())
+        .then(result => result.forEach((hugi) => {
+            let tr = document.createElement('tr');
+            
+            // 필드 1 추가
+            let th = document.createElement('th');
+            th.innerHTML = hugi.userName;
+            tr.appendChild(th);
 
-			field1 = [hugi.userName];
-			field2 = [hugi.company + hugi.productName, hugi.hugiContent, hugi.hugiImage, hugi.hugiDate]
-			for (let i = 0; i < field1.length; i++) {
-				let tr = document.createElement('tr');
-				let th = document.createElement('th');
-				th.innerHTML = field1[i];
-				tr.appendChild(th);
+            let img1 = document.createElement('img');
+            let imageName = hugi.hugiImage;
+            let encodedImageName = encodeURIComponent(imageName);
+            let imagePath = 'image/' + encodedImageName;
+            img1.src = imagePath;
+            img1.setAttribute('id', 'hugiImg');
+            tr.appendChild(img1);
+            
+            // 필드 2 추가
+            let tdCompanyProduct = document.createElement('td');
+            tdCompanyProduct.innerHTML = hugi.company + hugi.productName;
+            tr.appendChild(tdCompanyProduct);
 
-				for (let j = 0; j < field2.length; j++) {
-					let td = document.createElement('td');
-					td.innerHTML = field2[j];
-					tr.appendChild(td);
-				}
+            let tdDate = document.createElement('td');
+            tdDate.innerHTML = hugi.hugiDate;
+            tr.appendChild(tdDate);
 
-				hugiList.appendChild(tr);
-			}
+            let tdContent = document.createElement('td');
+            tdContent.innerHTML = hugi.hugiContent;
+            tr.appendChild(tdContent);
 
-		}))
-
+            hugiList.appendChild(tr);
+        }));
 }
+
 function updatePaging(currentPage) {
-	let paging = document.querySelectorAll('.hugipaging a');
-	paging.forEach(a => {
-		a.classList.remove('active');
-		if (parseInt(a.getAttribute('data-page')) === currentPage) {
-			page = currentPage;
-			console.log(page,'ppppppp');
-			a.classList.add('active');
-		}
-	});
-	a();
+    let paging = document.querySelectorAll('.hugipaging a');
+    paging.forEach(a => {
+        a.classList.remove('active');
+        if (parseInt(a.getAttribute('data-page')) === currentPage) {
+            page = currentPage;
+            a.classList.add('active');
+            console.log(page,'ppp');
+        }
+    });
 }
 
-//후기 페이징
-let hugiPaging = document.querySelector('.hugipaging');
-function a(){
-	
-fetch('mocontrol8.do?proCode=' + proCode)
-	.then(result => result.json())
-	.then(result => {
-			
-		let totalCnt = result; //댓글 건수
-		console.log(totalCnt);
-		let startPage, endPage;
-		let prev, next;
-		let realEnd = Math.ceil(totalCnt / 5);
-		
-		endPage = Math.ceil(page / 10) * 10;
-		startPage = endPage - 9;
-		endPage = endPage > realEnd ? realEnd : endPage;
+function createPaging(totalCnt) {
+    let hugiPaging = document.querySelector('.hugipaging');
 
-		prev = startPage > 1;
-		next = endPage < realEnd;
-		
-		console.log(page);
+    let startPage, endPage;
+    let prev, next;
+    let realEnd = Math.ceil(totalCnt / 5);
 
-		hugiPaging.innerHTML = '';
+    endPage = Math.ceil(page / 10) * 10;
+    startPage = endPage - 9;
+    endPage = endPage > realEnd ? realEnd : endPage;
 
-		if (prev) {
-			let a = document.createElement('a');
-			a.setAttribute('class','aTag')
-			a.setAttribute('data-page', startPage - 1);
-			a.setAttribute('href', '#');
-			a.innerHTML = "&laquo";
-			a.addEventListener('click', function(e) {
-				e.preventDefault();
-				page = parseInt(a.getAttribute('data-page')); // 페이지 변경
-				updatePaging(page);
-				makeHugi(page); // 변경된 페이지의 후기 목록 생성
-			});
-			hugiPaging.appendChild(a);
+    prev = startPage > 1;
+    next = endPage < realEnd;
 
-		}
-				
-			for (let p = startPage; p <= endPage; p++) {
-				let a = document.createElement('a');
-				a.setAttribute('data-page', p);
-				a.setAttribute('href', '#');
-				a.innerHTML = p;
-				
-				if (page == p) {
-					a.className = 'active';
-				}
-				a.addEventListener('click', function(e) {
-					e.preventDefault();
-					page = parseInt(a.getAttribute('data-page'));
-					updatePaging(page);
-					makeHugi(page);
-				});
-				hugiPaging.appendChild(a);
-			}	
-			
-			
+    hugiPaging.innerHTML = '';
+    
+    if (prev) {
+        let a = document.createElement('a');
+        a.setAttribute('class', 'aTag');
+        a.setAttribute('data-page', startPage - 1);
+        a.setAttribute('href', '#');
+        a.innerHTML = "&laquo";
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            page = parseInt(a.getAttribute('data-page'));
+            updatePaging(page);
+            makeHugi(page);
+            createPaging(totalCnt); // 페이지 변경 시 페이징 갱신
+        });
+        hugiPaging.appendChild(a);
+    }
 
-		if (next) {
-			let a = document.createElement('a');
-			a.setAttribute('data-page', endPage + 1);
-			a.setAttribute('href', '#');
-			a.innerHTML = "&raquo";
-			a.addEventListener('click', function(e) {
-				e.preventDefault();
-				page = parseInt(a.getAttribute('data-page'));
-				updatePaging(page);
-				makeHugi(page);
-				//hugiPaging.innerHTML = '';
-				//nextHugi();
-				console.log(page,'page1');
-				console.log(endPage,'end1');
-			
-			});
-			console.log(page,'page2');
-			hugiPaging.appendChild(a);
+    for (let p = startPage; p <= endPage; p++) {
+        let a = document.createElement('a');
+        a.setAttribute('data-page', p);
+        a.setAttribute('href', '#');
+        a.innerHTML = p;
 
-		}
-	})
+        if (page == p) {
+            a.className = 'active';
+        }
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            page = parseInt(a.getAttribute('data-page'));
+            updatePaging(page);
+            makeHugi(page);
+            createPaging(totalCnt); // 페이지 변경 시 페이징 갱신
+        });
+        hugiPaging.appendChild(a);
+    }
+
+    if (next) {
+        let a = document.createElement('a');
+        a.setAttribute('data-page', endPage + 1);
+        a.setAttribute('href', '#');
+        a.innerHTML = "&raquo";
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            page = parseInt(a.getAttribute('data-page'));
+            updatePaging(page);
+            makeHugi(page);
+            createPaging(totalCnt); // 페이지 변경 시 페이징 갱신
+        });
+        hugiPaging.appendChild(a);
+    }
 }
-a();
-	
+
+function countPaging() {
+    fetch('mocontrol8.do?proCode=' + proCode)
+        .then(result => result.json())
+        .then(result => {
+            let totalCnt = result; // 댓글 건수
+            createPaging(totalCnt);
+        });
+}
+
+countPaging();	
 		
 
 
@@ -166,12 +168,18 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				if (!imageName.includes('.')) {
 					imageName += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 				}
-
-				img.src = 'moImg/' + imageName;
+				
+				let encodedImageName = encodeURIComponent(imageName);
+    			let imagePath = 'image/' + encodedImageName;
+    			img.src = imagePath;
+    			
+				img.onerror = function() {
+			        console.error('이미지를 불러오지 못했습니다: ' + imagePath);
+			      
+			    };
 
 				let title = document.querySelector('#titleList');
 				title.innerHTML = pro.company + pro.productName;
-
 
 				let price = document.querySelector('.product__details__price');
 				let price2 = document.querySelector('.product__details__price2');
@@ -254,9 +262,16 @@ fetch('mocontrol7.do?proCode=' + proCode + '&userId=' + login)
 				if (!infoImg.includes('.')) {
 					infoImg += '.jpg'; // 확장자를 추가, 필요 시 다른 확장자로 변경 가능
 				}
-				img.src = 'moImg/' + infoImg;
+				let encodedImageName2 = encodeURIComponent(infoImg);
+    			let imagePath2 = 'image/' + encodedImageName2;
+				
+				img.src = imagePath2;
 				info.appendChild(img);
-
+				img.onerror = function() {
+			        console.error('이미지를 불러오지 못했습니다: ' + imagePath2);
+			      
+			    };
+				
 				makeHugi(page);
 			}))
 			.catch(err => console.log(err));

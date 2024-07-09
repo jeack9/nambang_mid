@@ -46,8 +46,8 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="#"><i class="fa fa-heart"></i> <span>${zzimCnt99 }</span></a></li>
+                <li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>${cartCnt99}</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -131,7 +131,12 @@
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li><a href="noticeList.do">공지사항</a></li>
+                                    <c:if test="${login.userId ne 'tiger' }">
                                     <li><a href="qnaList.do">1:1 문의</a></li>
+                                    </c:if>
+                                    <c:if test="${login.userId eq 'tiger' }">
+                                    <li><a href="ss">1:1 문의</a></li>
+                                    </c:if>
                                 </ul>
                             </div>
 				        	<c:choose>
@@ -185,8 +190,8 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="myZzim.do"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="myZzim.do"><i class="fa fa-heart"></i> <span>${zzimCnt99 }</span></a></li>
+                            <li><a href="cartList.do"><i class="fa fa-shopping-bag"></i> <span>${cartCnt99 }</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>

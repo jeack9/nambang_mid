@@ -21,8 +21,8 @@
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
-<form action="sooControl4.do">
 <div class="col-lg-9 col-md-7">
+<form action="sooControl4.do">
 <h3>공지사항</h3>
 
 <p>컬리의 새로운 소식들과 유용한 정보들을 한눈에 확인하세요.</p>
@@ -74,6 +74,6 @@
 </div>
 
 
-</div>
 </form>
+</div>
  <script src="boardJs/noticeList.js"></script>

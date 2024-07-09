@@ -54,5 +54,9 @@ public class CartServiceImpl implements CartService{
 	public List<Map<String, Object>> orderCarts(int[] arr) {
 		return mapper.orderCarts(arr);
 	}
+	@Override
+	public int cartCnt(String userId) {
+		return mapper.cartCnt(userId);
+	}
 
 }

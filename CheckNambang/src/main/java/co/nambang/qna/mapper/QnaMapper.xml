@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.nambang.qna.mapper.QnaMapper">
+	<insert id="registerQna" parameterType="co.nambang.qna.vo.QnaVO">
+	insert into qna_ck(qna_no, order_no, user_id, qna_type1, qna_type2, qna_title, qna_content, qna_image)
+	values(qna_seq.nextval, #{orderNo}, #{userId}, #{qnaType1}, #{qnaType2}, #{qnaTitle}, #{qnaContent}, #{qnaImage})
+	</insert>
 	<select id="qnaList" resultType="co.nambang.qna.vo.QnaVO">
 		SELECT b.*
 		FROM (SELECT /*+INDEX_DESC(q pk_qna_ck)*/ ROWNUM rn, q.*
@@ -38,4 +42,15 @@
 		from ask_type_ck
 		where type1 = #{type1}
 	</select>
+	
+	<select id="getQna">
+	select *
+	from qna_ck
+	where qna_no = #{no}
+	</select>
+	
+	<delete id="removeQna">
+		delete from qna_ck
+		where qna_no = #{qnaNo}
+	</delete>
 </mapper>

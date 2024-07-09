@@ -71,4 +71,10 @@
 		#{cartNo}
 		</foreach>
 	</select>
+	
+	<select id="cartCnt">
+	select count(*)
+	from cart_ck
+	where user_id = #{userId}
+	</select>
 </mapper>
