@@ -43,6 +43,7 @@ public class Hyun2 implements Control {
 		//목록
 		ProductService svc = new ProductServiceImpl();
 		List<ProductVO> list = svc.productList(svo);
+		List<ProductVO> viewList = svc.viewCntList();
 		
 		
 		// 페이징 처리를 위한 페이지에 대한 정보
@@ -54,6 +55,7 @@ public class Hyun2 implements Control {
 		map.put("list", list);
 		map.put("dto", dto);
 		map.put("svo", svo);
+		map.put("viewList", viewList);
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create(); // gson 라이브러리 부르기
 		String json = gson.toJson(map);  // 객체를 문자열로 변경하는 메소드 toJson

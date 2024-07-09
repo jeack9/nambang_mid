@@ -49,4 +49,12 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.chosungList(svo);
 	}
 
+	@Override
+	public List<ProductVO> viewCntList() {
+		// TODO Auto-generated method stub
+		return mapper.viewCntList();
+	}
+
+
+
 }

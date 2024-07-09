@@ -6,6 +6,7 @@ let proSearch = {page : 1, category:"", keyword:"", chosung:""};
 let pageDTO = {};
 
 
+
 //데이터 목록 출력하기
 
 
@@ -24,10 +25,13 @@ fetch(`productListJson.do?page=${proSearch.page}&kw=${proSearch.keyword || ''}&c
 proList(proSearch);
 
 
+
+
 //검색창 이벤트
 //엔터 누를시
 document.querySelector("input[type='text']").addEventListener("keyup" ,(e) => {
 	if(e.keyCode == 13){
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
 		proSearch.keyword = e.target.value;
 		proList(proSearch);
 	}
@@ -35,6 +39,7 @@ document.querySelector("input[type='text']").addEventListener("keyup" ,(e) => {
 
 // 버튼 클릭시
 document.querySelector(".site-btn").addEventListener("click", (e) => {
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
 		proSearch.keyword = document.querySelector("input[type='text']").value;
 		proList(proSearch);
 });
@@ -42,6 +47,7 @@ document.querySelector(".site-btn").addEventListener("click", (e) => {
 //카테코기 버튼 클릭시
 document.querySelectorAll(".sidebar__item>ul>li").forEach(item=>{
 	item.addEventListener("click", (e)=>{
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
 		proSearch.category = e.target.textContent;
 		console.log(proSearch);
 		proList(proSearch);
@@ -51,6 +57,7 @@ document.querySelectorAll(".sidebar__item>ul>li").forEach(item=>{
 //초성 버튼 클릭시
 document.querySelectorAll('.sidebar_chosung > li').forEach(cho =>{
 	cho.addEventListener("click", (e)=>{
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
 		console.log(e);
 		proSearch.chosung = e.target.textContent;
 		console.log(proSearch);
