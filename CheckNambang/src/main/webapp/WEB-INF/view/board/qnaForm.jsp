@@ -39,7 +39,9 @@ div.order-box{
 				<c:forEach var="list" items="${item.value }">
 				<div style="display:none;" class="view${item.key }">
 					<div class="order-box">
+						<c:if test="${!empty list.productImage}">
 						<img alt="" src="img/${list.productImage}" width="50" class="f-item1">
+						</c:if>
 						<p class="f-item2">${list.productName}</p>
 						<ul class="f-item3">
 						<li>${list.opVolume1} 개</li>
