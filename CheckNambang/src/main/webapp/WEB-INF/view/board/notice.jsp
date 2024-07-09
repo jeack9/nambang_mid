@@ -12,6 +12,7 @@
 			<th class="col-sm-2">제목</th>
 			<td class="col-sm-7">${noticeTitle}</td>
 			<th class="col-sm-2"></th>
+			
 		</tr>
 		<tr>
 			<th class="col-sm-2">작성자</th>

@@ -37,4 +37,24 @@ public class ProductServiceImpl implements ProductService{
 		return mapper.getProduct(pno);
 	}
 
+	@Override
+	public List<SearchVO> cateList(SearchVO svo) {
+		// TODO Auto-generated method stub
+		return mapper.cateList(svo);
+	}
+
+	@Override
+	public List<SearchVO> chosungList(SearchVO svo) {
+		// TODO Auto-generated method stub
+		return mapper.chosungList(svo);
+	}
+
+	@Override
+	public List<ProductVO> viewCntList() {
+		// TODO Auto-generated method stub
+		return mapper.viewCntList();
+	}
+
+
+
 }

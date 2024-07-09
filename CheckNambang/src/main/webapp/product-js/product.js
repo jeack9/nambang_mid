@@ -1,14 +1,17 @@
 /**
  * product.js
  */
-let search = {page : 1, searchCondition: -1, keyword:""};
+
+let proSearch = {page : 1, category:"", keyword:"", chosung:""};
 let pageDTO = {};
+
 
 
 //데이터 목록 출력하기
 
-function proList(search = {}){
-fetch(`productListJson.do?page=${search.page}&kw=${search.keyword || ''}`)
+
+function proList(proSearch = {}){
+fetch(`productListJson.do?page=${proSearch.page}&kw=${proSearch.keyword || ''}&cate=${proSearch.category || ''}&cho=${proSearch.chosung}`)
 	.then(result => result.json())
 	.then(result => {
 		document.querySelector("#product_list").innerHTML = "";
@@ -16,27 +19,51 @@ fetch(`productListJson.do?page=${search.page}&kw=${search.keyword || ''}`)
 		result.list.forEach(item => {
 			cloneDiv(item);
 		})		
-		console.log(pageDTO);
 		paging(pageDTO);
 	});
 }
-proList(search);
+proList(proSearch);
+
+
 
 
 //검색창 이벤트
 //엔터 누를시
 document.querySelector("input[type='text']").addEventListener("keyup" ,(e) => {
 	if(e.keyCode == 13){
-		search.keyword = e.target.value;
-		proList(search);
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
+		proSearch.keyword = e.target.value;
+		proList(proSearch);
 	}
-})
+});
 
 // 버튼 클릭시
-document.querySelector(".site-btn").addEventListener("click", (e)=>{
-		search.keyword = document.querySelector("input[type='text']").value;
-		proList(search);
-})
+document.querySelector(".site-btn").addEventListener("click", (e) => {
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
+		proSearch.keyword = document.querySelector("input[type='text']").value;
+		proList(proSearch);
+});
+
+//카테코기 버튼 클릭시
+document.querySelectorAll(".sidebar__item>ul>li").forEach(item=>{
+	item.addEventListener("click", (e)=>{
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
+		proSearch.category = e.target.textContent;
+		console.log(proSearch);
+		proList(proSearch);
+	});
+});
+
+//초성 버튼 클릭시
+document.querySelectorAll('.sidebar_chosung > li').forEach(cho =>{
+	cho.addEventListener("click", (e)=>{
+		proSearch = {page : 1, category:"", keyword:"", chosung:""};
+		console.log(e);
+		proSearch.chosung = e.target.textContent;
+		console.log(proSearch);
+		proList(proSearch);
+	});
+});
 
 
 // 페이지 만들기
@@ -47,10 +74,10 @@ function paging(pageDTO = {}){
 		let cloneLarrow = document.querySelector(".product__pagination > a:nth-of-type(1)").cloneNode(true);
 		cloneLarrow.style.display = "";
 		cloneLarrow.addEventListener("click", (e) =>{
-			search.page = pageDTO.startPage - 1;
+			proSearch.page = pageDTO.startPage - 1;
 			e.preventDefault();
-			proList(search);
-		})
+			proList(proSearch);
+		});
 		pageBody.appendChild(cloneLarrow);
 	}
 	for(let p = pageDTO.startPage; p <= pageDTO.endPage; p++){ //페이지 순번
@@ -60,8 +87,8 @@ function paging(pageDTO = {}){
 		if(p == pageDTO.page) clonePage.setAttribute("class", "active");
 		clonePage.addEventListener("click" , (e) =>{
 			e.preventDefault();
-			search.page = p;
-			proList(search);
+			proSearch.page = p;
+			proList(proSearch);
 		});
 		pageBody.appendChild(clonePage);
 	}
@@ -69,24 +96,26 @@ function paging(pageDTO = {}){
 		let cloneRarrow = document.querySelector(".product__pagination > a:nth-of-type(3)").cloneNode(true);
 		cloneRarrow.style.display = "";
 		cloneRarrow.addEventListener("click", (e) => {
-			search.page = pageDTO.endPage + 1;
+			proSearch.page = pageDTO.endPage + 1;
 			e.preventDefault();
-			proList(search);
-		})
+			proList(proSearch);
+		});
 		pageBody.appendChild(cloneRarrow);
 	}
 }//end of paing
 
+//디테일페이지 넘기기
 function productDetail(e) {
 	console.log(e.target.id);
 	location.href = "mocontrol.do?proCode=" + e.target.id;
 }
+
 let totalC = document.getElementById('totalCnt');
 function cloneDiv(product = {}) {
-
+	console.log(product.productImage, "이미지이미지");
 	let cloneDiv = document.querySelector("#product_id").cloneNode(true);
 	cloneDiv.style.display = "";
-	cloneDiv.querySelector(".product_img").style.backgroundImage = `url(moImg/${product.productImage})` + " ";
+	cloneDiv.querySelector(".product_img").style.backgroundImage = `url("image/` + product.productImage + `")`;
 	cloneDiv.querySelector(".product_img").setAttribute("id", product.productCode);
 	cloneDiv.querySelector(".product_img").addEventListener("click", productDetail);
 	cloneDiv.querySelector("#product_title").innerHTML = `${product.company}` + `${product.productName}`;
@@ -107,7 +136,7 @@ function cloneDiv(product = {}) {
 			document.querySelector('.modal').style.display = 'flex';
 		}
 		document.getElementById('modal_code').textContent = `${product.productCode}`
-		document.getElementById('modal_img').style.backgroundImage = `url(moImg/${product.productImage})`;
+		document.getElementById('modal_img').style.backgroundImage = `url("image/` + product.productImage + `")`;
 		document.getElementById('modal_company').innerHTML = `${product.company}` + `${product.productName}`;
 
 		// 할인된 값이 없을 때 기본 값 설정
@@ -147,7 +176,7 @@ document.querySelector('.putCart').addEventListener('click', () => {
 	console.log(totalCnt);
 	console.log(proCode);
 	const putAjax = new XMLHttpRequest();
-	putAjax.open('get', 'hyunControl3.do?proCode=' + proCode //
+	putAjax.open('get', 'addCartAjax.do?proCode=' + proCode //
 		+ '&userId=' + userId + '&cartVolume=' + totalCnt);
 	putAjax.send();
 	putAjax.onload = function() {
@@ -159,12 +188,3 @@ document.querySelector('.putCart').addEventListener('click', () => {
 		}
 	}
 });
-
-
-
-
-
-
-
-
-

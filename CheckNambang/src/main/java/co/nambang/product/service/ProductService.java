@@ -10,6 +10,8 @@ public interface ProductService {
 	List<ProductVO> productList(SearchVO svo);
 	boolean addCart(CartVO cvo);
 	int totalCnt(SearchVO svo);
-	
+	List<SearchVO> cateList(SearchVO svo);
 	ProductVO getProduct(String pno);
+	List<SearchVO> chosungList(SearchVO svo);
+	List<ProductVO> viewCntList();
 }

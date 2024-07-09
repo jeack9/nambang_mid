@@ -1,5 +1,8 @@
 package co.nambang.order.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import co.nambang.common.DataSource;
@@ -14,6 +17,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public boolean addOrder(OrderVO ovo) {
 		return mapper.insertOrder(ovo) == 1;
+	}
+
+	@Override
+	public List<Map<Object, Object>> orderHistroyList(String userId) {
+		return mapper.orderHistroyList(userId);
 	}
 	
 }

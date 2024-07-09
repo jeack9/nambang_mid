@@ -12,6 +12,8 @@ public class MyOrderList implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		req.getRequestDispatcher("mypage/orderDetails.tiles").forward(req, resp);
 	}
 

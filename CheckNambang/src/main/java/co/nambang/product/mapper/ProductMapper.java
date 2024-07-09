@@ -20,4 +20,10 @@ public interface ProductMapper {
 	public int totalCnt(SearchVO svo);
 	// 상품 한개의 정보 조회
 	public ProductVO getProduct(String pno);
+	// 카테고리 목록조회
+	public List<SearchVO> cateList(SearchVO svo);
+	// 초성 목록조회
+	public List<SearchVO> chosungList(SearchVO svo);
+	// 랭킹
+	public List<ProductVO> viewCntList();
 }

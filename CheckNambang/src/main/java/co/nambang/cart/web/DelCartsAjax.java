@@ -29,6 +29,8 @@ public class DelCartsAjax implements Control {
 		ServletInputStream sis = req.getInputStream();
 		String json = StreamUtils.copyToString(sis, StandardCharsets.UTF_8);
 		System.out.println(json);
+		req.getParameter("id");
+		// 12,13,14 ${param} 문자열 그대로 들어감.
 		// 문자열 -> 객체
 		ObjectMapper objectMapper = new ObjectMapper();
 		CartNODTO centers = objectMapper.readValue(json, CartNODTO.class);

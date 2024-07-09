@@ -7,7 +7,6 @@ fetch('woonControl14.do?userId='+userId)
 	.then(result =>{
 		console.log(result);
 		result.forEach(addrList =>{
-			console.log(addrList);
 			cloneRow(addrList);
 		})		
 	})
@@ -45,17 +44,14 @@ fetch('woonControl14.do?userId='+userId)
 basicAddr.addEventListener('click', function(e){
 	
 	let addrNo = document.querySelector('input[name=addrNo]:checked').value;
-	console.log(addrNo);
 	fetch('woonControl17.do?addrNo='+addrNo)
 		.then(result => result.json())
 		.then(result => {
-			console.log(result);
 		if(result.retCode == 'Good'){
-			alert('업데이트가 잘되었습니다.');
-			console.log(result);
+			alert('기본배송지로 변경 되었습니다.');
 			reloadAddresses();
 		}else{
-			alert('업데이트가 잘못 되었습니다');
+			alert('변경에 실패 하였습니다. 다시 한번 확인 부탁 드립니다');
 		}
 	})
 })

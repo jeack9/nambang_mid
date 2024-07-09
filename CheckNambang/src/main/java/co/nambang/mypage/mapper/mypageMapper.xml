@@ -23,18 +23,10 @@
   	</update>
   			
   	<select id = "oderDetail" parameterType="co.nambang.mypage.vo.mypageVO">
-		select A.product_name,
-		         C.order_no,
-		         B.op_volume,
-		         C.order_date, 
-		         C.order_price,
-		         B.user_id
-		from products_ck A,
-		        order_product B,
-		        order_ck C     
-		where C.order_no = B.order_no
-		and B.product_code = A.product_code
-		and user_id = #{userId}
+		select *
+		from order_ck
+		where user_id = #{userId}
+		order by order_no desc
   	</select>
   	
    	<select id ="currentPw" parameterType="String" resultType="co.nambang.mypage.vo.mypageVO">		<!--비밀번호 확인 중복  -->

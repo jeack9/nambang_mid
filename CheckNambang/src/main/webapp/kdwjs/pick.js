@@ -96,8 +96,9 @@ fetch('woonControl7.do?userId=' + userId)
 	})
 
 function cloneRow(pickItem = {}) {
+	console.log(pickItem);
 	let clone = document.querySelector('tbody>tr:nth-of-type(1)').cloneNode(true);
-	clone.querySelector('.shoping__cart__item>img').setAttribute('src', `img/${pickItem.productImage}`);
+	clone.querySelector('.shoping__cart__item>img').setAttribute('src', `image/${pickItem.productImage}`);
 	clone.querySelector('.shoping__cart__name').innerHTML = pickItem.productName;
 	clone.querySelector('.shoping__cart__price').innerHTML = pickItem.price + "원";
 

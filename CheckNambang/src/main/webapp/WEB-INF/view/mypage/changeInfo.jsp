@@ -22,7 +22,7 @@
 </style>
 <!-- 새로 적용 -->
 
-	<form action="woonControl3.do" method="get">
+	<form action="editMemberJson.do" method="get">
 	  <section class="product spad">
         <div class="container">
             <div class="row">
@@ -93,7 +93,7 @@
 						</div>
                         <div class="checkout__input">
                             <label>생년월일</label>
-							<input placeholder="YYYYMMDD" name = "birthYear" type = "text" >
+							<input placeholder="YYYYMMDD" name = "birthYear" type = "text" required>
                         </div>
                         <div>
 							<button type ="submit" id = "changeBtn" class ="btn btn-danger"><span>정보수정</span></button>

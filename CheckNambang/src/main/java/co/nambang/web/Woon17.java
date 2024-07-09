@@ -51,10 +51,9 @@ public class Woon17 implements Control {
 		
 
 		  if(svc.changeAddress(avo)) {
-	  
-		 resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
+			  resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
 		 }else {  
-		  resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}"); 
+			 resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}"); 
 		  }	
 	}
 
