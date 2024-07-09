@@ -26,18 +26,17 @@
 	</insert>
 	
 	<select id="hugiList" parameterType="co.nambang.hugi.vo.HugiVO">
-		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no, B.user_name, C.product_name, C.company
+		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no, A.hugi_image, B.user_name, C.product_name, C.company
 		from member_ck B 
             join hugi_ck A 
 				on B.user_id = A.user_id 
             join products_ck C
                 on A.product_code = C.product_code
 		where A.product_code = #{proCode}
-		order by A.hugi_no desc
 	</select>
 	
 	<select id="hugiPaging">
-		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.op_no,
+		select A.hugi_no, A.hugi_content, A.hugi_date, A.user_id, A.product_code, A.hugi_image, A.op_no,
 	           B.user_name, C.product_name, C.company
 	    from (
 	        SELECT /*+index_desc(r reply_pk)*/ rownum rn, r.* 
@@ -49,7 +48,6 @@
 	    where A.rn &lt;= #{page} * 5
 	    and A.rn &gt; (#{page} - 1) * 5
 	    and A.product_code = #{proCode}
-	    order by A.hugi_no DESC
 	</select>
 	
 	<select id="zzimList" parameterType="co.nambang.zzim.vo.ZzimVO">

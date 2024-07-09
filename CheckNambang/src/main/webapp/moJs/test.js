@@ -23,23 +23,36 @@ function makeHugi(page) {
     hugiList.innerHTML = '';
     fetch('mocontrol5.do?proCode=' + proCode + '&page=' + page)
         .then(result => result.json())
-        .then(result => result.forEach((hugi, idx) => {
-            let field1 = [hugi.userName];
-            let field2 = [hugi.company + hugi.productName, hugi.hugiContent, hugi.hugiImage, hugi.hugiDate];
-            for (let i = 0; i < field1.length; i++) {
-                let tr = document.createElement('tr');
-                let th = document.createElement('th');
-                th.innerHTML = field1[i];
-                tr.appendChild(th);
+        .then(result => result.forEach((hugi) => {
+            let tr = document.createElement('tr');
+            
+            // 필드 1 추가
+            let th = document.createElement('th');
+            th.innerHTML = hugi.userName;
+            tr.appendChild(th);
 
-                for (let j = 0; j < field2.length; j++) {
-                    let td = document.createElement('td');
-                    td.innerHTML = field2[j];
-                    tr.appendChild(td);
-                }
+            let img1 = document.createElement('img');
+            let imageName = hugi.hugiImage;
+            let encodedImageName = encodeURIComponent(imageName);
+            let imagePath = 'image/' + encodedImageName;
+            img1.src = imagePath;
+            img1.setAttribute('id', 'hugiImg');
+            tr.appendChild(img1);
+            
+            // 필드 2 추가
+            let tdCompanyProduct = document.createElement('td');
+            tdCompanyProduct.innerHTML = hugi.company + hugi.productName;
+            tr.appendChild(tdCompanyProduct);
 
-                hugiList.appendChild(tr);
-            }
+            let tdDate = document.createElement('td');
+            tdDate.innerHTML = hugi.hugiDate;
+            tr.appendChild(tdDate);
+
+            let tdContent = document.createElement('td');
+            tdContent.innerHTML = hugi.hugiContent;
+            tr.appendChild(tdContent);
+
+            hugiList.appendChild(tr);
         }));
 }
 
@@ -50,13 +63,13 @@ function updatePaging(currentPage) {
         if (parseInt(a.getAttribute('data-page')) === currentPage) {
             page = currentPage;
             a.classList.add('active');
+            console.log(page,'ppp');
         }
     });
 }
 
 function createPaging(totalCnt) {
     let hugiPaging = document.querySelector('.hugipaging');
-    hugiPaging.innerHTML = '';
 
     let startPage, endPage;
     let prev, next;
@@ -69,6 +82,8 @@ function createPaging(totalCnt) {
     prev = startPage > 1;
     next = endPage < realEnd;
 
+    hugiPaging.innerHTML = '';
+    
     if (prev) {
         let a = document.createElement('a');
         a.setAttribute('class', 'aTag');

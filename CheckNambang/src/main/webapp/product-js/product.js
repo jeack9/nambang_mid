@@ -108,7 +108,7 @@ function cloneDiv(product = {}) {
 	console.log(product.productImage, "이미지이미지");
 	let cloneDiv = document.querySelector("#product_id").cloneNode(true);
 	cloneDiv.style.display = "";
-	cloneDiv.querySelector(".product_img").style.backgroundImage = `url(image/` + product.productImage + `)`;
+	cloneDiv.querySelector(".product_img").style.backgroundImage = `url("image/` + product.productImage + `")`;
 	cloneDiv.querySelector(".product_img").setAttribute("id", product.productCode);
 	cloneDiv.querySelector(".product_img").addEventListener("click", productDetail);
 	cloneDiv.querySelector("#product_title").innerHTML = `${product.company}` + `${product.productName}`;
@@ -129,7 +129,7 @@ function cloneDiv(product = {}) {
 			document.querySelector('.modal').style.display = 'flex';
 		}
 		document.getElementById('modal_code').textContent = `${product.productCode}`
-		document.getElementById('modal_img').style.backgroundImage = `url(image/` + product.productImage + `)`;
+		document.getElementById('modal_img').style.backgroundImage = `url("image/` + product.productImage + `")`;
 		document.getElementById('modal_company').innerHTML = `${product.company}` + `${product.productName}`;
 
 		// 할인된 값이 없을 때 기본 값 설정
