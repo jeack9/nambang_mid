@@ -93,7 +93,7 @@
 						</div>
                         <div class="checkout__input">
                             <label>생년월일</label>
-							<input placeholder="YYYYMMDD" name = "birthYear" type = "text" >
+							<input placeholder="YYYYMMDD" name = "birthYear" type = "text" required>
                         </div>
                         <div>
 							<button type ="submit" id = "changeBtn" class ="btn btn-danger"><span>정보수정</span></button>
