@@ -24,4 +24,6 @@ public interface ProductMapper {
 	public List<SearchVO> cateList(SearchVO svo);
 	// 초성 목록조회
 	public List<SearchVO> chosungList(SearchVO svo);
+	// 랭킹
+	public List<ProductVO> viewCntList();
 }

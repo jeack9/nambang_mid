@@ -5,34 +5,33 @@
 <mapper namespace="co.nambang.product.mapper.ProductMapper">
 	<select id="productList"
 		parameterType="co.nambang.product.vo.SearchVO">
-		SELECT * FROM (
-		SELECT
-		p.product_code,
-		p.PRODUCT_IMAGE,
-		p.COMPANY,
-		p.PRODUCT_NAME,
-		p.PRICE,
-		p.off_price,
-		p.VOLUME,
-		h.view_cnt,
-		ROW_NUMBER()
-		OVER (ORDER BY p.product_code) AS rn
-		FROM
-		products_ck p
-		LEFT JOIN (
-		SELECT
-		product_code,
-		COUNT(*) AS view_cnt
-		FROM
-		hugi_ck
-		GROUP BY
-		product_code
-		) h ON p.product_code = h.product_code
-		where product_name
-		like '%'|| #{keyword} ||'%'
-		and category like '%' || #{category} || '%'
-		and brand_chosung like '%' || #{brandChosung} || '%'
-		) b
+		SELECT * 
+		FROM (
+			SELECT
+				p.product_code,
+				p.PRODUCT_IMAGE,
+				p.COMPANY,
+				p.PRODUCT_NAME,
+				p.PRICE,
+				p.off_price,
+				p.VOLUME,
+				h.view_cnt,
+				ROW_NUMBER() OVER (ORDER BY p.product_code) AS rn
+			FROM
+				products_ck p
+			LEFT JOIN (
+					SELECT
+					product_code,
+					COUNT(*) AS view_cnt
+					FROM
+					hugi_ck
+					GROUP BY
+					product_code
+					) h ON p.product_code = h.product_code
+			where product_name like '%'|| #{keyword} ||'%'
+			and category like '%' || #{category} || '%'
+			and brand_chosung like '%' || #{brandChosung} || '%'
+			) b
     <![CDATA[WHERE b.rn <= (#{page} * 6) ]]>
 		AND b.rn > ((#{page} - 1) * 6)
 		ORDER BY b.product_code
@@ -73,9 +72,32 @@
 		from products_ck
 	</select>
 
-	<select id="chosungList" parameterType="co.nambang.product.vo.SearchVO">
+	<select id="chosungList"
+		parameterType="co.nambang.product.vo.SearchVO">
 		select distinct brand_chosung
 		from products_ck
+	</select>
+
+	<select id="viewCntList">
+		SELECT PRODUCT_IMAGE,
+				COMPANY,
+				PRODUCT_NAME,
+				off_price,
+				PRICE,
+				view_cnt
+		FROM (
+				SELECT PRODUCT_IMAGE,
+					   COMPANY,
+				       PRODUCT_NAME,
+				       off_price,
+				       PRICE,
+				       view_cnt
+				FROM products_ck
+		        ORDER BY view_cnt DESC
+			)
+		 <![CDATA[WHERE ROWNUM <= 3]]>
+	
+
 	</select>
 
 </mapper>

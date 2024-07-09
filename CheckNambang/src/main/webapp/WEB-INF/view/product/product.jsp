@@ -100,215 +100,43 @@ a.active {
 						</div>
 					</div>
 
-					<!-- 임시로 데이터 확인 -->
-					<c:forEach var="cho" items="${choSung}">
-						<p>${cho.chosung}</p>
-					</c:forEach>
 
-					<div class="sidebar__item">
-						<h4>Popular Size</h4>
-						<div class="sidebar__item__size">
-							<label for="large"> Large <input type="radio" id="large">
-							</label>
-						</div>
-						<div class="sidebar__item__size">
-							<label for="medium"> Medium <input type="radio"
-								id="medium">
-							</label>
-						</div>
-						<div class="sidebar__item__size">
-							<label for="small"> Small <input type="radio" id="small">
-							</label>
-						</div>
-						<div class="sidebar__item__size">
-							<label for="tiny"> Tiny <input type="radio" id="tiny">
-							</label>
-						</div>
-					</div>
-					<div class="sidebar__item">
+					
+					<div class="sidebar__item ">
 						<div class="latest-product__text">
-							<h4>Latest Products</h4>
+							<h4>인기상품</h4>
 							<div
-								class="latest-product__slider owl-carousel owl-loaded owl-drag">
+								class="latest-product__slider owl-carousel owl-loaded owl-drag view_List">
 
 
 								<div class="owl-stage-outer">
 									<div class="owl-stage"
 										style="transform: translate3d(-787px, 0px, 0px); transition: all 1.2s ease 0s; width: 1575px;">
+										<c:forEach var="pList" items="${target}">
 										<div class="owl-item cloned" style="width: 262.5px;">
+											<c:forEach var="p" items="${pList }">
 											<div class="latest-prdouct__slider__item">
-												<a href="#" class="latest-product__item">
+												<div class="latest-product__item">
 													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-1.jpg" alt="">
+														<img src="image/${p.productImage}" id="view_img" alt="">
 													</div>
 													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
+														<h6 id= "view_title">${p.company }${p.productName}</h6>
+														<c:choose>
+														<c:when test="${p.offPrice ne 0}">
+														<span style="color:red;">${p.offPrice }</span>
+														<span style="color: #ccc; text-decoration: line-through;">${p.price }</span>
+														</c:when>
+														<c:otherwise>
+														<span>${p.price }</span>
+														</c:otherwise>
+														</c:choose>
 													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-2.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-3.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a>
+												</div>
 											</div>
+											</c:forEach>
 										</div>
-										<div class="owl-item cloned" style="width: 262.5px;">
-											<div class="latest-prdouct__slider__item">
-												<a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-1.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-2.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-3.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a>
-											</div>
-										</div>
-										<div class="owl-item" style="width: 262.5px;">
-											<div class="latest-prdouct__slider__item">
-												<a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-1.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-2.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-3.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a>
-											</div>
-										</div>
-										<div class="owl-item active" style="width: 262.5px;">
-											<div class="latest-prdouct__slider__item">
-												<a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-1.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-2.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-3.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a>
-											</div>
-										</div>
-										<div class="owl-item cloned" style="width: 262.5px;">
-											<div class="latest-prdouct__slider__item">
-												<a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-1.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-2.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-3.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a>
-											</div>
-										</div>
-										<div class="owl-item cloned" style="width: 262.5px;">
-											<div class="latest-prdouct__slider__item">
-												<a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-1.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-2.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a> <a href="#" class="latest-product__item">
-													<div class="latest-product__item__pic">
-														<img src="img/latest-product/lp-3.jpg" alt="">
-													</div>
-													<div class="latest-product__item__text">
-														<h6>Crab Pool Security</h6>
-														<span>$30.00</span>
-													</div>
-												</a>
-											</div>
-										</div>
+										</c:forEach>
 									</div>
 								</div>
 								<div class="owl-nav">
@@ -322,41 +150,11 @@ a.active {
 								<div class="owl-dots disabled"></div>
 							</div>
 						</div>
-					</div>
+				<!-- 사이드바끝 -->	</div>
+				
 				</div>
 			</div>
 			<div class="col-lg-9 col-md-7 tbody">
-				<div class="filter__item">
-					<div class="row">
-						<div class="col-lg-4 col-md-5">
-							<div class="filter__sort">
-								<span>Sort By</span> <select style="display: none;">
-									<option value="0">Default</option>
-									<option value="0">Default</option>
-								</select>
-								<div class="nice-select" tabindex="0">
-									<span class="current">Default</span>
-									<ul class="list">
-										<li data-value="0" class="option selected">Default</li>
-										<li data-value="0" class="option">Default</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4">
-							<div class="filter__found">
-								<h6>
-									<span>16</span> Products found
-								</h6>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-3">
-							<div class="filter__option">
-								<span class="icon_grid-2x2"></span> <span class="icon_ul"></span>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<!--  상품리스트 -->
 				<div class="col-lg-4 col-md-6 col-sm-6" id="product_id"

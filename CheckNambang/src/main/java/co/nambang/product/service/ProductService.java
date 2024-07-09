@@ -13,4 +13,5 @@ public interface ProductService {
 	List<SearchVO> cateList(SearchVO svo);
 	ProductVO getProduct(String pno);
 	List<SearchVO> chosungList(SearchVO svo);
+	List<ProductVO> viewCntList();
 }
