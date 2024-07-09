@@ -116,7 +116,7 @@ async function checkRemoveJSON(data) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: 'id=12,13,14,15'//JSON.stringify(data),
+      body: JSON.stringify(data), //'id=12,13,14,15'
     });
     
     const result = await response.json();

@@ -6,7 +6,9 @@
 .pagination {
   display: inline-block;
 }
-
+input{
+	float: right;
+}
 .pagination a {
   color: black;
   float: left;
@@ -26,8 +28,6 @@
 <h3>공지사항</h3>
 
 <p>컬리의 새로운 소식들과 유용한 정보들을 한눈에 확인하세요.</p>
-<input type="submit" value="등록하기" class="btn btn-primary" >
-<br>
 <br>
   <table class="table table-hover" id="listTable">
       <thead>
@@ -51,7 +51,7 @@
   </table>
   
   
-  <p>${paging }</p>
+
   <div class="pagination">
   <c:if test="${paging.prev }">
   <a href="noticeList.do?page=${paging.startPage-1 }">&laquo;</a>
@@ -71,9 +71,9 @@
   <a href="noticeList.do?page=${paging.endPage+1 }">&raquo;</a>
   </c:if>
   
+
 </div>
-
-
+<input type="submit" value="등록하기" id="ask-btn" class="site-btn" class="btn btn-primary"  >
 </form>
 </div>
  <script src="boardJs/noticeList.js"></script>

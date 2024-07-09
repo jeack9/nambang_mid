@@ -53,7 +53,7 @@ public class EditMemberJson implements Control {
 		mypageService svc = new mypageServiceImpl();
 
 		if (svc.modifyMember(mvo)) {
-			resp.getWriter().print("{\"retCode\" : \"Good\", \"retMsg\": \"Win\"}");
+			resp.sendRedirect("myPageForm.do");
 		} else {
 			resp.getWriter().print("{\"retCode\" : \"Bad\", \"retMsg\": \"Lose\"}");
 		}

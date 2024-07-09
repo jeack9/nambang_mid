@@ -38,7 +38,7 @@
 											<td class="shoping__cart__item">
 												<input type="text" value="${cart.get('CART_NO') }" name="cartNo" hidden="hidden">
 												<input type="text" value="${cart.get('PRODUCT_CODE') }" name="code" hidden="hidden">
-												<img src="img/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
+												<img src="image/${cart.get('PRODUCT_IMAGE') }" alt="" width="100">
 												<h5>[${cart.get('COMPANY') }] ${cart.get('PRODUCT_NAME') }</h5>
 											</td>
 											<td class="shoping__cart__quantity">
