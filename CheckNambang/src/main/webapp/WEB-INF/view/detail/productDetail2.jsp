@@ -82,6 +82,10 @@
 a:link {
 	text-decoration: none;
 }
+#hugiImg{
+	width: 100px;
+	height:  100px;
+}
 </style>
 <style>
 .center {
@@ -179,6 +183,7 @@ a {
 						<div id="tabs-3">
 							<h3>상품 후기</h3>
 							<table id="hugiList">
+								
 							</table>
 							<div class="center">
 								<div class="hugipaging">

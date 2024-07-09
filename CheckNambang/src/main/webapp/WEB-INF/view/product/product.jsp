@@ -364,7 +364,7 @@ a.active {
 					<div class="product__item product_list">
 						<div class="product__item__pic set-bg product_img"
 							data-setbg="img/product/product-1.jpg"
-							style="background-image: url(&quot;image/basic.jpg&quot;);">
+							style="background-image: url(image/basic.jpg);">
 							<a href="hyunControl4.do?proCode="></a>
 						</div>
 
