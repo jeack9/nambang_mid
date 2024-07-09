@@ -48,7 +48,7 @@
 											<td class="shoping__cart__total">
 												<ul>
 													<c:choose>
-														<c:when test="${!empty cart.get('OFF_PRICE') }">
+														<c:when test="${cart.get('OFF_PRICE') ne 0 }">
 															<li>${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</li>
 															<li>${cart.get('CART_VOLUME') * cart.get('PRICE')}</li>
 															<input type="text" value="${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}" name="proPrice" hidden="hidden">
@@ -88,7 +88,7 @@
 							<ul>
 							<c:forEach var="cart" items="${list}">
 								<c:choose>
-									<c:when test="${!empty cart.get('OFF_PRICE') }">
+									<c:when test="${cart.get('OFF_PRICE') ne 0 }">
 									<li>${cart.get('PRODUCT_NAME')}<span class="price">${cart.get('CART_VOLUME') * cart.get('OFF_PRICE')}</span></li>
 									</c:when>
 									<c:otherwise>
