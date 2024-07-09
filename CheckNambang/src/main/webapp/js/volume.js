@@ -56,6 +56,7 @@ function calcPrice(){
   document.querySelector("#subtotal").innerText = subtotal;
   document.querySelector("#total").innerText = total;
 }
+console.log("dddd");
 calcPrice();
 
 // 장바구니 우측 삭제 이벤트
