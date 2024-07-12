@@ -40,7 +40,7 @@ div.order-box{
 				<div style="display:none;" class="view${item.key }">
 					<div class="order-box">
 						<c:if test="${!empty list.productImage}">
-						<img alt="" src="img/${list.productImage}" width="50" class="f-item1">
+						<img alt="" src="image/${list.productImage}" width="50" class="f-item1">
 						</c:if>
 						<p class="f-item2">${list.productName}</p>
 						<ul class="f-item3">
